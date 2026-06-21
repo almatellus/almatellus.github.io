@@ -6,9 +6,13 @@
   <title>Alma Tellus</title>
   <style>
     :root {
-      --blu-petrolio: #0e2a3a;
-      --oro-sabbia: #c8a15a;
+      --blu: #0e2a3a;
+      --oro: #c8a15a;
       --sfondo: #f6f3ec;
+      --bianco: #ffffff;
+      --testo: #18323c;
+      --muted: #6b7a80;
+      --bordo: rgba(14, 42, 58, 0.15);
     }
 
     * {
@@ -17,50 +21,339 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--testo);
+      background: var(--sfondo);
+    }
+
+    .container {
+      width: min(960px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--sfondo);
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--blu-petrolio);
-    }
-
-    main {
       text-align: center;
-      padding: 32px;
+      padding: 48px 0;
     }
 
     .logo {
-      width: min(520px, 82vw);
-      height: auto;
       display: block;
-      margin: 0 auto 36px auto;
+      width: min(440px, 82vw);
+      height: auto;
+      margin: 0 auto 34px;
     }
 
     .coming-soon {
-      font-size: clamp(1.4rem, 3vw, 2.4rem);
+      color: var(--blu);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 500;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      font-weight: 500;
-      color: var(--blu-petrolio);
     }
 
-    .linea {
+    .gold-line {
       width: 72px;
       height: 3px;
-      background: var(--oro-sabbia);
-      margin: 18px auto 0 auto;
+      margin: 20px auto 30px;
       border-radius: 999px;
+      background: var(--oro);
+    }
+
+    .intro {
+      max-width: 580px;
+      margin: 0 auto 28px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 24px;
+      border: 1px solid var(--oro);
+      border-radius: 999px;
+      color: var(--blu);
+      background: transparent;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .join {
+      padding: 72px 0 96px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .section-title .small {
+      margin-bottom: 10px;
+      color: var(--oro);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .section-title h2 {
+      color: var(--blu);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .section-title p {
+      max-width: 650px;
+      margin: 16px auto 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .form-card {
+      background: var(--bianco);
+      border: 1px solid var(--bordo);
+      border-radius: 24px;
+      padding: clamp(22px, 4vw, 40px);
+      box-shadow: 0 18px 44px rgba(14, 42, 58, 0.08);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      color: var(--blu);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      min-height: 46px;
+      border: 1px solid var(--bordo);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font: inherit;
+      color: var(--testo);
+      background: #fbfaf7;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--oro);
+      background: var(--bianco);
+    }
+
+    .checks {
+      display: grid;
+      gap: 12px;
+      margin: 24px 0;
+      color: var(--testo);
+      font-size: 0.94rem;
+      line-height: 1.5;
+    }
+
+    .check {
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .check input {
+      width: 18px;
+      height: 18px;
+      min-height: 18px;
+      margin-top: 2px;
+    }
+
+    .submit-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--bordo);
+      padding-top: 22px;
+    }
+
+    .note {
+      max-width: 560px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+
+    button {
+      min-height: 48px;
+      border: 0;
+      border-radius: 999px;
+      padding: 0 26px;
+      background: var(--blu);
+      color: var(--bianco);
+      font: inherit;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+    }
+
+    footer {
+      padding: 28px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    @media (max-width: 720px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .submit-row {
+        align-items: stretch;
+      }
+
+      button {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-  <main>
-    <img class="logo" src="logo.png" alt="Logo Alma Tellus" />
-    <div class="coming-soon">Coming soon</div>
-    <div class="linea"></div>
-  </main>
+  <section class="hero">
+    <div class="container">
+      <img class="logo" src="./logo.png" alt="Logo Alma Tellus" />
+      <div class="coming-soon">Coming soon</div>
+      <div class="gold-line"></div>
+      <p class="intro">Associazione culturale e tecnologica. Il sito ufficiale è in preparazione.</p>
+      <a class="button" href="#diventa-socio">Diventa socio</a>
+    </div>
+  </section>
+
+  <section class="join" id="diventa-socio">
+    <div class="container">
+      <div class="section-title">
+        <div class="small">Richiesta di adesione</div>
+        <h2>Diventa socio</h2>
+        <p>Compila il modulo per richiedere l’adesione ad Alma Tellus. La domanda sarà valutata secondo quanto previsto dallo Statuto.</p>
+      </div>
+
+      <form class="form-card" action="" method="post">
+        <div class="grid">
+          <div class="field">
+            <label for="nome">Nome</label>
+            <input id="nome" name="nome" type="text" autocomplete="given-name" required />
+          </div>
+
+          <div class="field">
+            <label for="cognome">Cognome</label>
+            <input id="cognome" name="cognome" type="text" autocomplete="family-name" required />
+          </div>
+
+          <div class="field">
+            <label for="codice-fiscale">Codice fiscale</label>
+            <input id="codice-fiscale" name="codice_fiscale" type="text" required />
+          </div>
+
+          <div class="field">
+            <label for="data-nascita">Data di nascita</label>
+            <input id="data-nascita" name="data_nascita" type="date" required />
+          </div>
+
+          <div class="field">
+            <label for="luogo-nascita">Luogo di nascita</label>
+            <input id="luogo-nascita" name="luogo_nascita" type="text" required />
+          </div>
+
+          <div class="field">
+            <label for="telefono">Telefono</label>
+            <input id="telefono" name="telefono" type="tel" autocomplete="tel" />
+          </div>
+
+          <div class="field full">
+            <label for="indirizzo">Indirizzo di residenza</label>
+            <input id="indirizzo" name="indirizzo" type="text" autocomplete="street-address" required />
+          </div>
+
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required />
+          </div>
+
+          <div class="field">
+            <label for="professione">Professione</label>
+            <input id="professione" name="professione" type="text" />
+          </div>
+
+          <div class="field full">
+            <label for="motivazione">Motivazione della richiesta</label>
+            <textarea id="motivazione" name="motivazione" placeholder="Facoltativo"></textarea>
+          </div>
+        </div>
+
+        <div class="checks">
+          <label class="check">
+            <input type="checkbox" name="presa_visione_statuto" required />
+            <span>Dichiaro di aver preso visione dello Statuto dell’Associazione Alma Tellus.</span>
+          </label>
+
+          <label class="check">
+            <input type="checkbox" name="privacy" required />
+            <span>Acconsento al trattamento dei dati personali per le finalità connesse alla richiesta di adesione.</span>
+          </label>
+
+          <label class="check">
+            <input type="checkbox" name="richiesta_adesione" required />
+            <span>Chiedo di aderire all’Associazione Alma Tellus.</span>
+          </label>
+        </div>
+
+        <div class="submit-row">
+          <p class="note">L’invio della richiesta non comporta automatica ammissione a socio. Il modulo sarà operativo quando verrà collegato al sistema di raccolta dati.</p>
+          <button type="submit">Invia richiesta</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    Alma Tellus · Associazione culturale e tecnologica
+  </footer>
 </body>
 </html>
