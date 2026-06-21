@@ -274,7 +274,8 @@
         <p>Compila il modulo per richiedere l’adesione ad Alma Tellus. La domanda sarà valutata secondo quanto previsto dallo Statuto.</p>
       </div>
 
-      <form class="form-card" action="" method="post">
+      <form class="form-card" action="https://script.google.com/macros/s/AKfycbzFTVceOvTU8pccpRC-6jXYARFFQvp-HGcPo5jX2VsBCod8490_oR99JZvn-rIKCeWvpQ/exec" method="post">
+        <input type="text" name="website" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" aria-hidden="true" />
         <div class="grid">
           <div class="field">
             <label for="nome">Nome</label>
@@ -313,7 +314,7 @@
 
           <div class="field">
             <label for="email">Email</label>
-            <input id="email" name="email" type="email" autocomplete="email" required />
+            <input id="email" name="email" type="email" autocomplete="email" inputmode="email" pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$" title="Inserisci un indirizzo email valido, ad esempio nome@dominio.it" required />
           </div>
 
           <div class="field">
@@ -345,7 +346,7 @@
         </div>
 
         <div class="submit-row">
-          <p class="note">L’invio della richiesta non comporta automatica ammissione a socio. Il modulo sarà operativo quando verrà collegato al sistema di raccolta dati.</p>
+          <p class="note">L’invio della richiesta non comporta automatica ammissione a socio. La domanda sarà valutata secondo quanto previsto dallo Statuto.</p>
           <button type="submit">Invia richiesta</button>
         </div>
       </form>
