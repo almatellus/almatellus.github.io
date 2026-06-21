@@ -294,7 +294,18 @@
 
           <div class="field">
             <label for="data-nascita">Data di nascita</label>
-            <input id="data-nascita" name="data_nascita" type="date" required />
+            <input
+              id="data-nascita"
+              name="data_nascita"
+              type="text"
+              inputmode="numeric"
+              autocomplete="bday"
+              placeholder="gg/mm/aaaa"
+              maxlength="10"
+              pattern="^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/[0-9]{4}$"
+              title="Inserisci la data nel formato gg/mm/aaaa"
+              required
+            />
           </div>
 
           <div class="field">
@@ -314,7 +325,7 @@
 
           <div class="field">
             <label for="email">Email</label>
-            <input id="email" name="email" type="email" autocomplete="email" inputmode="email" pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$" title="Inserisci un indirizzo email valido, ad esempio nome@dominio.it" required />
+            <input id="email" name="email" type="email" autocomplete="email" required />
           </div>
 
           <div class="field">
@@ -356,5 +367,55 @@
   <footer>
     Alma Tellus · Associazione culturale e tecnologica
   </footer>
+
+  <script>
+    const dataNascita = document.getElementById("data-nascita");
+
+    dataNascita.addEventListener("input", function () {
+      let value = dataNascita.value.replace(/\D/g, "").slice(0, 8);
+
+      if (value.length >= 5) {
+        value = value.slice(0, 2) + "/" + value.slice(2, 4) + "/" + value.slice(4);
+      } else if (value.length >= 3) {
+        value = value.slice(0, 2) + "/" + value.slice(2);
+      }
+
+      dataNascita.value = value;
+      validateBirthDate();
+    });
+
+    dataNascita.addEventListener("blur", validateBirthDate);
+
+    function validateBirthDate() {
+      const value = dataNascita.value.trim();
+
+      if (!value) {
+        dataNascita.setCustomValidity("");
+        return;
+      }
+
+      const match = value.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+
+      if (!match) {
+        dataNascita.setCustomValidity("Inserisci la data nel formato gg/mm/aaaa.");
+        return;
+      }
+
+      const day = Number(match[1]);
+      const month = Number(match[2]);
+      const year = Number(match[3]);
+      const currentYear = new Date().getFullYear();
+
+      const date = new Date(year, month - 1, day);
+      const valid =
+        date.getFullYear() === year &&
+        date.getMonth() === month - 1 &&
+        date.getDate() === day &&
+        year >= 1900 &&
+        year <= currentYear;
+
+      dataNascita.setCustomValidity(valid ? "" : "Inserisci una data di nascita valida.");
+    }
+  </script>
 </body>
 </html>
