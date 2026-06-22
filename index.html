@@ -4,22 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Associazione Alma Tellus</title>
-  <meta name="description" content="Associazione Alma Tellus - sito ufficiale." />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="home-page">
-  <header class="site-header" aria-label="Intestazione sito">
-    <a class="brand" href="index.html" aria-label="Alma Tellus home">
-      <img src="logo.png" alt="Alma Tellus" class="brand-logo" />
+<body class="page-home">
+  <header class="site-header">
+    <a class="brand-mini" href="index.html" aria-label="Home Alma Tellus">
+      <img src="logo.png" alt="Alma Tellus" />
     </a>
 
-    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Apri menu" aria-expanded="false" aria-controls="mainMenu">
+    <button class="menu-toggle" type="button" aria-label="Apri menu" aria-expanded="false">
       <span></span>
       <span></span>
       <span></span>
     </button>
 
-    <nav class="main-menu" id="mainMenu" aria-label="Menu principale">
+    <nav class="site-nav" aria-label="Menu principale">
       <a href="index.html">Home</a>
       <a href="soci.html">Richiesta socio</a>
       <a href="mailto:info@almatellus.it">Contatti</a>
@@ -27,29 +26,19 @@
   </header>
 
   <main class="home-main">
-    <section class="hero" aria-label="Alma Tellus coming soon">
-      <img src="logo.png" alt="Alma Tellus" class="hero-logo" />
+    <section class="home-hero" aria-label="Alma Tellus">
+      <img class="home-logo" src="logo.png" alt="Associazione Alma Tellus" />
       <p class="coming-soon">Coming soon</p>
-      <a class="socio-button" href="soci.html">Richiesta di ammissione a socio</a>
+      <a class="btn btn-primary" href="soci.html">Richiesta di ammissione a socio</a>
     </section>
   </main>
 
   <script>
-    const menuToggle = document.getElementById('menuToggle');
-    const mainMenu = document.getElementById('mainMenu');
-
-    menuToggle.addEventListener('click', () => {
-      const isOpen = mainMenu.classList.toggle('is-open');
-      menuToggle.classList.toggle('is-open', isOpen);
-      menuToggle.setAttribute('aria-expanded', String(isOpen));
-    });
-
-    document.addEventListener('click', (event) => {
-      if (!event.target.closest('.site-header')) {
-        mainMenu.classList.remove('is-open');
-        menuToggle.classList.remove('is-open');
-        menuToggle.setAttribute('aria-expanded', 'false');
-      }
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.site-nav');
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(open));
     });
   </script>
 </body>

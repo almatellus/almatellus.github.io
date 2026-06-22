@@ -3,170 +3,166 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Richiesta socio - Associazione Alma Tellus</title>
+  <title>Richiesta di ammissione a socio - Alma Tellus</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="config.js"></script>
 </head>
-<body>
-  <header class="site-header solid">
-    <a class="brand" href="index.html" aria-label="Associazione Alma Tellus">
-      <img src="logo.png" alt="Logo Associazione Alma Tellus" class="brand-logo" />
-      <span>Alma Tellus</span>
+<body class="page-form">
+  <header class="site-header">
+    <a class="brand-mini" href="index.html" aria-label="Home Alma Tellus">
+      <img src="logo.png" alt="Alma Tellus" />
     </a>
 
-    <button class="menu-button" type="button" aria-label="Apri menu" aria-expanded="false" data-menu-button>
+    <button class="menu-toggle" type="button" aria-label="Apri menu" aria-expanded="false">
       <span></span>
       <span></span>
       <span></span>
     </button>
 
-    <nav class="main-menu" data-menu>
+    <nav class="site-nav" aria-label="Menu principale">
       <a href="index.html">Home</a>
-      <a href="soci.html" aria-current="page">Richiesta socio</a>
+      <a href="soci.html">Richiesta socio</a>
       <a href="mailto:info@almatellus.it">Contatti</a>
     </nav>
   </header>
 
-  <main class="page-main">
-    <section class="form-card" aria-labelledby="form-title">
+  <main class="form-main">
+    <section class="form-card">
       <div class="form-heading">
-        <img src="logo.png" alt="" class="form-logo" />
-        <div>
-          <p class="eyebrow">Associazione Alma Tellus</p>
-          <h1 id="form-title">Richiesta di ammissione a socio</h1>
-          <p class="intro">Compila il modulo per presentare domanda di adesione. L'invio della richiesta non comporta automatica ammissione a socio.</p>
-        </div>
+        <img src="logo.png" alt="Alma Tellus" class="form-logo" />
+        <p class="eyebrow">Associazione Alma Tellus</p>
+        <h1>Richiesta di ammissione a socio</h1>
+        <p class="intro">Compila il modulo per presentare domanda di adesione. L’invio della richiesta non comporta automatica ammissione a socio.</p>
       </div>
 
-      <form id="socioForm" method="POST" target="hiddenSubmitFrame" novalidate>
-        <div class="honeypot" aria-hidden="true">
-          <label for="website">Sito web</label>
-          <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
-        </div>
-
-        <div class="grid two">
+      <form id="socioForm" class="socio-form" method="POST">
+        <div class="field-grid">
           <label>
-            Nome *
-            <input name="nome" type="text" autocomplete="given-name" required />
+            <span>Nome *</span>
+            <input type="text" name="nome" required autocomplete="given-name" />
           </label>
 
           <label>
-            Cognome *
-            <input name="cognome" type="text" autocomplete="family-name" required />
-          </label>
-        </div>
-
-        <div class="grid two">
-          <label>
-            Codice fiscale *
-            <input name="codice_fiscale" type="text" maxlength="16" autocomplete="off" required />
-          </label>
-
-          <label>
-            Data di nascita *
-            <input name="data_nascita" type="date" required />
+            <span>Cognome *</span>
+            <input type="text" name="cognome" required autocomplete="family-name" />
           </label>
         </div>
 
         <label>
-          Luogo di nascita *
-          <input name="luogo_nascita" type="text" required />
+          <span>Codice fiscale *</span>
+          <input type="text" name="codice_fiscale" required inputmode="text" autocomplete="off" />
         </label>
 
-        <label>
-          Indirizzo di residenza *
-          <input name="indirizzo" type="text" autocomplete="street-address" required />
-        </label>
-
-        <div class="grid two">
+        <div class="field-grid">
           <label>
-            Email *
-            <input name="email" type="email" autocomplete="email" required />
+            <span>Data di nascita *</span>
+            <input type="date" name="data_nascita" required />
           </label>
 
           <label>
-            Telefono
-            <input name="telefono" type="tel" autocomplete="tel" />
+            <span>Luogo di nascita *</span>
+            <input type="text" name="luogo_nascita" required />
           </label>
         </div>
 
         <label>
-          Professione
-          <input name="professione" type="text" />
+          <span>Indirizzo di residenza *</span>
+          <input type="text" name="indirizzo" required autocomplete="street-address" />
+        </label>
+
+        <div class="field-grid">
+          <label>
+            <span>Email *</span>
+            <input type="email" name="email" required autocomplete="email" />
+          </label>
+
+          <label>
+            <span>Telefono</span>
+            <input type="tel" name="telefono" autocomplete="tel" />
+          </label>
+        </div>
+
+        <label>
+          <span>Professione</span>
+          <input type="text" name="professione" />
         </label>
 
         <label>
-          Motivazione della richiesta
-          <textarea name="motivazione" rows="5" placeholder="Scrivi brevemente perché desideri aderire all'associazione"></textarea>
+          <span>Motivazione della richiesta</span>
+          <textarea name="motivazione" rows="5" placeholder="Scrivi brevemente perché desideri aderire all’associazione"></textarea>
         </label>
 
-        <div class="consents">
-          <label class="check-row">
-            <input name="presa_visione_statuto" type="checkbox" value="Sì" required />
-            <span>Dichiaro di aver preso visione dello Statuto dell'Associazione Alma Tellus. *</span>
+        <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+        <div class="checks">
+          <label class="check-line">
+            <input type="checkbox" name="presa_visione_statuto" value="Sì" required />
+            <span>Dichiaro di aver preso visione dello Statuto dell’Associazione Alma Tellus. *</span>
           </label>
 
-          <label class="check-row">
-            <input name="privacy" type="checkbox" value="Sì" required />
+          <label class="check-line">
+            <input type="checkbox" name="privacy" value="Sì" required />
             <span>Acconsento al trattamento dei dati personali per la gestione della richiesta di adesione e degli adempimenti associativi. *</span>
           </label>
 
-          <label class="check-row">
-            <input name="richiesta_adesione" type="checkbox" value="Sì" required />
+          <label class="check-line">
+            <input type="checkbox" name="richiesta_adesione" value="Sì" required />
             <span>Confermo di voler presentare richiesta di ammissione a socio. *</span>
           </label>
         </div>
 
-        <div class="notice">
-          <strong>Nota:</strong> la domanda sarà valutata secondo quanto previsto dallo Statuto. Riceverai comunicazione all'indirizzo email indicato.
-        </div>
+        <p class="form-note">Nota: la domanda sarà valutata secondo quanto previsto dallo Statuto. Riceverai comunicazione all’indirizzo email indicato.</p>
 
-        <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
+        <button class="btn btn-primary btn-submit" type="submit">Invia richiesta</button>
 
-        <button class="submit-button" type="submit">Invia richiesta</button>
+        <p id="formStatus" class="form-status" aria-live="polite"></p>
       </form>
-
-      <iframe name="hiddenSubmitFrame" class="hidden-frame" title="Invio modulo"></iframe>
     </section>
   </main>
 
-  <script src="config.js"></script>
   <script>
-    const button = document.querySelector('[data-menu-button]');
-    const menu = document.querySelector('[data-menu]');
-    const form = document.getElementById('socioForm');
-    const message = document.getElementById('formMessage');
-
-    button.addEventListener('click', () => {
-      const isOpen = menu.classList.toggle('is-open');
-      button.setAttribute('aria-expanded', String(isOpen));
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.site-nav');
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(open));
     });
 
-    const config = window.ALMA_TELLUS_CONFIG || {};
+    const form = document.getElementById('socioForm');
+    const statusBox = document.getElementById('formStatus');
 
-    if (!config.WEB_APP_URL || config.WEB_APP_URL.includes('INCOLLA_QUI')) {
-      message.textContent = 'Modulo non ancora collegato: inserire l\'URL della Web App Google nel file config.js.';
-      message.classList.add('error');
-      form.querySelector('button[type="submit"]').disabled = true;
-    } else {
-      form.action = config.WEB_APP_URL;
-    }
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
 
-    form.addEventListener('submit', (event) => {
-      if (!form.checkValidity()) {
-        event.preventDefault();
-        message.textContent = 'Compila tutti i campi obbligatori e conferma le dichiarazioni richieste.';
-        message.className = 'form-message error';
-        form.reportValidity();
+      const config = window.ALMA_TELLUS_CONFIG || {};
+      const url = config.WEB_APP_URL;
+
+      if (!url || url.includes('INCOLLA_QUI')) {
+        statusBox.textContent = 'Configurazione mancante: URL della Web App Google non impostato.';
+        statusBox.className = 'form-status is-error';
         return;
       }
 
-      message.textContent = 'Invio della richiesta in corso...';
-      message.className = 'form-message';
-      form.querySelector('button[type="submit"]').disabled = true;
+      const submitButton = form.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+      submitButton.textContent = 'Invio in corso...';
+      statusBox.textContent = '';
+      statusBox.className = 'form-status';
 
-      setTimeout(() => {
+      try {
+        await fetch(url, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: new FormData(form)
+        });
+
         window.location.href = 'grazie.html';
-      }, 2500);
+      } catch (error) {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Invia richiesta';
+        statusBox.textContent = 'Invio non riuscito. Controlla la connessione e riprova.';
+        statusBox.className = 'form-status is-error';
+      }
     });
   </script>
 </body>

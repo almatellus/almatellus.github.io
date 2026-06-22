@@ -3,48 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Richiesta ricevuta - Associazione Alma Tellus</title>
+  <title>Richiesta ricevuta - Alma Tellus</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <header class="site-header solid">
-    <a class="brand" href="index.html" aria-label="Associazione Alma Tellus">
-      <img src="logo.png" alt="Logo Associazione Alma Tellus" class="brand-logo" />
-      <span>Alma Tellus</span>
+<body class="page-thanks">
+  <header class="site-header">
+    <a class="brand-mini" href="index.html" aria-label="Home Alma Tellus">
+      <img src="logo.png" alt="Alma Tellus" />
     </a>
-
-    <button class="menu-button" type="button" aria-label="Apri menu" aria-expanded="false" data-menu-button>
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-
-    <nav class="main-menu" data-menu>
-      <a href="index.html">Home</a>
-      <a href="soci.html">Richiesta socio</a>
-      <a href="mailto:info@almatellus.it">Contatti</a>
-    </nav>
   </header>
 
-  <main class="page-main centered">
+  <main class="thanks-main">
     <section class="thanks-card">
-      <img src="logo.png" alt="Associazione Alma Tellus" class="thanks-logo" />
-      <p class="eyebrow">Richiesta ricevuta</p>
-      <h1>Grazie</h1>
-      <p>La richiesta di adesione è stata inviata all'Associazione Alma Tellus.</p>
-      <p>Riceverai una comunicazione all'indirizzo email indicato dopo la valutazione della domanda.</p>
-      <a class="primary-link" href="index.html">Torna alla home</a>
+      <img src="logo.png" alt="Alma Tellus" class="thanks-logo" />
+      <h1>Richiesta ricevuta</h1>
+      <p>Grazie. La richiesta di ammissione è stata inviata correttamente.</p>
+      <p>Riceverai una comunicazione dall’Associazione dopo la valutazione della domanda.</p>
+      <a href="index.html" class="btn btn-primary">Torna alla home</a>
     </section>
   </main>
-
-  <script>
-    const button = document.querySelector('[data-menu-button]');
-    const menu = document.querySelector('[data-menu]');
-
-    button.addEventListener('click', () => {
-      const isOpen = menu.classList.toggle('is-open');
-      button.setAttribute('aria-expanded', String(isOpen));
-    });
-  </script>
 </body>
 </html>
