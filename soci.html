@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Richiesta socio - Associazione Alma Tellus</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header solid">
+    <a class="brand" href="index.html" aria-label="Associazione Alma Tellus">
+      <img src="logo.png" alt="Logo Associazione Alma Tellus" class="brand-logo" />
+      <span>Alma Tellus</span>
+    </a>
+
+    <button class="menu-button" type="button" aria-label="Apri menu" aria-expanded="false" data-menu-button>
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="main-menu" data-menu>
+      <a href="index.html">Home</a>
+      <a href="soci.html" aria-current="page">Richiesta socio</a>
+      <a href="mailto:info@almatellus.it">Contatti</a>
+    </nav>
+  </header>
+
+  <main class="page-main">
+    <section class="form-card" aria-labelledby="form-title">
+      <div class="form-heading">
+        <img src="logo.png" alt="" class="form-logo" />
+        <div>
+          <p class="eyebrow">Associazione Alma Tellus</p>
+          <h1 id="form-title">Richiesta di ammissione a socio</h1>
+          <p class="intro">Compila il modulo per presentare domanda di adesione. L'invio della richiesta non comporta automatica ammissione a socio.</p>
+        </div>
+      </div>
+
+      <form id="socioForm" method="POST" target="hiddenSubmitFrame" novalidate>
+        <div class="honeypot" aria-hidden="true">
+          <label for="website">Sito web</label>
+          <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div class="grid two">
+          <label>
+            Nome *
+            <input name="nome" type="text" autocomplete="given-name" required />
+          </label>
+
+          <label>
+            Cognome *
+            <input name="cognome" type="text" autocomplete="family-name" required />
+          </label>
+        </div>
+
+        <div class="grid two">
+          <label>
+            Codice fiscale *
+            <input name="codice_fiscale" type="text" maxlength="16" autocomplete="off" required />
+          </label>
+
+          <label>
+            Data di nascita *
+            <input name="data_nascita" type="date" required />
+          </label>
+        </div>
+
+        <label>
+          Luogo di nascita *
+          <input name="luogo_nascita" type="text" required />
+        </label>
+
+        <label>
+          Indirizzo di residenza *
+          <input name="indirizzo" type="text" autocomplete="street-address" required />
+        </label>
+
+        <div class="grid two">
+          <label>
+            Email *
+            <input name="email" type="email" autocomplete="email" required />
+          </label>
+
+          <label>
+            Telefono
+            <input name="telefono" type="tel" autocomplete="tel" />
+          </label>
+        </div>
+
+        <label>
+          Professione
+          <input name="professione" type="text" />
+        </label>
+
+        <label>
+          Motivazione della richiesta
+          <textarea name="motivazione" rows="5" placeholder="Scrivi brevemente perché desideri aderire all'associazione"></textarea>
+        </label>
+
+        <div class="consents">
+          <label class="check-row">
+            <input name="presa_visione_statuto" type="checkbox" value="Sì" required />
+            <span>Dichiaro di aver preso visione dello Statuto dell'Associazione Alma Tellus. *</span>
+          </label>
+
+          <label class="check-row">
+            <input name="privacy" type="checkbox" value="Sì" required />
+            <span>Acconsento al trattamento dei dati personali per la gestione della richiesta di adesione e degli adempimenti associativi. *</span>
+          </label>
+
+          <label class="check-row">
+            <input name="richiesta_adesione" type="checkbox" value="Sì" required />
+            <span>Confermo di voler presentare richiesta di ammissione a socio. *</span>
+          </label>
+        </div>
+
+        <div class="notice">
+          <strong>Nota:</strong> la domanda sarà valutata secondo quanto previsto dallo Statuto. Riceverai comunicazione all'indirizzo email indicato.
+        </div>
+
+        <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
+
+        <button class="submit-button" type="submit">Invia richiesta</button>
+      </form>
+
+      <iframe name="hiddenSubmitFrame" class="hidden-frame" title="Invio modulo"></iframe>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script>
+    const button = document.querySelector('[data-menu-button]');
+    const menu = document.querySelector('[data-menu]');
+    const form = document.getElementById('socioForm');
+    const message = document.getElementById('formMessage');
+
+    button.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('is-open');
+      button.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    const config = window.ALMA_TELLUS_CONFIG || {};
+
+    if (!config.WEB_APP_URL || config.WEB_APP_URL.includes('INCOLLA_QUI')) {
+      message.textContent = 'Modulo non ancora collegato: inserire l\'URL della Web App Google nel file config.js.';
+      message.classList.add('error');
+      form.querySelector('button[type="submit"]').disabled = true;
+    } else {
+      form.action = config.WEB_APP_URL;
+    }
+
+    form.addEventListener('submit', (event) => {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        message.textContent = 'Compila tutti i campi obbligatori e conferma le dichiarazioni richieste.';
+        message.className = 'form-message error';
+        form.reportValidity();
+        return;
+      }
+
+      message.textContent = 'Invio della richiesta in corso...';
+      message.className = 'form-message';
+      form.querySelector('button[type="submit"]').disabled = true;
+
+      setTimeout(() => {
+        window.location.href = 'grazie.html';
+      }, 2500);
+    });
+  </script>
+</body>
+</html>
