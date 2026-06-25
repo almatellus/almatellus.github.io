@@ -1,26 +1,55 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Richiesta ricevuta - Alma Tellus</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=30">
 </head>
-<body class="page-thanks">
+<body>
   <header class="site-header">
-    <a class="brand-mini" href="index.html" aria-label="Home Alma Tellus">
-      <img src="logo.png" alt="Alma Tellus" />
+    <a class="brand-mini" href="index.html" aria-label="Alma Tellus home">
+      <img src="logo.png" alt="Alma Tellus">
     </a>
+
+    <button class="menu-toggle" type="button" aria-label="Apri menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="site-nav" id="site-nav" aria-label="Menu principale">
+      <a href="index.html">Home</a>
+      <a href="soci.html">Richiesta socio</a>
+      <a href="associazione.html">Dati associazione</a>
+      <a href="mailto:info@almatellus.it">Contatti</a>
+    </nav>
   </header>
 
   <main class="thanks-main">
-    <section class="thanks-card">
-      <img src="logo.png" alt="Alma Tellus" class="thanks-logo" />
-      <h1>Richiesta ricevuta</h1>
-      <p>Grazie. La richiesta di ammissione è stata inviata correttamente.</p>
-      <p>Riceverai una comunicazione dall’Associazione dopo la valutazione della domanda.</p>
-      <a href="index.html" class="btn btn-primary">Torna alla home</a>
+    <section class="thanks-card" aria-labelledby="thanks-title">
+      <img class="page-logo thanks-logo" src="logo.png" alt="Alma Tellus">
+      <p class="eyebrow">Richiesta inviata</p>
+      <h1 id="thanks-title">Grazie, la richiesta è stata ricevuta.</h1>
+      <p>
+        Riceverai comunicazione dall’Associazione Alma Tellus dopo la valutazione della domanda.
+      </p>
+      <p>
+        Per comunicazioni: <a href="mailto:info@almatellus.it">info@almatellus.it</a>
+      </p>
+      <div class="page-actions centered">
+        <a class="btn btn-primary" href="index.html">Torna alla home</a>
+      </div>
     </section>
   </main>
+
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.site-nav');
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  </script>
 </body>
 </html>
