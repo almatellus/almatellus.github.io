@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contatti - Alma Tellus</title>
   <meta name="description" content="Modulo contatti dell'Associazione Alma Tellus.">
-  <link rel="stylesheet" href="style.css?v=50">
-  <script src="config.js?v=50"></script>
+  <link rel="stylesheet" href="style.css?v=80">
+  <script src="config.js?v=80"></script>
 </head>
 <body>
   <header class="site-header">
@@ -35,7 +35,7 @@
         <p class="eyebrow">Contatti</p>
         <h1 id="contact-title">Scrivi ad Alma Tellus</h1>
         <p class="intro">
-          Usa il modulo per inviare un messaggio all’associazione. Per comunicazioni dirette puoi scrivere anche a <a href="mailto:info@almatellus.it">info@almatellus.it</a>.
+          Usa il modulo per inviare un messaggio all’associazione. I messaggi vengono registrati e presi in carico tramite il canale ufficiale del sito.
         </p>
       </div>
 
@@ -87,7 +87,7 @@
       <strong>Associazione Alma Tellus</strong>
       <span>Associazione senza scopo di lucro</span>
       <span>Codice fiscale 92069430673</span>
-      <a href="mailto:info@almatellus.it">info@almatellus.it</a>
+      <span>Contatti tramite modulo online</span>
     </div>
   </footer>
 
@@ -109,7 +109,7 @@
 
       const webAppUrl = window.ALMA_TELLUS_CONFIG && window.ALMA_TELLUS_CONFIG.WEB_APP_URL;
       if (!webAppUrl || webAppUrl.includes('INCOLLA_QUI')) {
-        statusEl.textContent = 'Modulo non ancora collegato. Scrivi a info@almatellus.it.';
+        statusEl.textContent = 'Modulo non ancora collegato. Riprova più tardi.';
         statusEl.classList.add('is-error');
         return;
       }
@@ -130,7 +130,7 @@
         statusEl.classList.add('is-success');
         submitBtn.disabled = false;
       } catch (error) {
-        statusEl.textContent = 'Invio non riuscito. Riprova oppure scrivi a info@almatellus.it.';
+        statusEl.textContent = 'Invio non riuscito. Riprova più tardi.';
         statusEl.classList.add('is-error');
         submitBtn.disabled = false;
       }

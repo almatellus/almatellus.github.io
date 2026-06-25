@@ -1,17 +1,27 @@
-Aggiornamento Alma Tellus
+AGGIORNAMENTO SITO ALMA TELLUS
 
-File da sostituire nel repository:
+File pubblici da sostituire nel repository GitHub:
 - index.html
 - soci.html
 - grazie.html
 - associazione.html
+- contatti.html
 - style.css
+- config.js
 
-Non sostituire config.js: contiene l'URL della Web App Google gia configurato.
+Modifiche incluse:
+- logo nella home page più grande
+- rimosso l'indirizzo email da tutte le pagine pubbliche
+- mantenuto solo il form nella pagina Contatti
+- footer istituzionale senza indirizzo email
+- cache aggiornata a v=80 per CSS e configurazione
 
-Dopo la copia:
-1. Aprire GitHub Desktop
-2. Summary: Testi cantiere vivo Alma Tellus
+Dopo la copia dei file:
+1. GitHub Desktop
+2. Summary: Logo home grande e contatti solo via form
 3. Commit to main
 4. Push origin
-5. Aprire il sito con CTRL + F5 o usare ?v=30
+
+IMPORTANTE:
+Per sistemare l'invio del form Contatti serve aggiornare anche Google Apps Script con il file Code.gs separato.
+Non caricare Code.gs nel repository GitHub.
