@@ -562,3 +562,58 @@ select:focus {
     width: 128px;
   }
 }
+
+/* Footer istituzionale */
+.site-footer {
+  padding: 22px 20px 28px;
+  color: rgba(16, 44, 54, 0.78);
+}
+
+.footer-inner {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  padding-top: 18px;
+  border-top: 1px solid rgba(16, 44, 54, 0.12);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.footer-inner strong {
+  color: var(--blue);
+}
+
+.footer-inner a {
+  color: var(--blue);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.footer-inner a:hover {
+  text-decoration: underline;
+}
+
+.contact-card {
+  width: min(820px, 100%);
+}
+
+.form-status.is-success {
+  color: var(--blue-soft);
+}
+
+@media (max-width: 680px) {
+  .site-footer {
+    padding: 18px 14px 24px;
+  }
+
+  .footer-inner {
+    display: grid;
+    gap: 5px;
+    font-size: 0.82rem;
+  }
+}

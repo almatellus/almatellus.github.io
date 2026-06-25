@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Richiesta socio - Alma Tellus</title>
-  <meta name="description" content="Modulo di richiesta di ammissione a socio dell'Associazione Alma Tellus.">
+  <title>Contatti - Alma Tellus</title>
+  <meta name="description" content="Modulo contatti dell'Associazione Alma Tellus.">
   <link rel="stylesheet" href="style.css?v=50">
   <script src="config.js?v=50"></script>
 </head>
@@ -29,88 +29,58 @@
   </header>
 
   <main class="form-main">
-    <section class="form-card" aria-labelledby="form-title">
+    <section class="form-card contact-card" aria-labelledby="contact-title">
       <div class="form-heading">
         <img class="page-logo form-logo" src="logo.png" alt="Alma Tellus">
-        <p class="eyebrow">Modulo online</p>
-        <h1 id="form-title">Richiesta di ammissione a socio</h1>
+        <p class="eyebrow">Contatti</p>
+        <h1 id="contact-title">Scrivi ad Alma Tellus</h1>
         <p class="intro">
-          Compila il modulo per presentare richiesta di adesione all’Associazione Alma Tellus. L’invio non comporta automatica ammissione a socio.
+          Usa il modulo per inviare un messaggio all’associazione. Per comunicazioni dirette puoi scrivere anche a <a href="mailto:info@almatellus.it">info@almatellus.it</a>.
         </p>
       </div>
 
-      <form class="socio-form" id="socio-form">
-        <input type="hidden" name="form_type" value="socio">
+      <form class="socio-form" id="contact-form">
+        <input type="hidden" name="form_type" value="contatto">
         <input class="hp-field" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
 
         <div class="field-grid">
-          <label>Nome *
-            <input type="text" name="nome" required autocomplete="given-name">
+          <label>Nome e cognome *
+            <input type="text" name="nome" required autocomplete="name">
           </label>
-          <label>Cognome *
-            <input type="text" name="cognome" required autocomplete="family-name">
-          </label>
-        </div>
-
-        <div class="field-grid">
-          <label>Codice fiscale *
-            <input type="text" name="codice_fiscale" required maxlength="16" autocomplete="off">
-          </label>
-          <label>Data di nascita *
-            <input type="date" name="data_nascita" required>
-          </label>
-        </div>
-
-        <label>Luogo di nascita *
-          <input type="text" name="luogo_nascita" required>
-        </label>
-
-        <label>Indirizzo di residenza *
-          <input type="text" name="indirizzo" required autocomplete="street-address">
-        </label>
-
-        <div class="field-grid">
           <label>Email *
             <input type="email" name="email" required autocomplete="email">
           </label>
+        </div>
+
+        <div class="field-grid">
           <label>Telefono
             <input type="tel" name="telefono" autocomplete="tel">
           </label>
+          <label>Oggetto *
+            <input type="text" name="oggetto" required>
+          </label>
         </div>
 
-        <label>Professione
-          <input type="text" name="professione">
-        </label>
-
-        <label>Motivazione della richiesta
-          <textarea name="motivazione" rows="5"></textarea>
+        <label>Messaggio *
+          <textarea name="messaggio" rows="7" required></textarea>
         </label>
 
         <div class="checks">
           <label class="check-line">
-            <input type="checkbox" name="presa_visione_statuto" value="Sì" required>
-            <span>Dichiaro di aver preso visione dello Statuto dell’Associazione Alma Tellus.</span>
-          </label>
-          <label class="check-line">
-            <input type="checkbox" name="privacy" value="Sì" required>
-            <span>Acconsento al trattamento dei dati personali per la gestione della richiesta di adesione.</span>
-          </label>
-          <label class="check-line">
-            <input type="checkbox" name="richiesta_adesione" value="Sì" required>
-            <span>Confermo di voler presentare richiesta di ammissione a socio.</span>
+            <input type="checkbox" name="privacy_contatti" value="Sì" required>
+            <span>Acconsento al trattamento dei dati personali per ricevere risposta alla mia richiesta.</span>
           </label>
         </div>
 
         <p class="form-note">
-          I dati verranno trasmessi all’associazione per la valutazione della richiesta. Per comunicazioni: <a href="mailto:info@almatellus.it">info@almatellus.it</a>.
+          I dati inviati saranno utilizzati esclusivamente per gestire il messaggio e rispondere alla richiesta.
         </p>
 
-        <button class="btn btn-primary btn-submit" type="submit">Invia richiesta</button>
-        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        <button class="btn btn-primary btn-submit" type="submit">Invia messaggio</button>
+        <p class="form-status" id="contact-status" role="status" aria-live="polite"></p>
       </form>
     </section>
   </main>
-
 
   <footer class="site-footer">
     <div class="footer-inner">
@@ -129,17 +99,17 @@
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
 
-    const form = document.getElementById('socio-form');
-    const statusEl = document.getElementById('form-status');
+    const form = document.getElementById('contact-form');
+    const statusEl = document.getElementById('contact-status');
     const submitBtn = form.querySelector('button[type="submit"]');
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
-      statusEl.classList.remove('is-error');
+      statusEl.classList.remove('is-error', 'is-success');
 
       const webAppUrl = window.ALMA_TELLUS_CONFIG && window.ALMA_TELLUS_CONFIG.WEB_APP_URL;
       if (!webAppUrl || webAppUrl.includes('INCOLLA_QUI')) {
-        statusEl.textContent = 'Modulo non ancora collegato. Contattare info@almatellus.it.';
+        statusEl.textContent = 'Modulo non ancora collegato. Scrivi a info@almatellus.it.';
         statusEl.classList.add('is-error');
         return;
       }
@@ -155,7 +125,10 @@
           body: data
         });
 
-        window.location.href = 'grazie.html';
+        form.reset();
+        statusEl.textContent = 'Messaggio inviato. Grazie, ti risponderemo appena possibile.';
+        statusEl.classList.add('is-success');
+        submitBtn.disabled = false;
       } catch (error) {
         statusEl.textContent = 'Invio non riuscito. Riprova oppure scrivi a info@almatellus.it.';
         statusEl.classList.add('is-error');
