@@ -1,85 +1,100 @@
 <!DOCTYPE html>
+
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contatti - Alma Tellus</title>
   <meta name="description" content="Modulo contatti dell'Associazione Alma Tellus.">
-  <link rel="stylesheet" href="style.css?v=80">
-  <script src="config.js?v=80"></script>
+  <link rel="stylesheet" href="style.css?v=301">
+  <script src="config.js?v=301"></script>
 </head>
+
 <body>
   <header class="site-header">
     <a class="brand-mini" href="index.html" aria-label="Alma Tellus home">
       <img src="logo.png" alt="Alma Tellus">
     </a>
 
-    <button class="menu-toggle" type="button" aria-label="Apri menu" aria-expanded="false" aria-controls="site-nav">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+```
+<button class="menu-toggle" type="button" aria-label="Apri menu" aria-expanded="false" aria-controls="site-nav">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
 
-    <nav class="site-nav" id="site-nav" aria-label="Menu principale">
-      <a href="index.html">Home</a>
-      <a href="soci.html">Richiesta socio</a>
-      <a href="associazione.html">Dati associazione</a>
-      <a href="contatti.html">Contatti</a>
-    </nav>
+<nav class="site-nav" id="site-nav" aria-label="Menu principale">
+  <a href="index.html">Home</a>
+  <a href="soci.html">Richiesta socio</a>
+  <a href="associazione.html">Dati associazione</a>
+  <a href="contatti.html">Contatti</a>
+</nav>
+```
+
   </header>
 
   <main class="form-main">
     <section class="form-card contact-card" aria-labelledby="contact-title">
       <div class="form-heading">
         <img class="page-logo form-logo" src="logo.png" alt="Alma Tellus">
-        <p class="eyebrow">Contatti</p>
-        <h1 id="contact-title">Scrivi ad Alma Tellus</h1>
-        <p class="intro">
-          Usa il modulo per inviare un messaggio all’associazione. I messaggi vengono registrati e presi in carico tramite il canale ufficiale del sito.
-        </p>
-      </div>
 
-      <form class="socio-form" id="contact-form">
-        <input type="hidden" name="form_type" value="contatto">
-        <input class="hp-field" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+```
+    <p class="eyebrow">Contatti</p>
 
-        <div class="field-grid">
-          <label>Nome e cognome *
-            <input type="text" name="nome" required autocomplete="name">
-          </label>
-          <label>Email *
-            <input type="email" name="email" required autocomplete="email">
-          </label>
-        </div>
+    <h1 id="contact-title">Scrivi ad Alma Tellus</h1>
 
-        <div class="field-grid">
-          <label>Telefono
-            <input type="tel" name="telefono" autocomplete="tel">
-          </label>
-          <label>Oggetto *
-            <input type="text" name="oggetto" required>
-          </label>
-        </div>
+    <p class="intro">
+      Usa il modulo per inviare un messaggio all’associazione. I messaggi vengono registrati e presi in carico tramite il canale ufficiale del sito.
+    </p>
+  </div>
 
-        <label>Messaggio *
-          <textarea name="messaggio" rows="7" required></textarea>
-        </label>
+  <form class="socio-form" id="contact-form">
+    <input type="hidden" name="form_type" value="contatti">
 
-        <div class="checks">
-          <label class="check-line">
-            <input type="checkbox" name="privacy_contatti" value="Sì" required>
-            <span>Acconsento al trattamento dei dati personali per ricevere risposta alla mia richiesta.</span>
-          </label>
-        </div>
+    <input class="hp-field" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
 
-        <p class="form-note">
-          I dati inviati saranno utilizzati esclusivamente per gestire il messaggio e rispondere alla richiesta.
-        </p>
+    <div class="field-grid">
+      <label>Nome e cognome *
+        <input type="text" name="nome" required autocomplete="name">
+      </label>
 
-        <button class="btn btn-primary btn-submit" type="submit">Invia messaggio</button>
-        <p class="form-status" id="contact-status" role="status" aria-live="polite"></p>
-      </form>
-    </section>
+      <label>Email *
+        <input type="email" name="email" required autocomplete="email">
+      </label>
+    </div>
+
+    <div class="field-grid">
+      <label>Telefono
+        <input type="tel" name="telefono" autocomplete="tel">
+      </label>
+
+      <label>Oggetto *
+        <input type="text" name="oggetto" required>
+      </label>
+    </div>
+
+    <label>Messaggio *
+      <textarea name="messaggio" rows="7" required></textarea>
+    </label>
+
+    <div class="checks">
+      <label class="check-line">
+        <input type="checkbox" name="privacy" value="Sì" required>
+        <span>Acconsento al trattamento dei dati personali per ricevere risposta alla mia richiesta.</span>
+      </label>
+    </div>
+
+    <p class="form-note">
+      I dati inviati saranno utilizzati esclusivamente per gestire il messaggio e rispondere alla richiesta.
+    </p>
+
+    <button class="btn btn-primary btn-submit" type="submit">Invia messaggio</button>
+
+    <p class="form-status" id="contact-status" role="status" aria-live="polite"></p>
+  </form>
+</section>
+```
+
   </main>
 
   <footer class="site-footer">
@@ -92,49 +107,73 @@
   </footer>
 
   <script>
-    const toggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('.site-nav');
-    toggle.addEventListener('click', () => {
-      const open = nav.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
+    const toggle = document.querySelector(".menu-toggle");
+    const nav = document.querySelector(".site-nav");
 
-    const form = document.getElementById('contact-form');
-    const statusEl = document.getElementById('contact-status');
-    const submitBtn = form.querySelector('button[type="submit"]');
+    if (toggle && nav) {
+      toggle.addEventListener("click", () => {
+        const open = nav.classList.toggle("is-open");
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+    }
 
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      statusEl.classList.remove('is-error', 'is-success');
+    const form = document.getElementById("contact-form");
+    const statusEl = document.getElementById("contact-status");
+    const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
 
-      const webAppUrl = window.ALMA_TELLUS_CONFIG && window.ALMA_TELLUS_CONFIG.WEB_APP_URL;
-      if (!webAppUrl || webAppUrl.includes('INCOLLA_QUI')) {
-        statusEl.textContent = 'Modulo non ancora collegato. Riprova più tardi.';
-        statusEl.classList.add('is-error');
-        return;
-      }
+    if (form && statusEl && submitBtn) {
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
 
-      submitBtn.disabled = true;
-      statusEl.textContent = 'Invio in corso...';
+        statusEl.classList.remove("is-error", "is-success");
 
-      try {
-        const data = new FormData(form);
-        await fetch(webAppUrl, {
-          method: 'POST',
-          mode: 'no-cors',
-          body: data
-        });
+        const webAppUrl =
+          window.ALMA_TELLUS_CONFIG &&
+          window.ALMA_TELLUS_CONFIG.WEB_APP_URL
+            ? window.ALMA_TELLUS_CONFIG.WEB_APP_URL
+            : "";
 
-        form.reset();
-        statusEl.textContent = 'Messaggio inviato. Grazie, ti risponderemo appena possibile.';
-        statusEl.classList.add('is-success');
-        submitBtn.disabled = false;
-      } catch (error) {
-        statusEl.textContent = 'Invio non riuscito. Riprova più tardi.';
-        statusEl.classList.add('is-error');
-        submitBtn.disabled = false;
-      }
-    });
+        if (!webAppUrl || webAppUrl.includes("INCOLLA_QUI")) {
+          statusEl.textContent = "Modulo non ancora collegato. Riprova più tardi.";
+          statusEl.classList.add("is-error");
+          return;
+        }
+
+        submitBtn.disabled = true;
+        statusEl.textContent = "Invio in corso...";
+
+        try {
+          const formData = new FormData(form);
+
+          formData.set("form_type", "contatti");
+
+          const body = new URLSearchParams();
+
+          for (const [key, value] of formData.entries()) {
+            body.append(key, value);
+          }
+
+          await fetch(webAppUrl, {
+            method: "POST",
+            mode: "no-cors",
+            body: body
+          });
+
+          form.reset();
+
+          statusEl.textContent = "Messaggio inviato. Grazie, ti risponderemo appena possibile.";
+          statusEl.classList.add("is-success");
+
+        } catch (error) {
+          statusEl.textContent = "Invio non riuscito. Riprova più tardi.";
+          statusEl.classList.add("is-error");
+
+        } finally {
+          submitBtn.disabled = false;
+        }
+      });
+    }
   </script>
+
 </body>
 </html>
