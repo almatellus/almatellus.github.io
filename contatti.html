@@ -5,10 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contatti - Associazione Alma Tellus</title>
   <meta name="description" content="Modulo contatti dell'Associazione Alma Tellus.">
-  <link rel="stylesheet" href="style.css?v=124">
-  <script src="config.js?v=124"></script>
+  <link rel="stylesheet" href="style.css?v=125">
+  <script src="config.js?v=125"></script>
+  <style>
+    /* Override di sicurezza: logo pagina contatti non deve mai sforare */
+    .contact-page .form-logo {
+      width: 112px !important;
+      max-width: 38vw !important;
+      height: auto !important;
+      display: block !important;
+      margin: 0 0 16px 0 !important;
+      object-fit: contain !important;
+    }
+
+    @media (max-width: 680px) {
+      .contact-page .form-logo {
+        width: 86px !important;
+        max-width: 32vw !important;
+        margin-bottom: 12px !important;
+      }
+    }
+  </style>
 </head>
-<body>
+<body class="contact-page">
   <header class="site-header">
     <a class="brand-mini" href="index.html" aria-label="Alma Tellus - Home">
       <img src="logo.png" alt="Alma Tellus">
@@ -42,7 +61,7 @@
       <form id="contactForm" class="socio-form" method="POST" target="contactFrame" novalidate>
         <input type="hidden" name="form_type" value="contatti">
         <input type="hidden" name="source_page" value="contatti.html">
-        <input type="hidden" name="page_version" value="v.1.24">
+        <input type="hidden" name="page_version" value="v.1.25">
         <input type="hidden" name="submitted_at_client" id="submittedAtClient" value="">
 
         <label class="hp-field" aria-hidden="true">
@@ -102,7 +121,7 @@
     (function () {
       "use strict";
 
-      const PAGE_VERSION = "v.1.24";
+      const PAGE_VERSION = "v.1.25";
       const FALLBACK_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzFTVceOvTU8pccpRC-6jXYARFFQvp-HGcPo5jX2VsBCod8490_oR99JZvn-rIKCeWvpQ/exec";
 
       const menuButton = document.querySelector(".menu-toggle");
