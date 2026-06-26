@@ -4,8 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contatti - Associazione Alma Tellus</title>
-  <link rel="stylesheet" href="style.css?v=123">
-  <script src="config.js?v=123"></script>
+  <meta name="description" content="Modulo contatti dell'Associazione Alma Tellus.">
+  <link rel="stylesheet" href="style.css?v=124">
+  <script src="config.js?v=124"></script>
 </head>
 <body>
   <header class="site-header">
@@ -28,21 +29,20 @@
   </header>
 
   <main class="form-main">
-    <section class="form-card">
+    <section class="form-card" aria-labelledby="contact-title">
       <div class="form-heading">
         <img class="form-logo" src="logo.png" alt="Alma Tellus">
         <p class="eyebrow">Contatti</p>
-        <h1>Scrivi ad Alma Tellus</h1>
+        <h1 id="contact-title">Scrivi ad Alma Tellus</h1>
         <p class="intro">
-          Usa questo modulo per inviare una comunicazione all’associazione. Il messaggio sarà registrato e inoltrato ai referenti interni.
+          Usa il modulo per inviare una comunicazione all’associazione. Il messaggio verrà registrato e inoltrato ai referenti interni.
         </p>
-        <p class="form-note"><strong>Versione pagina:</strong> v.1.23</p>
       </div>
 
       <form id="contactForm" class="socio-form" method="POST" target="contactFrame" novalidate>
         <input type="hidden" name="form_type" value="contatti">
         <input type="hidden" name="source_page" value="contatti.html">
-        <input type="hidden" name="page_version" value="v.1.23">
+        <input type="hidden" name="page_version" value="v.1.24">
         <input type="hidden" name="submitted_at_client" id="submittedAtClient" value="">
 
         <label class="hp-field" aria-hidden="true">
@@ -84,7 +84,6 @@
         </button>
 
         <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
-        <p id="debugStatus" class="form-note" aria-live="polite"></p>
       </form>
 
       <iframe id="contactFrame" name="contactFrame" title="Invio contatto" style="display:none;width:0;height:0;border:0;"></iframe>
@@ -101,7 +100,9 @@
 
   <script>
     (function () {
-      const PAGE_VERSION = "v.1.23";
+      "use strict";
+
+      const PAGE_VERSION = "v.1.24";
       const FALLBACK_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzFTVceOvTU8pccpRC-6jXYARFFQvp-HGcPo5jX2VsBCod8490_oR99JZvn-rIKCeWvpQ/exec";
 
       const menuButton = document.querySelector(".menu-toggle");
@@ -117,7 +118,6 @@
       const form = document.getElementById("contactForm");
       const frame = document.getElementById("contactFrame");
       const statusBox = document.getElementById("formStatus");
-      const debugBox = document.getElementById("debugStatus");
       const submitButton = document.getElementById("submitButton");
       const submittedAtClient = document.getElementById("submittedAtClient");
 
@@ -141,12 +141,15 @@
         statusBox.classList.toggle("is-error", Boolean(isError));
       }
 
-      function setDebug(message) {
-        if (!debugBox) return;
-        debugBox.textContent = message;
+      function isValidEmail(value) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(value || "").trim());
       }
 
-      setDebug("Pagina " + PAGE_VERSION + " caricata. Web App: " + (webAppUrl ? "configurata" : "non configurata"));
+      function resetButton(text) {
+        if (!submitButton) return;
+        submitButton.disabled = false;
+        submitButton.textContent = text || "Invia messaggio";
+      }
 
       if (frame) {
         frame.addEventListener("load", function () {
@@ -155,15 +158,12 @@
           completed = true;
           window.clearTimeout(timeoutId);
 
-          setStatus("Chiamata alla Web App completata. Controlla il foglio 'Contatti sito' e la casella Gmail tecnica.", false);
-          setDebug("Invio completato dalla pagina " + PAGE_VERSION + ". Se non arriva nulla, controlla Apps Script → Esecuzioni.");
+          setStatus("Messaggio inviato correttamente. Grazie, ti risponderemo appena possibile.", false);
+          resetButton("Invia un altro messaggio");
 
-          if (submitButton) {
-            submitButton.disabled = false;
-            submitButton.textContent = "Invia un altro messaggio";
+          if (form) {
+            form.reset();
           }
-
-          form.reset();
         });
       }
 
@@ -174,6 +174,14 @@
           const oggetto = form.elements["oggetto"] ? form.elements["oggetto"].value.trim() : "";
           const messaggio = form.elements["messaggio"] ? form.elements["messaggio"].value.trim() : "";
           const privacy = form.elements["privacy"] ? form.elements["privacy"].checked : false;
+          const honeypot = form.elements["website"] ? form.elements["website"].value.trim() : "";
+
+          if (honeypot) {
+            event.preventDefault();
+            setStatus("Messaggio inviato correttamente. Grazie.", false);
+            form.reset();
+            return;
+          }
 
           if (!nome || !email || !oggetto || !messaggio || !privacy) {
             event.preventDefault();
@@ -181,9 +189,21 @@
             return;
           }
 
+          if (!isValidEmail(email)) {
+            event.preventDefault();
+            setStatus("Inserisci un indirizzo email valido.", true);
+            return;
+          }
+
           if (messaggio.length < 10) {
             event.preventDefault();
             setStatus("Il messaggio è troppo breve.", true);
+            return;
+          }
+
+          if (!webAppUrl) {
+            event.preventDefault();
+            setStatus("Modulo momentaneamente non disponibile. Riprova più tardi.", true);
             return;
           }
 
@@ -194,8 +214,7 @@
           submitted = true;
           completed = false;
 
-          setStatus("Invio in corso verso la Web App Google...", false);
-          setDebug("Pagina " + PAGE_VERSION + ": richiesta POST avviata.");
+          setStatus("Invio in corso...", false);
 
           if (submitButton) {
             submitButton.disabled = true;
@@ -205,16 +224,13 @@
           timeoutId = window.setTimeout(function () {
             if (completed) return;
 
-            setStatus("La chiamata è ancora in corso o non ha restituito conferma visibile. Controlla Apps Script → Esecuzioni.", true);
-            setDebug("Timeout pagina " + PAGE_VERSION + ". Possibile blocco risposta iframe, ma la richiesta potrebbe essere comunque partita.");
-
-            if (submitButton) {
-              submitButton.disabled = false;
-              submitButton.textContent = "Riprova invio";
-            }
-          }, 12000);
+            setStatus("Non è stato possibile confermare l’invio. Riprova tra qualche minuto.", true);
+            resetButton("Riprova invio");
+          }, 15000);
         });
       }
+
+      window.ALMA_TELLUS_CONTACT_PAGE_VERSION = PAGE_VERSION;
     })();
   </script>
 </body>
