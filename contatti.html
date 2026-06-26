@@ -1,179 +1,221 @@
 <!DOCTYPE html>
-
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contatti - Alma Tellus</title>
-  <meta name="description" content="Modulo contatti dell'Associazione Alma Tellus.">
-  <link rel="stylesheet" href="style.css?v=301">
-  <script src="config.js?v=301"></script>
+  <title>Contatti - Associazione Alma Tellus</title>
+  <link rel="stylesheet" href="style.css?v=123">
+  <script src="config.js?v=123"></script>
 </head>
-
 <body>
   <header class="site-header">
-    <a class="brand-mini" href="index.html" aria-label="Alma Tellus home">
+    <a class="brand-mini" href="index.html" aria-label="Alma Tellus - Home">
       <img src="logo.png" alt="Alma Tellus">
     </a>
 
-```
-<button class="menu-toggle" type="button" aria-label="Apri menu" aria-expanded="false" aria-controls="site-nav">
-  <span></span>
-  <span></span>
-  <span></span>
-</button>
+    <button class="menu-toggle" type="button" aria-label="Apri menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
-<nav class="site-nav" id="site-nav" aria-label="Menu principale">
-  <a href="index.html">Home</a>
-  <a href="soci.html">Richiesta socio</a>
-  <a href="associazione.html">Dati associazione</a>
-  <a href="contatti.html">Contatti</a>
-</nav>
-```
-
+    <nav class="site-nav" aria-label="Menu principale">
+      <a href="index.html">Home</a>
+      <a href="soci.html">Richiesta socio</a>
+      <a href="contatti.html">Contatti</a>
+      <a href="associazione.html">Dati associazione</a>
+    </nav>
   </header>
 
   <main class="form-main">
-    <section class="form-card contact-card" aria-labelledby="contact-title">
+    <section class="form-card">
       <div class="form-heading">
-        <img class="page-logo form-logo" src="logo.png" alt="Alma Tellus">
+        <img class="form-logo" src="logo.png" alt="Alma Tellus">
+        <p class="eyebrow">Contatti</p>
+        <h1>Scrivi ad Alma Tellus</h1>
+        <p class="intro">
+          Usa questo modulo per inviare una comunicazione all’associazione. Il messaggio sarà registrato e inoltrato ai referenti interni.
+        </p>
+        <p class="form-note"><strong>Versione pagina:</strong> v.1.23</p>
+      </div>
 
-```
-    <p class="eyebrow">Contatti</p>
+      <form id="contactForm" class="socio-form" method="POST" target="contactFrame" novalidate>
+        <input type="hidden" name="form_type" value="contatti">
+        <input type="hidden" name="source_page" value="contatti.html">
+        <input type="hidden" name="page_version" value="v.1.23">
+        <input type="hidden" name="submitted_at_client" id="submittedAtClient" value="">
 
-    <h1 id="contact-title">Scrivi ad Alma Tellus</h1>
+        <label class="hp-field" aria-hidden="true">
+          Non compilare questo campo
+          <input type="text" name="website" tabindex="-1" autocomplete="off">
+        </label>
 
-    <p class="intro">
-      Usa il modulo per inviare un messaggio all’associazione. I messaggi vengono registrati e presi in carico tramite il canale ufficiale del sito.
-    </p>
-  </div>
+        <div class="field-grid">
+          <label>
+            Nome e cognome *
+            <input type="text" name="nome" autocomplete="name" required>
+          </label>
 
-  <form class="socio-form" id="contact-form">
-    <input type="hidden" name="form_type" value="contatti">
+          <label>
+            Email *
+            <input type="email" name="email" autocomplete="email" required>
+          </label>
+        </div>
 
-    <input class="hp-field" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label>
+          Oggetto *
+          <input type="text" name="oggetto" required>
+        </label>
 
-    <div class="field-grid">
-      <label>Nome e cognome *
-        <input type="text" name="nome" required autocomplete="name">
-      </label>
+        <label>
+          Messaggio *
+          <textarea name="messaggio" rows="7" required></textarea>
+        </label>
 
-      <label>Email *
-        <input type="email" name="email" required autocomplete="email">
-      </label>
-    </div>
+        <div class="checks">
+          <label class="check-line">
+            <input type="checkbox" name="privacy" value="Sì" required>
+            <span>Dichiaro di aver preso visione delle informazioni relative al trattamento dei dati e autorizzo l’utilizzo dei dati inseriti per ricevere risposta alla mia richiesta.</span>
+          </label>
+        </div>
 
-    <div class="field-grid">
-      <label>Telefono
-        <input type="tel" name="telefono" autocomplete="tel">
-      </label>
+        <button id="submitButton" class="btn btn-primary btn-submit" type="submit">
+          Invia messaggio
+        </button>
 
-      <label>Oggetto *
-        <input type="text" name="oggetto" required>
-      </label>
-    </div>
+        <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
+        <p id="debugStatus" class="form-note" aria-live="polite"></p>
+      </form>
 
-    <label>Messaggio *
-      <textarea name="messaggio" rows="7" required></textarea>
-    </label>
-
-    <div class="checks">
-      <label class="check-line">
-        <input type="checkbox" name="privacy" value="Sì" required>
-        <span>Acconsento al trattamento dei dati personali per ricevere risposta alla mia richiesta.</span>
-      </label>
-    </div>
-
-    <p class="form-note">
-      I dati inviati saranno utilizzati esclusivamente per gestire il messaggio e rispondere alla richiesta.
-    </p>
-
-    <button class="btn btn-primary btn-submit" type="submit">Invia messaggio</button>
-
-    <p class="form-status" id="contact-status" role="status" aria-live="polite"></p>
-  </form>
-</section>
-```
-
+      <iframe id="contactFrame" name="contactFrame" title="Invio contatto" style="display:none;width:0;height:0;border:0;"></iframe>
+    </section>
   </main>
 
   <footer class="site-footer">
-    <div class="footer-inner">
-      <strong>Associazione Alma Tellus</strong>
-      <span>Associazione senza scopo di lucro</span>
-      <span>Codice fiscale 92069430673</span>
-      <span>Contatti tramite modulo online</span>
+    <div>
+      <strong>Associazione Alma Tellus</strong><br>
+      Associazione senza scopo di lucro<br>
+      Codice fiscale: 92069430673
     </div>
   </footer>
 
   <script>
-    const toggle = document.querySelector(".menu-toggle");
-    const nav = document.querySelector(".site-nav");
+    (function () {
+      const PAGE_VERSION = "v.1.23";
+      const FALLBACK_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzFTVceOvTU8pccpRC-6jXYARFFQvp-HGcPo5jX2VsBCod8490_oR99JZvn-rIKCeWvpQ/exec";
 
-    if (toggle && nav) {
-      toggle.addEventListener("click", () => {
-        const open = nav.classList.toggle("is-open");
-        toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      });
-    }
+      const menuButton = document.querySelector(".menu-toggle");
+      const nav = document.querySelector(".site-nav");
 
-    const form = document.getElementById("contact-form");
-    const statusEl = document.getElementById("contact-status");
-    const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
+      if (menuButton && nav) {
+        menuButton.addEventListener("click", function () {
+          const isOpen = nav.classList.toggle("is-open");
+          menuButton.setAttribute("aria-expanded", String(isOpen));
+        });
+      }
 
-    if (form && statusEl && submitBtn) {
-      form.addEventListener("submit", async (event) => {
-        event.preventDefault();
+      const form = document.getElementById("contactForm");
+      const frame = document.getElementById("contactFrame");
+      const statusBox = document.getElementById("formStatus");
+      const debugBox = document.getElementById("debugStatus");
+      const submitButton = document.getElementById("submitButton");
+      const submittedAtClient = document.getElementById("submittedAtClient");
 
-        statusEl.classList.remove("is-error", "is-success");
+      const configuredUrl = window.ALMA_TELLUS_CONFIG && window.ALMA_TELLUS_CONFIG.WEB_APP_URL
+        ? String(window.ALMA_TELLUS_CONFIG.WEB_APP_URL).trim()
+        : "";
 
-        const webAppUrl =
-          window.ALMA_TELLUS_CONFIG &&
-          window.ALMA_TELLUS_CONFIG.WEB_APP_URL
-            ? window.ALMA_TELLUS_CONFIG.WEB_APP_URL
-            : "";
+      const webAppUrl = configuredUrl || FALLBACK_WEB_APP_URL;
 
-        if (!webAppUrl || webAppUrl.includes("INCOLLA_QUI")) {
-          statusEl.textContent = "Modulo non ancora collegato. Riprova più tardi.";
-          statusEl.classList.add("is-error");
-          return;
-        }
+      if (form) {
+        form.action = webAppUrl;
+      }
 
-        submitBtn.disabled = true;
-        statusEl.textContent = "Invio in corso...";
+      let submitted = false;
+      let completed = false;
+      let timeoutId = null;
 
-        try {
-          const formData = new FormData(form);
+      function setStatus(message, isError) {
+        if (!statusBox) return;
+        statusBox.textContent = message;
+        statusBox.classList.toggle("is-error", Boolean(isError));
+      }
 
-          formData.set("form_type", "contatti");
+      function setDebug(message) {
+        if (!debugBox) return;
+        debugBox.textContent = message;
+      }
 
-          const body = new URLSearchParams();
+      setDebug("Pagina " + PAGE_VERSION + " caricata. Web App: " + (webAppUrl ? "configurata" : "non configurata"));
 
-          for (const [key, value] of formData.entries()) {
-            body.append(key, value);
+      if (frame) {
+        frame.addEventListener("load", function () {
+          if (!submitted || completed) return;
+
+          completed = true;
+          window.clearTimeout(timeoutId);
+
+          setStatus("Chiamata alla Web App completata. Controlla il foglio 'Contatti sito' e la casella Gmail tecnica.", false);
+          setDebug("Invio completato dalla pagina " + PAGE_VERSION + ". Se non arriva nulla, controlla Apps Script → Esecuzioni.");
+
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = "Invia un altro messaggio";
           }
 
-          await fetch(webAppUrl, {
-            method: "POST",
-            mode: "no-cors",
-            body: body
-          });
-
           form.reset();
+        });
+      }
 
-          statusEl.textContent = "Messaggio inviato. Grazie, ti risponderemo appena possibile.";
-          statusEl.classList.add("is-success");
+      if (form) {
+        form.addEventListener("submit", function (event) {
+          const nome = form.elements["nome"] ? form.elements["nome"].value.trim() : "";
+          const email = form.elements["email"] ? form.elements["email"].value.trim() : "";
+          const oggetto = form.elements["oggetto"] ? form.elements["oggetto"].value.trim() : "";
+          const messaggio = form.elements["messaggio"] ? form.elements["messaggio"].value.trim() : "";
+          const privacy = form.elements["privacy"] ? form.elements["privacy"].checked : false;
 
-        } catch (error) {
-          statusEl.textContent = "Invio non riuscito. Riprova più tardi.";
-          statusEl.classList.add("is-error");
+          if (!nome || !email || !oggetto || !messaggio || !privacy) {
+            event.preventDefault();
+            setStatus("Compila tutti i campi obbligatori e conferma la presa visione privacy.", true);
+            return;
+          }
 
-        } finally {
-          submitBtn.disabled = false;
-        }
-      });
-    }
+          if (messaggio.length < 10) {
+            event.preventDefault();
+            setStatus("Il messaggio è troppo breve.", true);
+            return;
+          }
+
+          if (submittedAtClient) {
+            submittedAtClient.value = new Date().toISOString();
+          }
+
+          submitted = true;
+          completed = false;
+
+          setStatus("Invio in corso verso la Web App Google...", false);
+          setDebug("Pagina " + PAGE_VERSION + ": richiesta POST avviata.");
+
+          if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = "Invio in corso...";
+          }
+
+          timeoutId = window.setTimeout(function () {
+            if (completed) return;
+
+            setStatus("La chiamata è ancora in corso o non ha restituito conferma visibile. Controlla Apps Script → Esecuzioni.", true);
+            setDebug("Timeout pagina " + PAGE_VERSION + ". Possibile blocco risposta iframe, ma la richiesta potrebbe essere comunque partita.");
+
+            if (submitButton) {
+              submitButton.disabled = false;
+              submitButton.textContent = "Riprova invio";
+            }
+          }, 12000);
+        });
+      }
+    })();
   </script>
-
 </body>
 </html>
