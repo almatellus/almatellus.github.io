@@ -7,6 +7,34 @@
   <meta name="description" content="Modulo di prenotazione iscrizione a socio dell'Associazione Alma Tellus.">
   <link rel="stylesheet" href="style.css?v=80">
   <script src="config.js?v=80"></script>
+  <style>
+    .membership-box {
+      display: grid;
+      gap: 14px;
+      margin: 0 0 10px;
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(197, 161, 90, 0.12);
+      border: 1px solid rgba(197, 161, 90, 0.34);
+    }
+
+    .quota-preview {
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--blue);
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .payment-note {
+      margin: 0;
+      color: var(--text);
+      font-size: 0.94rem;
+      line-height: 1.48;
+      font-weight: 650;
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -38,13 +66,40 @@
         <p class="eyebrow">Modulo online</p>
         <h1 id="form-title">Prenotazione iscrizione a socio</h1>
         <p class="intro">
-          Compila il modulo per prenotare l’iscrizione ad Alma Tellus. L’invio sarà valutato dall’associazione prima del versamento della quota.
+          Compila il modulo per prenotare l’iscrizione ad Alma Tellus. Scegli la tipologia di socio: la richiesta sarà valutata dall’associazione prima del versamento della quota.
         </p>
       </div>
 
       <form class="socio-form" id="socio-form">
         <input type="hidden" name="form_type" value="socio">
         <input class="hp-field" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <input type="hidden" name="quota_socio" id="quota-socio-hidden" value="">
+        <input type="hidden" name="validita_tessera" value="12 mesi dal pagamento della quota">
+
+        <div class="membership-box">
+          <label>Tipo socio *
+            <select name="tipo_socio" id="tipo-socio" required>
+              <option value="">Seleziona una quota</option>
+              <option value="Socio ordinario" data-quota="20">Socio ordinario - 20 €</option>
+              <option value="Socio sostenitore" data-quota="50">Socio sostenitore - 50 €</option>
+              <option value="Socio benemerito" data-quota="100">Socio benemerito - 100 €</option>
+              <option value="Familiare convivente" data-quota="10">Familiare convivente - 10 €</option>
+              <option value="Dal secondo familiare convivente in poi" data-quota="5">Dal secondo familiare convivente in poi - 5 €</option>
+              <option value="Under 25" data-quota="10">Under 25 - 10 €</option>
+              <option value="Over 70" data-quota="10">Over 70 - 10 €</option>
+            </select>
+          </label>
+
+          <div class="quota-preview" id="quota-preview">
+            Seleziona una tipologia per visualizzare la quota.
+          </div>
+
+          <p class="payment-note">
+            In questa prima fase il pagamento della quota avverrà direttamente al Presidente, oppure secondo le modalità che saranno successivamente comunicate dall’associazione.
+            La tessera avrà validità di <strong>12 mesi dal pagamento della quota</strong>.
+          </p>
+        </div>
 
         <div class="field-grid">
           <label>Nome *
@@ -100,12 +155,12 @@
           </label>
           <label class="check-line">
             <input type="checkbox" name="richiesta_adesione" value="Sì" required>
-            <span>Confermo di voler presentare richiesta di ammissione a socio.</span>
+            <span>Confermo di voler prenotare l’iscrizione a socio e di essere consapevole che l’ammissione non è automatica.</span>
           </label>
         </div>
 
         <p class="form-note">
-          I dati verranno trasmessi all’associazione per la valutazione della richiesta. Per eventuali comunicazioni successive, utilizza la pagina Contatti.
+          I dati verranno trasmessi all’associazione per la valutazione della richiesta. La quota sarà versata solo dopo le indicazioni dell’associazione. Per eventuali comunicazioni successive, utilizza la pagina Contatti.
         </p>
 
         <button class="btn btn-primary btn-submit" type="submit">Invia richiesta</button>
@@ -135,6 +190,50 @@
     const form = document.getElementById('socio-form');
     const statusEl = document.getElementById('form-status');
     const submitBtn = form.querySelector('button[type="submit"]');
+
+    const tipoSocio = document.getElementById('tipo-socio');
+    const quotaPreview = document.getElementById('quota-preview');
+    const quotaHidden = document.getElementById('quota-socio-hidden');
+
+    const tipoDaUrl = new URLSearchParams(window.location.search).get('tipo');
+    const tipoMap = {
+      ordinario: 'Socio ordinario',
+      sostenitore: 'Socio sostenitore',
+      benemerito: 'Socio benemerito',
+      familiare: 'Familiare convivente',
+      familiare_successivo: 'Dal secondo familiare convivente in poi',
+      under25: 'Under 25',
+      over70: 'Over 70'
+    };
+
+    function aggiornaQuota() {
+      if (!tipoSocio || !quotaPreview || !quotaHidden) return;
+
+      const selected = tipoSocio.options[tipoSocio.selectedIndex];
+      const quota = selected ? selected.getAttribute('data-quota') : '';
+
+      if (quota) {
+        quotaHidden.value = quota + ' euro';
+        quotaPreview.textContent = 'Quota selezionata: ' + selected.value + ' - ' + quota + ' € annui. Validità: 12 mesi dal pagamento.';
+      } else {
+        quotaHidden.value = '';
+        quotaPreview.textContent = 'Seleziona una tipologia per visualizzare la quota.';
+      }
+    }
+
+    if (tipoSocio) {
+      if (tipoDaUrl && tipoMap[tipoDaUrl]) {
+        for (const option of tipoSocio.options) {
+          if (option.value === tipoMap[tipoDaUrl]) {
+            option.selected = true;
+            break;
+          }
+        }
+      }
+
+      tipoSocio.addEventListener('change', aggiornaQuota);
+      aggiornaQuota();
+    }
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
