@@ -35,6 +35,98 @@
       font-weight: 650;
     }
   </style>
+
+  <style>
+    .form-main {
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 190px 22px 60px;
+      text-align: center;
+    }
+
+    .form-card {
+      width: min(920px, 100%);
+      margin: 0 auto;
+      padding: 0;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+
+    .form-heading {
+      text-align: center;
+      margin: 0 auto 26px;
+      max-width: 860px;
+    }
+
+    .form-heading .eyebrow {
+      margin-bottom: 10px;
+    }
+
+    .form-heading h1 {
+      margin-bottom: 18px;
+      font-size: clamp(2.25rem, 7vw, 4.2rem);
+      line-height: 1.04;
+      letter-spacing: -0.04em;
+    }
+
+    .intro {
+      max-width: 760px;
+      margin: 0 auto 0;
+      font-size: 1.06rem;
+      line-height: 1.6;
+    }
+
+    .socio-form {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 28px;
+      border-radius: 28px;
+      background: rgba(247, 244, 236, 0.78);
+      border: 1px solid rgba(197, 161, 90, 0.38);
+      box-shadow: 0 16px 42px rgba(11, 52, 64, 0.08);
+      text-align: left;
+    }
+
+    .membership-box {
+      background: rgba(197, 161, 90, 0.12);
+      border: 1px solid rgba(197, 161, 90, 0.42);
+    }
+
+    .quota-preview {
+      background: rgba(255, 255, 255, 0.55);
+    }
+
+    .payment-note {
+      font-size: 1rem;
+      line-height: 1.5;
+      font-weight: 700;
+    }
+
+    @media (max-width: 760px) {
+      .form-main {
+        padding: 150px 18px 42px;
+      }
+
+      .form-card {
+        width: min(100%, 100%);
+      }
+
+      .socio-form {
+        padding: 20px;
+        border-radius: 22px;
+      }
+
+      .intro {
+        font-size: 1rem;
+      }
+    }
+  </style>
+
 </head>
 <body>
   <header class="site-header">
@@ -62,7 +154,7 @@
   <main class="form-main">
     <section class="form-card" aria-labelledby="form-title">
       <div class="form-heading">
-        <img class="page-logo form-logo" src="logo.png" alt="Alma Tellus">
+        
         <p class="eyebrow">Modulo online</p>
         <h1 id="form-title">Prenotazione iscrizione a socio</h1>
         <p class="intro">
@@ -96,8 +188,7 @@
           </div>
 
           <p class="payment-note">
-            In questa prima fase pagherai direttamente al Presidente.
-            La tessera avrà validità di <strong>12 mesi dal pagamento della quota</strong>.
+            Pagherai direttamente al Presidente. La tessera avrà validità di <strong>12 mesi dal pagamento della quota</strong>.
           </p>
         </div>
 
