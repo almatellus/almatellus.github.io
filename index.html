@@ -55,6 +55,38 @@
       font-size: 2rem;
       line-height: 1;
       font-weight: 500;
+      cursor: pointer;
+    }
+
+    .site-nav {
+      position: absolute;
+      top: 92px;
+      right: 24px;
+      min-width: 245px;
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 22px 60px rgba(23, 63, 53, 0.12);
+      border: 1px solid var(--line);
+      display: none;
+      z-index: 20;
+    }
+
+    .site-nav.is-open {
+      display: grid;
+    }
+
+    .site-nav a {
+      padding: 12px 14px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--green);
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .site-nav a:hover {
+      background: rgba(183, 155, 74, 0.16);
     }
 
     .hero {
@@ -230,6 +262,13 @@
         font-size: 1.85rem;
       }
 
+      .site-nav {
+        top: 78px;
+        right: 18px;
+        left: 18px;
+        min-width: 0;
+      }
+
       .hero {
         align-items: flex-start;
         padding-top: 42px;
@@ -239,11 +278,19 @@
 </head>
 <body>
   <header class="site-header">
-    <a href="/" aria-label="Home Alma Tellus">
+    <a href="index.html" aria-label="Home Alma Tellus">
       <img class="header-logo" src="https://almatellus.github.io/logo.png" alt="Alma Tellus" />
     </a>
 
-    <a class="menu-button" href="#menu" aria-label="Apri menu">☰</a>
+    <button class="menu-button" type="button" aria-label="Apri menu" aria-expanded="false">☰</button>
+
+    <nav class="site-nav" aria-label="Menu principale">
+      <a href="index.html">Home</a>
+      <a href="tesseramento.html">Tesseramento</a>
+      <a href="soci.html">Prenotazione iscrizione</a>
+      <a href="associazione.html">Dati associazione</a>
+      <a href="contatti.html">Contatti</a>
+    </nav>
   </header>
 
   <main class="hero">
@@ -258,8 +305,8 @@
         </p>
 
         <div class="buttons">
-          <a class="btn btn-primary" href="/tesseramento.html">Prenotazione iscrizione a socio</a>
-          <a class="btn btn-secondary" href="/contatti.html">Contattaci</a>
+          <a class="btn btn-primary" href="tesseramento.html">Prenotazione iscrizione a socio</a>
+          <a class="btn btn-secondary" href="contatti.html">Contattaci</a>
         </div>
       </div>
 
@@ -286,5 +333,15 @@
     Codice fiscale 92069430673<br />
     info@almatellus.it
   </footer>
+  <script>
+    const toggle = document.querySelector('.menu-button');
+    const nav = document.querySelector('.site-nav');
+    if (toggle && nav) {
+      toggle.addEventListener('click', () => {
+        const open = nav.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+  </script>
 </body>
 </html>

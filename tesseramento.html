@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Primo tesseramento annuale | Alma Tellus</title>
+  <style>
+:root{
+  --blue:#0b3440;
+  --blue-soft:#164a57;
+  --gold:#c5a15a;
+  --gold-soft:#e8ddb0;
+  --paper:#f7f4ec;
+  --paper-2:#edf4f2;
+  --white:#ffffff;
+  --text:#102c36;
+  --muted:#5d6f77;
+  --border:rgba(16,44,54,.14);
+  --shadow:0 22px 60px rgba(11,52,64,.12);
+}
+*{box-sizing:border-box}
+html,body{min-height:100%;margin:0}
+body{
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(135deg,var(--paper) 0%,#fbfaf6 45%,var(--paper-2) 100%);
+  overflow-x:hidden;
+}
+.site-header{
+  position:fixed;
+  inset:0 0 auto 0;
+  z-index:50;
+  height:90px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:16px clamp(18px,5vw,72px);
+  pointer-events:none;
+}
+.brand-mini,.menu-toggle,.site-nav{pointer-events:auto}
+.brand-mini{display:inline-flex;align-items:center;text-decoration:none}
+.brand-mini img{width:170px;max-width:48vw;height:auto;display:block}
+.menu-toggle{
+  width:58px;height:58px;border-radius:999px;border:1px solid rgba(11,52,64,.14);
+  background:rgba(255,255,255,.68);backdrop-filter:blur(10px);
+  display:inline-flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;cursor:pointer;
+}
+.menu-toggle span{width:24px;height:2px;border-radius:10px;background:var(--blue);display:block}
+.site-nav{
+  position:fixed;top:84px;right:clamp(18px,5vw,70px);min-width:245px;padding:14px;border-radius:18px;
+  background:rgba(255,255,255,.94);box-shadow:var(--shadow);border:1px solid var(--border);display:none;
+}
+.site-nav.is-open{display:grid}
+.site-nav a{padding:12px 14px;border-radius:12px;text-decoration:none;font-size:15px;font-weight:800;color:var(--blue)}
+.site-nav a:hover{background:rgba(197,161,90,.16)}
+main{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:118px 22px 58px;text-align:center}
+.panel{width:min(760px,100%);margin:auto}
+.brand-title{margin:0 0 14px;color:var(--gold);font-size:.86rem;font-weight:900;letter-spacing:.22em;text-transform:uppercase}
+h1{margin:0 0 24px;color:var(--blue);font-size:clamp(2.25rem,8vw,4.2rem);line-height:1.02;letter-spacing:-.04em;font-weight:900}
+.cards{width:min(640px,100%);margin:0 auto}
+.card,.btn{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:18px;
+  text-decoration:none;color:var(--blue);background:var(--gold-soft);border:1px solid rgba(197,161,90,.82);
+  border-radius:999px;padding:22px 28px;margin:0 0 12px;box-shadow:0 8px 22px rgba(197,161,90,.12);
+}
+.card.main{padding:26px 30px}
+.name{font-size:clamp(1.25rem,4.8vw,2.2rem);font-weight:900;text-align:left;line-height:1.06}
+.card.main .name{font-size:clamp(1.55rem,5.8vw,2.65rem)}
+.price{font-size:clamp(2.1rem,8vw,3.65rem);font-weight:900;color:var(--gold);white-space:nowrap}
+.card.main .price{font-size:clamp(2.8rem,10.5vw,4.65rem)}
+.twocol,.btnrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.twocol{margin:0 0 14px}
+.twocol .card,.btnrow .btn{margin:0;border-radius:30px;flex-direction:column;justify-content:center;gap:4px;padding:17px 12px}
+.twocol .name,.btnrow .btn{text-align:center;font-size:clamp(.98rem,3.5vw,1.36rem);line-height:1.14}
+.twocol .price{font-size:clamp(1.65rem,6vw,2.55rem)}
+.note{
+  width:min(640px,100%);margin:10px auto 22px;
+  color:var(--blue);font-size:clamp(1.05rem,3.6vw,1.55rem);font-weight:900;line-height:1.25;
+}
+.separator{width:min(640px,100%);height:1px;background:rgba(197,161,90,.72);margin:0 auto 14px}
+.discount-title{margin:0 0 14px;color:var(--gold);font-size:clamp(.95rem,3.5vw,1.35rem);font-weight:900;letter-spacing:.28em;text-transform:uppercase}
+.btn{min-height:68px;justify-content:center;text-align:center;font-weight:900}
+.btn.white{background:rgba(255,255,255,.62);border-color:var(--border);box-shadow:none}
+.site-footer{padding:22px 20px 28px;color:rgba(16,44,54,.78)}
+.footer-inner{
+  width:min(1100px,100%);margin:0 auto;padding-top:18px;border-top:1px solid rgba(16,44,54,.12);
+  display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;justify-content:center;text-align:center;font-size:.9rem;line-height:1.4;
+}
+.footer-inner strong{color:var(--blue)}
+@media(max-width:680px){
+  .site-header{height:72px;padding:12px 18px}
+  .brand-mini img{width:145px;max-width:54vw}
+  .menu-toggle{width:48px;height:48px;gap:4px}
+  .menu-toggle span{width:21px}
+  .site-nav{top:66px;right:14px;left:14px;min-width:0}
+  main{padding:92px 18px 42px}
+  .card.main{padding:22px 24px}
+  .card{padding:18px 20px}
+  .twocol,.btnrow{gap:10px}
+  .twocol .card,.btnrow .btn{border-radius:24px;padding:15px 9px}
+  .site-footer{padding:18px 14px 24px}
+  .footer-inner{display:grid;gap:5px;font-size:.82rem}
+}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand-mini" href="index.html" aria-label="Alma Tellus home">
+      <img src="https://almatellus.github.io/logo.png" alt="Alma Tellus">
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Apri menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" aria-label="Menu principale">
+      <a href="index.html">Home</a>
+      <a href="tesseramento.html">Tesseramento</a>
+      <a href="soci.html">Prenotazione iscrizione</a>
+      <a href="associazione.html">Dati associazione</a>
+      <a href="contatti.html">Contatti</a>
+    </nav>
+  </header>
+  <main>
+    <section class="panel">
+      <p class="brand-title">Primo tesseramento annuale</p>
+      <h1>Quote annuali</h1>
+
+      <div class="cards">
+        <a class="card main" href="soci.html">
+          <span class="name">Socio ordinario</span>
+          <span class="price">20€</span>
+        </a>
+
+        <div class="twocol">
+          <a class="card" href="soci.html">
+            <span class="name">Sostenitore</span>
+            <span class="price">50€</span>
+          </a>
+          <a class="card" href="soci.html">
+            <span class="name">Benemerito</span>
+            <span class="price">100€</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="note">La tessera vale 12 mesi reali.</div>
+
+      <div class="separator"></div>
+      <div class="discount-title">Scontistica</div>
+
+      <div class="btnrow">
+        <a class="btn" href="famiglia.html">Famiglia</a>
+        <a class="btn" href="giovani-anziani.html">Under 25<br>Over 70</a>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <strong>Associazione Alma Tellus</strong>
+      <span>Associazione senza scopo di lucro</span>
+      <span>Codice fiscale 92069430673</span>
+      <span>info@almatellus.it</span>
+    </div>
+  </footer>
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.site-nav');
+    if (toggle && nav) {
+      toggle.addEventListener('click', () => {
+        const open = nav.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+  </script>
+</body>
+</html>

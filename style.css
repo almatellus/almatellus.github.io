@@ -59,7 +59,7 @@ a {
 }
 
 .brand-mini img {
-  width: 68px;
+  width: 128px;
   height: auto;
   display: block;
 }
@@ -429,7 +429,7 @@ select:focus {
   }
 
   .brand-mini img {
-    width: 48px;
+    width: 108px;
   }
 
   .menu-toggle {
