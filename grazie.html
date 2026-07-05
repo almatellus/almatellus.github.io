@@ -51,6 +51,71 @@
     }
   </style>
 
+
+  <style>
+    .form-main, .info-main, .thanks-main {
+      min-height: 100vh !important;
+      display: flex !important;
+      align-items: flex-start !important;
+      justify-content: center !important;
+      padding: 190px 22px 60px !important;
+      text-align: center !important;
+    }
+    .form-card, .info-card, .thanks-card {
+      width: min(920px, 100%) !important;
+      margin: 0 auto !important;
+      padding: 0 !important;
+      background: transparent !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+    }
+    .form-heading, .info-card, .thanks-card {
+      text-align: center !important;
+    }
+    .page-logo, .form-logo, .thanks-logo {
+      display: none !important;
+    }
+    .form-heading h1, .info-card h1, .thanks-card h1 {
+      margin-bottom: 18px !important;
+      font-size: clamp(2.25rem, 7vw, 4.2rem) !important;
+      line-height: 1.04 !important;
+      letter-spacing: -0.04em !important;
+    }
+    .intro {
+      max-width: 760px !important;
+      margin: 0 auto 28px !important;
+      font-size: 1.06rem !important;
+      line-height: 1.6 !important;
+    }
+    .data-list, .socio-form {
+      max-width: 920px !important;
+      margin: 0 auto !important;
+      padding: 28px !important;
+      border-radius: 28px !important;
+      background: rgba(247, 244, 236, 0.78) !important;
+      border: 1px solid rgba(197, 161, 90, 0.38) !important;
+      box-shadow: 0 16px 42px rgba(11, 52, 64, 0.08) !important;
+      text-align: left !important;
+    }
+    .page-actions {
+      max-width: 920px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      justify-content: center !important;
+    }
+    @media (max-width: 760px) {
+      .form-main, .info-main, .thanks-main {
+        padding: 150px 18px 42px !important;
+      }
+      .data-list, .socio-form {
+        padding: 20px !important;
+        border-radius: 22px !important;
+      }
+    }
+  </style>
+
 </head>
 <body>
   <header class="site-header">
