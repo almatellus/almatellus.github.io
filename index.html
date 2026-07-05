@@ -141,6 +141,7 @@
       font-size: clamp(1.08rem, 3vw, 1.34rem);
       line-height: 1.58;
       font-weight: 500;
+      cursor: pointer;
     }
 
     .ideas {
@@ -286,8 +287,10 @@
 
     <nav class="site-nav" aria-label="Menu principale">
       <a href="index.html">Home</a>
-      <a href="tesseramento.html">Tesseramento</a>
-      <a href="soci.html">Prenotazione iscrizione</a>
+      <a href="tesseramento.html">Quote tesseramento</a>
+      <a href="famiglia.html">Sconto famiglia</a>
+      <a href="giovani-anziani.html">Under 25 / Over 70</a>
+      <a href="soci.html">Prenotazione socio</a>
       <a href="associazione.html">Dati associazione</a>
       <a href="contatti.html">Contatti</a>
     </nav>
@@ -305,8 +308,8 @@
         </p>
 
         <div class="buttons">
-          <a class="btn btn-primary" href="tesseramento.html">Prenotazione iscrizione a socio</a>
-          <a class="btn btn-secondary" href="contatti.html">Contattaci</a>
+          <a class="btn btn-primary" href="soci.html">Prenotazione iscrizione a socio</a>
+          <a class="btn btn-secondary" href="tesseramento.html">Quote tesseramento</a>
         </div>
       </div>
 
@@ -332,16 +335,18 @@
     Associazione senza scopo di lucro<br />
     Codice fiscale 92069430673<br />
     info@almatellus.it
-  </footer>
-  <script>
-    const toggle = document.querySelector('.menu-button');
-    const nav = document.querySelector('.site-nav');
-    if (toggle && nav) {
-      toggle.addEventListener('click', () => {
-        const open = nav.classList.toggle('is-open');
-        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      });
-    }
+  </footer>  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggle = document.querySelector('.menu-button');
+      const nav = document.querySelector('.site-nav');
+
+      if (toggle && nav) {
+        toggle.addEventListener('click', function () {
+          const open = nav.classList.toggle('is-open');
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      }
+    });
   </script>
 </body>
 </html>
