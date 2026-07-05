@@ -5,6 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Richiesta ricevuta - Alma Tellus</title>
   <link rel="stylesheet" href="style.css?v=80">
+
+  <style>
+    .thanks-main {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 170px 22px 60px;
+      text-align: center;
+    }
+
+    .thanks-card {
+      width: min(780px, 100%);
+      margin: 0 auto;
+      padding: 0;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+
+    .thanks-card h1 {
+      font-size: clamp(2.1rem, 6vw, 3.8rem);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+
+    .thanks-card p {
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .page-actions.centered {
+      justify-content: center;
+    }
+
+    @media (max-width: 760px) {
+      .thanks-main {
+        padding: 145px 18px 42px;
+      }
+    }
+  </style>
+
 </head>
 <body>
   <header class="site-header">
@@ -31,7 +77,7 @@
 
   <main class="thanks-main">
     <section class="thanks-card" aria-labelledby="thanks-title">
-      <img class="page-logo thanks-logo" src="logo.png" alt="Alma Tellus">
+      
       <p class="eyebrow">Prenotazione inviata</p>
       <h1 id="thanks-title">Grazie, la prenotazione è stata ricevuta.</h1>
       <p>

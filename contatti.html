@@ -26,6 +26,115 @@
       }
     }
   </style>
+
+  <style>
+    .form-main,
+    .info-main {
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 190px 22px 60px;
+      text-align: center;
+    }
+
+    .form-card,
+    .info-card {
+      width: min(920px, 100%);
+      margin: 0 auto;
+      padding: 0;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+
+    .form-heading,
+    .info-card {
+      text-align: center;
+    }
+
+    .form-heading {
+      margin: 0 auto 26px;
+      max-width: 860px;
+    }
+
+    .page-logo,
+    .form-logo {
+      display: none !important;
+    }
+
+    .form-heading h1,
+    .info-card h1 {
+      margin-bottom: 18px;
+      font-size: clamp(2.25rem, 7vw, 4.2rem);
+      line-height: 1.04;
+      letter-spacing: -0.04em;
+    }
+
+    .intro {
+      max-width: 760px;
+      margin: 0 auto 28px;
+      font-size: 1.06rem;
+      line-height: 1.6;
+    }
+
+    .data-list,
+    .socio-form {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 28px;
+      border-radius: 28px;
+      background: rgba(247, 244, 236, 0.78);
+      border: 1px solid rgba(197, 161, 90, 0.38);
+      box-shadow: 0 16px 42px rgba(11, 52, 64, 0.08);
+      text-align: left;
+    }
+
+    .data-list {
+      display: grid;
+      gap: 0;
+    }
+
+    .data-list div {
+      border-bottom: 1px solid rgba(16, 44, 54, 0.14);
+    }
+
+    .data-list div:last-child {
+      border-bottom: none;
+    }
+
+    .page-actions {
+      max-width: 920px;
+      margin-left: auto;
+      margin-right: auto;
+      justify-content: center;
+    }
+
+    @media (max-width: 760px) {
+      .form-main,
+      .info-main {
+        padding: 150px 18px 42px;
+      }
+
+      .form-card,
+      .info-card {
+        width: 100%;
+      }
+
+      .data-list,
+      .socio-form {
+        padding: 20px;
+        border-radius: 22px;
+      }
+
+      .intro {
+        font-size: 1rem;
+      }
+    }
+  </style>
+
 </head>
 <body class="contact-page">
   <header class="site-header">
@@ -53,11 +162,11 @@
   <main class="form-main">
     <section class="form-card" aria-labelledby="contact-title">
       <div class="form-heading">
-        <img class="form-logo" src="logo.png" alt="Alma Tellus">
+        
         <p class="eyebrow">Contatti</p>
         <h1 id="contact-title">Scrivi ad Alma Tellus</h1>
         <p class="intro">
-          Usa il modulo per inviare una comunicazione all’associazione. Il messaggio verrà registrato e inoltrato ai referenti interni.
+          Scrivi ad Alma Tellus per informazioni, proposte, collaborazioni o chiarimenti sul tesseramento.
         </p>
       </div>
 
