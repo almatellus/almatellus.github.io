@@ -1,260 +1,42 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dati associazione - Alma Tellus</title>
-  <meta name="description" content="Dati ufficiali dell'Associazione Alma Tellus: denominazione, codice fiscale e natura senza scopo di lucro.">
-  <link rel="stylesheet" href="style.css?v=80">
+---
+layout: default
+title: Dati associazione
+description: Dati e riferimenti ufficiali dell'Associazione Alma Tellus.
+permalink: /associazione.html
+---
 
-  <style>
-    .form-main,
-    .info-main {
-      min-height: 100vh;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 190px 22px 60px;
-      text-align: center;
-    }
-
-    .form-card,
-    .info-card {
-      width: min(920px, 100%);
-      margin: 0 auto;
-      padding: 0;
-      background: transparent;
-      border: none;
-      border-radius: 0;
-      box-shadow: none;
-      backdrop-filter: none;
-    }
-
-    .form-heading,
-    .info-card {
-      text-align: center;
-    }
-
-    .form-heading {
-      margin: 0 auto 26px;
-      max-width: 860px;
-    }
-
-    .page-logo,
-    .form-logo {
-      display: none !important;
-    }
-
-    .form-heading h1,
-    .info-card h1 {
-      margin-bottom: 18px;
-      font-size: clamp(2.25rem, 7vw, 4.2rem);
-      line-height: 1.04;
-      letter-spacing: -0.04em;
-    }
-
-    .intro {
-      max-width: 760px;
-      margin: 0 auto 28px;
-      font-size: 1.06rem;
-      line-height: 1.6;
-    }
-
-    .data-list,
-    .socio-form {
-      max-width: 920px;
-      margin: 0 auto;
-      padding: 28px;
-      border-radius: 28px;
-      background: rgba(247, 244, 236, 0.78);
-      border: 1px solid rgba(197, 161, 90, 0.38);
-      box-shadow: 0 16px 42px rgba(11, 52, 64, 0.08);
-      text-align: left;
-    }
-
-    .data-list {
-      display: grid;
-      gap: 0;
-    }
-
-    .data-list div {
-      border-bottom: 1px solid rgba(16, 44, 54, 0.14);
-    }
-
-    .data-list div:last-child {
-      border-bottom: none;
-    }
-
-    .page-actions {
-      max-width: 920px;
-      margin-left: auto;
-      margin-right: auto;
-      justify-content: center;
-    }
-
-    @media (max-width: 760px) {
-      .form-main,
-      .info-main {
-        padding: 150px 18px 42px;
-      }
-
-      .form-card,
-      .info-card {
-        width: 100%;
-      }
-
-      .data-list,
-      .socio-form {
-        padding: 20px;
-        border-radius: 22px;
-      }
-
-      .intro {
-        font-size: 1rem;
-      }
-    }
-  </style>
-
-
-  <style>
-    .form-main, .info-main, .thanks-main {
-      min-height: 100vh !important;
-      display: flex !important;
-      align-items: flex-start !important;
-      justify-content: center !important;
-      padding: 190px 22px 60px !important;
-      text-align: center !important;
-    }
-    .form-card, .info-card, .thanks-card {
-      width: min(920px, 100%) !important;
-      margin: 0 auto !important;
-      padding: 0 !important;
-      background: transparent !important;
-      border: none !important;
-      border-radius: 0 !important;
-      box-shadow: none !important;
-      backdrop-filter: none !important;
-    }
-    .form-heading, .info-card, .thanks-card {
-      text-align: center !important;
-    }
-    .page-logo, .form-logo, .thanks-logo {
-      display: none !important;
-    }
-    .form-heading h1, .info-card h1, .thanks-card h1 {
-      margin-bottom: 18px !important;
-      font-size: clamp(2.25rem, 7vw, 4.2rem) !important;
-      line-height: 1.04 !important;
-      letter-spacing: -0.04em !important;
-    }
-    .intro {
-      max-width: 760px !important;
-      margin: 0 auto 28px !important;
-      font-size: 1.06rem !important;
-      line-height: 1.6 !important;
-    }
-    .data-list, .socio-form {
-      max-width: 920px !important;
-      margin: 0 auto !important;
-      padding: 28px !important;
-      border-radius: 28px !important;
-      background: rgba(247, 244, 236, 0.78) !important;
-      border: 1px solid rgba(197, 161, 90, 0.38) !important;
-      box-shadow: 0 16px 42px rgba(11, 52, 64, 0.08) !important;
-      text-align: left !important;
-    }
-    .page-actions {
-      max-width: 920px !important;
-      margin-left: auto !important;
-      margin-right: auto !important;
-      justify-content: center !important;
-    }
-    @media (max-width: 760px) {
-      .form-main, .info-main, .thanks-main {
-        padding: 150px 18px 42px !important;
-      }
-      .data-list, .socio-form {
-        padding: 20px !important;
-        border-radius: 22px !important;
-      }
-    }
-  </style>
-
-</head>
-<body>
-  <header class="site-header">
-    <a class="brand-mini" href="index.html" aria-label="Alma Tellus home">
-      <img src="logo.png" alt="Alma Tellus">
-    </a>
-
-    <button class="menu-toggle" type="button" aria-label="Apri menu" aria-expanded="false" aria-controls="site-nav">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-
-    <nav class="site-nav" id="site-nav" aria-label="Menu principale">
-      <a href="index.html">Home</a>
-      <a href="tesseramento.html">Quote tesseramento</a>
-      <a href="famiglia.html">Sconto famiglia</a>
-      <a href="giovani-anziani.html">Under 25 / Over 70</a>
-      <a href="soci.html">Prenotazione socio</a>
-      <a href="associazione.html">Dati associazione</a>
-      <a href="contatti.html">Contatti</a>
-    </nav>
+<section class="page-shell narrow">
+  <header class="page-heading">
+    <p class="eyebrow">Dati ufficiali</p>
+    <h1>Associazione Alma Tellus</h1>
+    <p class="lead">
+      I riferimenti essenziali dell’associazione, raccolti in modo semplice e trasparente.
+    </p>
   </header>
 
-  <main class="info-main">
-    <section class="info-card" aria-labelledby="info-title">
-      
-      <p class="eyebrow">Dati ufficiali</p>
-      <h1 id="info-title">Associazione Alma Tellus</h1>
-      <p class="intro">
-        I riferimenti essenziali dell’associazione, raccolti in modo semplice e trasparente.
-      </p>
-
-      <dl class="data-list">
-        <div>
-          <dt>Denominazione</dt>
-          <dd>Associazione Alma Tellus</dd>
-        </div>
-        <div>
-          <dt>Natura</dt>
-          <dd>Associazione senza scopo di lucro</dd>
-        </div>
-        <div>
-          <dt>Codice fiscale</dt>
-          <dd>92069430673</dd>
-        </div>
-        <div>
-          <dt>Contatti</dt>
-          <dd>Modulo online nella pagina Contatti</dd>
-        </div>
-      </dl>
-
-      <div class="page-actions">
-        <a class="btn btn-primary" href="tesseramento.html">Quote tesseramento</a>
-        <a class="btn btn-secondary" href="contatti.html">Contatti</a>
+  <div class="surface">
+    <dl class="info-list">
+      <div class="info-row">
+        <dt>Denominazione</dt>
+        <dd>Associazione Alma Tellus</dd>
       </div>
-    </section>
-  </main>
+      <div class="info-row">
+        <dt>Natura</dt>
+        <dd>Associazione senza scopo di lucro</dd>
+      </div>
+      <div class="info-row">
+        <dt>Codice fiscale</dt>
+        <dd>92069430673</dd>
+      </div>
+      <div class="info-row">
+        <dt>Contatti</dt>
+        <dd>Modulo online nella pagina Contatti</dd>
+      </div>
+    </dl>
+  </div>
 
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <strong>Associazione Alma Tellus</strong>
-      <span>Associazione senza scopo di lucro</span>
-      <span>Codice fiscale 92069430673</span>
-      <span>Contatti tramite modulo online</span>
-    </div>
-  </footer>
-
-  <script>
-    const toggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('.site-nav');
-    toggle.addEventListener('click', () => {
-      const open = nav.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-  </script>
-</body>
-</html>
+  <div class="page-actions">
+    <a class="btn btn-primary" href="{{ '/tesseramento.html' | relative_url }}">Quote tesseramento</a>
+    <a class="btn btn-secondary" href="{{ '/contatti.html' | relative_url }}">Contatti</a>
+  </div>
+</section>

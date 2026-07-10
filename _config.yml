@@ -1,0 +1,8 @@
+title: Alma Tellus
+description: Sito ufficiale dell'Associazione Alma Tellus
+lang: it
+url: "https://www.almatellus.it"
+baseurl: ""
+permalink: pretty
+exclude:
+  - README_MIGRAZIONE.md

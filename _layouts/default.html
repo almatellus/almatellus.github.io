@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'it' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b3440">
+  <meta name="description" content="{{ page.description | default: site.description | escape }}">
+  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  <link rel="icon" href="{{ '/logo.png' | relative_url }}" type="image/png">
+  <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+  <script defer src="{{ '/config.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/js/site.js' | relative_url }}"></script>
+</head>
+<body class="{{ page.body_class | default: '' }}">
+  <a class="skip-link" href="#contenuto">Vai al contenuto</a>
+  {% include header.html %}
+  <main id="contenuto">
+    {{ content }}
+  </main>
+  {% include footer.html %}
+</body>
+</html>

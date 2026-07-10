@@ -1,425 +1,128 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prenotazione socio - Alma Tellus</title>
-  <meta name="description" content="Modulo di prenotazione iscrizione a socio dell'Associazione Alma Tellus.">
-  <link rel="stylesheet" href="style.css?v=80">
-  <script src="config.js?v=80"></script>
-  <style>
-    .membership-box {
-      display: grid;
-      gap: 14px;
-      margin: 0 0 10px;
-      padding: 18px;
-      border-radius: 18px;
-      background: rgba(197, 161, 90, 0.12);
-      border: 1px solid rgba(197, 161, 90, 0.34);
-    }
+---
+layout: default
+title: Prenotazione socio
+description: Modulo per prenotare l'iscrizione a socio dell'Associazione Alma Tellus.
+permalink: /soci.html
+---
 
-    .quota-preview {
-      padding: 14px 16px;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.72);
-      color: var(--blue);
-      font-weight: 900;
-      line-height: 1.35;
-    }
-
-    .payment-note {
-      margin: 0;
-      color: var(--text);
-      font-size: 0.94rem;
-      line-height: 1.48;
-      font-weight: 650;
-    }
-  </style>
-
-  <style>
-    .form-main {
-      min-height: 100vh;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 190px 22px 60px;
-      text-align: center;
-    }
-
-    .form-card {
-      width: min(920px, 100%);
-      margin: 0 auto;
-      padding: 0;
-      background: transparent;
-      border: none;
-      border-radius: 0;
-      box-shadow: none;
-      backdrop-filter: none;
-    }
-
-    .form-heading {
-      text-align: center;
-      margin: 0 auto 26px;
-      max-width: 860px;
-    }
-
-    .form-heading .eyebrow {
-      margin-bottom: 10px;
-    }
-
-    .form-heading h1 {
-      margin-bottom: 18px;
-      font-size: clamp(2.25rem, 7vw, 4.2rem);
-      line-height: 1.04;
-      letter-spacing: -0.04em;
-    }
-
-    .intro {
-      max-width: 760px;
-      margin: 0 auto 0;
-      font-size: 1.06rem;
-      line-height: 1.6;
-    }
-
-    .socio-form {
-      max-width: 920px;
-      margin: 0 auto;
-      padding: 28px;
-      border-radius: 28px;
-      background: rgba(247, 244, 236, 0.78);
-      border: 1px solid rgba(197, 161, 90, 0.38);
-      box-shadow: 0 16px 42px rgba(11, 52, 64, 0.08);
-      text-align: left;
-    }
-
-    .membership-box {
-      background: rgba(197, 161, 90, 0.12);
-      border: 1px solid rgba(197, 161, 90, 0.42);
-    }
-
-    .quota-preview {
-      background: rgba(255, 255, 255, 0.55);
-    }
-
-    .payment-note {
-      font-size: 1rem;
-      line-height: 1.5;
-      font-weight: 700;
-    }
-
-    @media (max-width: 760px) {
-      .form-main {
-        padding: 150px 18px 42px;
-      }
-
-      .form-card {
-        width: min(100%, 100%);
-      }
-
-      .socio-form {
-        padding: 20px;
-        border-radius: 22px;
-      }
-
-      .intro {
-        font-size: 1rem;
-      }
-    }
-  </style>
-
-
-  <style>
-    .form-main, .info-main, .thanks-main {
-      min-height: 100vh !important;
-      display: flex !important;
-      align-items: flex-start !important;
-      justify-content: center !important;
-      padding: 190px 22px 60px !important;
-      text-align: center !important;
-    }
-    .form-card, .info-card, .thanks-card {
-      width: min(920px, 100%) !important;
-      margin: 0 auto !important;
-      padding: 0 !important;
-      background: transparent !important;
-      border: none !important;
-      border-radius: 0 !important;
-      box-shadow: none !important;
-      backdrop-filter: none !important;
-    }
-    .form-heading, .info-card, .thanks-card {
-      text-align: center !important;
-    }
-    .page-logo, .form-logo, .thanks-logo {
-      display: none !important;
-    }
-    .form-heading h1, .info-card h1, .thanks-card h1 {
-      margin-bottom: 18px !important;
-      font-size: clamp(2.25rem, 7vw, 4.2rem) !important;
-      line-height: 1.04 !important;
-      letter-spacing: -0.04em !important;
-    }
-    .intro {
-      max-width: 760px !important;
-      margin: 0 auto 28px !important;
-      font-size: 1.06rem !important;
-      line-height: 1.6 !important;
-    }
-    .data-list, .socio-form {
-      max-width: 920px !important;
-      margin: 0 auto !important;
-      padding: 28px !important;
-      border-radius: 28px !important;
-      background: rgba(247, 244, 236, 0.78) !important;
-      border: 1px solid rgba(197, 161, 90, 0.38) !important;
-      box-shadow: 0 16px 42px rgba(11, 52, 64, 0.08) !important;
-      text-align: left !important;
-    }
-    .page-actions {
-      max-width: 920px !important;
-      margin-left: auto !important;
-      margin-right: auto !important;
-      justify-content: center !important;
-    }
-    @media (max-width: 760px) {
-      .form-main, .info-main, .thanks-main {
-        padding: 150px 18px 42px !important;
-      }
-      .data-list, .socio-form {
-        padding: 20px !important;
-        border-radius: 22px !important;
-      }
-    }
-  </style>
-
-</head>
-<body>
-  <header class="site-header">
-    <a class="brand-mini" href="index.html" aria-label="Alma Tellus home">
-      <img src="logo.png" alt="Alma Tellus">
-    </a>
-
-    <button class="menu-toggle" type="button" aria-label="Apri menu" aria-expanded="false" aria-controls="site-nav">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-
-    <nav class="site-nav" id="site-nav" aria-label="Menu principale">
-      <a href="index.html">Home</a>
-      <a href="tesseramento.html">Quote tesseramento</a>
-      <a href="famiglia.html">Sconto famiglia</a>
-      <a href="giovani-anziani.html">Under 25 / Over 70</a>
-      <a href="soci.html">Prenotazione socio</a>
-      <a href="associazione.html">Dati associazione</a>
-      <a href="contatti.html">Contatti</a>
-    </nav>
+<section class="page-shell">
+  <header class="page-heading">
+    <p class="eyebrow">Modulo online</p>
+    <h1>Prenotazione iscrizione a socio</h1>
+    <p class="lead">
+      Compila il modulo per prenotare l’iscrizione ad Alma Tellus.
+      La richiesta sarà valutata dall’associazione prima del versamento della quota.
+    </p>
   </header>
 
-  <main class="form-main">
-    <section class="form-card" aria-labelledby="form-title">
-      <div class="form-heading">
-        
-        <p class="eyebrow">Modulo online</p>
-        <h1 id="form-title">Prenotazione iscrizione a socio</h1>
-        <p class="intro">
-          Compila il modulo per prenotare l’iscrizione ad Alma Tellus. Scegli la tipologia di socio: la richiesta sarà valutata dall’associazione prima del versamento della quota.
-        </p>
+  <form class="form-card form-grid" id="socio-form">
+    <input type="hidden" name="form_type" value="socio">
+    <input class="hp-field" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <input type="hidden" name="quota_socio" id="quota-socio-hidden" value="">
+    <input type="hidden" name="validita_tessera" value="12 mesi dal pagamento della quota">
+
+    <div class="membership-box">
+      <label for="tipo-socio">Tipo socio *</label>
+      <select name="tipo_socio" id="tipo-socio" required>
+        <option value="">Seleziona una quota</option>
+        <option value="Socio ordinario" data-quota="20">Socio ordinario - 20 €</option>
+        <option value="Socio sostenitore" data-quota="50">Socio sostenitore - 50 €</option>
+        <option value="Socio benemerito" data-quota="100">Socio benemerito - 100 €</option>
+        <option value="Familiare convivente" data-quota="10">Familiare convivente - 10 €</option>
+        <option value="Dal secondo familiare convivente in poi" data-quota="5">Dal secondo familiare convivente in poi - 5 €</option>
+        <option value="Under 25" data-quota="10">Under 25 - 10 €</option>
+        <option value="Over 70" data-quota="10">Over 70 - 10 €</option>
+      </select>
+
+      <div class="quota-preview" id="quota-preview">
+        Seleziona una tipologia per visualizzare la quota.
       </div>
 
-      <form class="socio-form" id="socio-form">
-        <input type="hidden" name="form_type" value="socio">
-        <input class="hp-field" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-
-        <input type="hidden" name="quota_socio" id="quota-socio-hidden" value="">
-        <input type="hidden" name="validita_tessera" value="12 mesi dal pagamento della quota">
-
-        <div class="membership-box">
-          <label>Tipo socio *
-            <select name="tipo_socio" id="tipo-socio" required>
-              <option value="">Seleziona una quota</option>
-              <option value="Socio ordinario" data-quota="20">Socio ordinario - 20 €</option>
-              <option value="Socio sostenitore" data-quota="50">Socio sostenitore - 50 €</option>
-              <option value="Socio benemerito" data-quota="100">Socio benemerito - 100 €</option>
-              <option value="Familiare convivente" data-quota="10">Familiare convivente - 10 €</option>
-              <option value="Dal secondo familiare convivente in poi" data-quota="5">Dal secondo familiare convivente in poi - 5 €</option>
-              <option value="Under 25" data-quota="10">Under 25 - 10 €</option>
-              <option value="Over 70" data-quota="10">Over 70 - 10 €</option>
-            </select>
-          </label>
-
-          <div class="quota-preview" id="quota-preview">
-            Seleziona una tipologia per visualizzare la quota.
-          </div>
-
-          <p class="payment-note">
-            Pagherai direttamente al Presidente. La tessera avrà validità di <strong>12 mesi dal pagamento della quota</strong>.
-          </p>
-        </div>
-
-        <div class="field-grid">
-          <label>Nome *
-            <input type="text" name="nome" required autocomplete="given-name">
-          </label>
-          <label>Cognome *
-            <input type="text" name="cognome" required autocomplete="family-name">
-          </label>
-        </div>
-
-        <div class="field-grid">
-          <label>Codice fiscale *
-            <input type="text" name="codice_fiscale" required maxlength="16" autocomplete="off">
-          </label>
-          <label>Data di nascita *
-            <input type="date" name="data_nascita" required>
-          </label>
-        </div>
-
-        <label>Luogo di nascita *
-          <input type="text" name="luogo_nascita" required>
-        </label>
-
-        <label>Indirizzo di residenza *
-          <input type="text" name="indirizzo" required autocomplete="street-address">
-        </label>
-
-        <div class="field-grid">
-          <label>Email *
-            <input type="email" name="email" required autocomplete="email">
-          </label>
-          <label>Telefono
-            <input type="tel" name="telefono" autocomplete="tel">
-          </label>
-        </div>
-
-        <label>Professione
-          <input type="text" name="professione">
-        </label>
-
-        <label>Motivazione della richiesta
-          <textarea name="motivazione" rows="5"></textarea>
-        </label>
-
-        <div class="checks">
-          <label class="check-line">
-            <input type="checkbox" name="presa_visione_statuto" value="Sì" required>
-            <span>Dichiaro di aver preso visione dello Statuto dell’Associazione Alma Tellus.</span>
-          </label>
-          <label class="check-line">
-            <input type="checkbox" name="privacy" value="Sì" required>
-            <span>Acconsento al trattamento dei dati personali per la gestione della richiesta di adesione.</span>
-          </label>
-          <label class="check-line">
-            <input type="checkbox" name="richiesta_adesione" value="Sì" required>
-            <span>Confermo di voler prenotare l’iscrizione a socio e di essere consapevole che l’ammissione non è automatica.</span>
-          </label>
-        </div>
-
-        <p class="form-note">
-          I dati verranno trasmessi all’associazione per la valutazione della richiesta. La quota sarà versata solo dopo le indicazioni dell’associazione. Per eventuali comunicazioni successive, utilizza la pagina Contatti.
-        </p>
-
-        <button class="btn btn-primary btn-submit" type="submit">Invia richiesta</button>
-        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-      </form>
-    </section>
-  </main>
-
-
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <strong>Associazione Alma Tellus</strong>
-      <span>Associazione senza scopo di lucro</span>
-      <span>Codice fiscale 92069430673</span>
-      <span>Contatti tramite modulo online</span>
+      <p class="payment-note">
+        Pagherai direttamente al Presidente. La tessera avrà validità di
+        <strong>12 mesi dal pagamento della quota</strong>.
+      </p>
     </div>
-  </footer>
 
-  <script>
-    const toggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('.site-nav');
-    toggle.addEventListener('click', () => {
-      const open = nav.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
+    <div class="field-grid">
+      <label>
+        Nome *
+        <input type="text" name="nome" required autocomplete="given-name">
+      </label>
+      <label>
+        Cognome *
+        <input type="text" name="cognome" required autocomplete="family-name">
+      </label>
+    </div>
 
-    const form = document.getElementById('socio-form');
-    const statusEl = document.getElementById('form-status');
-    const submitBtn = form.querySelector('button[type="submit"]');
+    <div class="field-grid">
+      <label>
+        Codice fiscale *
+        <input type="text" name="codice_fiscale" required maxlength="16" autocomplete="off">
+      </label>
+      <label>
+        Data di nascita *
+        <input type="date" name="data_nascita" required>
+      </label>
+    </div>
 
-    const tipoSocio = document.getElementById('tipo-socio');
-    const quotaPreview = document.getElementById('quota-preview');
-    const quotaHidden = document.getElementById('quota-socio-hidden');
+    <label>
+      Luogo di nascita *
+      <input type="text" name="luogo_nascita" required>
+    </label>
 
-    const tipoDaUrl = new URLSearchParams(window.location.search).get('tipo');
-    const tipoMap = {
-      ordinario: 'Socio ordinario',
-      sostenitore: 'Socio sostenitore',
-      benemerito: 'Socio benemerito',
-      familiare: 'Familiare convivente',
-      familiare_successivo: 'Dal secondo familiare convivente in poi',
-      under25: 'Under 25',
-      over70: 'Over 70'
-    };
+    <label>
+      Indirizzo di residenza *
+      <input type="text" name="indirizzo" required autocomplete="street-address">
+    </label>
 
-    function aggiornaQuota() {
-      if (!tipoSocio || !quotaPreview || !quotaHidden) return;
+    <div class="field-grid">
+      <label>
+        Email *
+        <input type="email" name="email" required autocomplete="email">
+      </label>
+      <label>
+        Telefono
+        <input type="tel" name="telefono" autocomplete="tel">
+      </label>
+    </div>
 
-      const selected = tipoSocio.options[tipoSocio.selectedIndex];
-      const quota = selected ? selected.getAttribute('data-quota') : '';
+    <label>
+      Professione
+      <input type="text" name="professione">
+    </label>
 
-      if (quota) {
-        quotaHidden.value = quota + ' euro';
-        quotaPreview.textContent = 'Quota selezionata: ' + selected.value + ' - ' + quota + ' € annui. Validità: 12 mesi dal pagamento.';
-      } else {
-        quotaHidden.value = '';
-        quotaPreview.textContent = 'Seleziona una tipologia per visualizzare la quota.';
-      }
-    }
+    <label>
+      Motivazione della richiesta
+      <textarea name="motivazione" rows="5"></textarea>
+    </label>
 
-    if (tipoSocio) {
-      if (tipoDaUrl && tipoMap[tipoDaUrl]) {
-        for (const option of tipoSocio.options) {
-          if (option.value === tipoMap[tipoDaUrl]) {
-            option.selected = true;
-            break;
-          }
-        }
-      }
+    <div class="checks">
+      <label class="check-line">
+        <input type="checkbox" name="presa_visione_statuto" value="Sì" required>
+        <span>Dichiaro di aver preso visione dello Statuto dell’Associazione Alma Tellus.</span>
+      </label>
 
-      tipoSocio.addEventListener('change', aggiornaQuota);
-      aggiornaQuota();
-    }
+      <label class="check-line">
+        <input type="checkbox" name="privacy" value="Sì" required>
+        <span>Acconsento al trattamento dei dati personali per la gestione della richiesta di adesione.</span>
+      </label>
 
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      statusEl.classList.remove('is-error');
+      <label class="check-line">
+        <input type="checkbox" name="richiesta_adesione" value="Sì" required>
+        <span>
+          Confermo di voler prenotare l’iscrizione a socio e di essere consapevole
+          che l’ammissione non è automatica.
+        </span>
+      </label>
+    </div>
 
-      const webAppUrl = window.ALMA_TELLUS_CONFIG && window.ALMA_TELLUS_CONFIG.WEB_APP_URL;
-      if (!webAppUrl || webAppUrl.includes('INCOLLA_QUI')) {
-        statusEl.textContent = 'Modulo non ancora collegato. Riprova più tardi.';
-        statusEl.classList.add('is-error');
-        return;
-      }
+    <p class="form-note">
+      I dati verranno trasmessi all’associazione per la valutazione della richiesta.
+      La quota sarà versata solo dopo le indicazioni dell’associazione.
+    </p>
 
-      submitBtn.disabled = true;
-      statusEl.textContent = 'Invio in corso...';
-
-      try {
-        const data = new FormData(form);
-        await fetch(webAppUrl, {
-          method: 'POST',
-          mode: 'no-cors',
-          body: data
-        });
-
-        window.location.href = 'grazie.html';
-      } catch (error) {
-        statusEl.textContent = 'Invio non riuscito. Riprova più tardi.';
-        statusEl.classList.add('is-error');
-        submitBtn.disabled = false;
-      }
-    });
-  </script>
-</body>
-</html>
+    <button class="btn btn-primary btn-submit" type="submit">Invia richiesta</button>
+    <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+  </form>
+</section>

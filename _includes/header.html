@@ -1,0 +1,26 @@
+<header class="site-header">
+  <a class="brand-mini" href="{{ '/' | relative_url }}" aria-label="Alma Tellus, torna alla home">
+    <img src="{{ '/logo.png' | relative_url }}" alt="Alma Tellus">
+  </a>
+
+  <button
+    class="menu-toggle"
+    type="button"
+    aria-label="Apri menu"
+    aria-expanded="false"
+    aria-controls="site-nav"
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <nav class="site-nav" id="site-nav" aria-label="Menu principale">
+    {% for item in site.data.navigation %}
+      <a
+        href="{{ item.url | relative_url }}"
+        {% if page.permalink == item.url or page.url == item.url %}aria-current="page"{% endif %}
+      >{{ item.label }}</a>
+    {% endfor %}
+  </nav>
+</header>

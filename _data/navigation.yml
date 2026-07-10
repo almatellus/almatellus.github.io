@@ -1,0 +1,23 @@
+- label: Home
+  url: /
+
+- label: Quote tesseramento
+  url: /tesseramento.html
+
+- label: Sconto famiglia
+  url: /famiglia.html
+
+- label: Under 25 / Over 70
+  url: /giovani-anziani.html
+
+- label: Prenotazione socio
+  url: /soci.html
+
+- label: Sostenitori
+  url: /sostenitori.html
+
+- label: Dati associazione
+  url: /associazione.html
+
+- label: Contatti
+  url: /contatti.html
