@@ -1,45 +1,61 @@
 ---
 layout: default
 title: Home
-description: Alma Tellus prende forma. Idee, tecnologia, cultura e attenzione alle persone.
+description: Alma Tellus è un'associazione senza scopo di lucro che sviluppa attività sociali, culturali, formative e progetti di innovazione.
 permalink: /
 body_class: page-home
 ---
 
 <section class="home-shell">
-  <div>
+  <div class="home-visual">
     <img class="home-logo" src="{{ '/logo.png' | relative_url }}" alt="Alma Tellus">
   </div>
 
   <div class="home-copy">
-    <p class="eyebrow">Prima attivazione</p>
-    <h1>Alma Tellus prende forma.</h1>
+    <p class="eyebrow">Associazione senza scopo di lucro</p>
+    <h1>Idee che diventano attività e progetti concreti.</h1>
 
     <p class="first-line">
-      Un’associazione nuova, un primo nucleo da costruire, tante idee già in movimento.
+      Alma Tellus unisce cultura, innovazione, sostenibilità e attenzione alle persone.
     </p>
 
     <p>
-      Le idee frullano già parecchio: storie da raccontare, intuizioni da trasformare
-      in progetti concreti, tecnologie utili da mettere in mano alle persone, oggetti
-      speciali da condividere, esperienze da vivere insieme, risate, incontri veri e,
-      quando capita, anche un calice di buon vino. Senza dimenticare l’attenzione a chi
-      è più fragile.
+      Promuoviamo formazione e divulgazione, partecipazione sociale, riuso responsabile
+      delle tecnologie e iniziative rivolte anche ad anziani, persone fragili e caregiver.
     </p>
 
-    <p>
-      Alma Tellus nasce per unire visione e concretezza, ma anche per creare legami:
-      un posto dove fare cose nuove, provarle insieme e ritrovarsi davvero.
-    </p>
+    <div class="home-feature-grid">
+      <a class="home-feature-card" href="{{ '/attivita.html' | relative_url }}">
+        <span class="home-feature-label">Cosa facciamo</span>
+        <strong>Attività</strong>
+        <span>
+          Formazione, inclusione, sostenibilità, cultura e iniziative per la comunità.
+        </span>
+        <b>Scopri le attività</b>
+      </a>
 
-    <p>
-      In questa prima fase stiamo raccogliendo il primo nucleo di soci: amici, persone
-      vicine al progetto e veri sostenitori. L’inaugurazione ufficiale arriverà più avanti.
+      <a class="home-feature-card home-feature-card-projects" href="{{ '/progetti.html' | relative_url }}">
+        <span class="home-feature-label">Le nostre idee in azione</span>
+        <strong>Progetti</strong>
+        <span>
+          OzoSteam Station, ACCETTA, NGHE e le nuove sperimentazioni di Alma Tellus.
+        </span>
+        <b>Esplora i progetti</b>
+      </a>
+    </div>
+
+    <p class="home-membership-note">
+      Alma Tellus è aperta a persone, associazioni e realtà che desiderano
+      partecipare, collaborare o sostenere le nostre iniziative.
     </p>
 
     <div class="home-actions btn-row">
-      <a class="btn btn-primary" href="{{ '/soci.html' | relative_url }}">Prenotazione iscrizione a socio</a>
-      <a class="btn btn-secondary" href="{{ '/contatti.html' | relative_url }}">Contattaci</a>
+      <a class="btn btn-primary" href="{{ '/soci.html' | relative_url }}">
+        Prenotazione iscrizione a socio
+      </a>
+      <a class="btn btn-secondary" href="{{ '/contatti.html' | relative_url }}">
+        Contattaci
+      </a>
     </div>
   </div>
 </section>
