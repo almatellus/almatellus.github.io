@@ -70,3 +70,20 @@ La pagina è già presente. Prima di pubblicare il nome o il logo di un donatore
 
 I nomi dei campi e l'indirizzo della Web App Google sono stati mantenuti
 compatibili con l'impostazione attuale.
+
+## Attività e progetti
+
+La pagina `attivita-progetti.html` è inclusa nel menu centralizzato.
+
+
+## Struttura Attività e Progetti
+
+- `attivita.html`: attività sociali, culturali, formative e divulgative.
+- `progetti.html`: riepilogo visuale dei progetti.
+- `ozosteam-station.html`: scheda OzoSteam Station.
+- `accetta.html`: scheda ACCETTA.
+- `nghe.html`: scheda NGHE.
+- `assets/img/progetti/`: loghi e immagini dei progetti.
+
+La vecchia pagina `attivita-progetti.html` resta disponibile come pagina di
+smistamento, così eventuali vecchi collegamenti non vanno persi.

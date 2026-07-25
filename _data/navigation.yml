@@ -1,6 +1,12 @@
 - label: Home
   url: /
 
+- label: Attività
+  url: /attivita.html
+
+- label: Progetti
+  url: /progetti.html
+
 - label: Quote tesseramento
   url: /tesseramento.html
 
