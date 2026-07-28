@@ -75,18 +75,15 @@ textarea {
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 100;
-  height: 112px;
+  height: 78px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24px clamp(20px, 5vw, 76px);
-  pointer-events: none;
-}
-
-.brand-mini,
-.menu-toggle,
-.site-nav {
-  pointer-events: auto;
+  padding: 9px clamp(20px, 4vw, 64px);
+  border-bottom: 1px solid rgba(11, 52, 64, 0.11);
+  background: rgba(247, 244, 236, 0.9);
+  box-shadow: 0 8px 28px rgba(11, 52, 64, 0.07);
+  backdrop-filter: blur(16px);
 }
 
 .brand-mini {
@@ -97,13 +94,13 @@ textarea {
 
 .brand-mini img {
   display: block;
-  width: 184px;
+  width: 112px;
   height: auto;
 }
 
 .menu-toggle {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   padding: 0;
   border: 1px solid rgba(11, 52, 64, 0.14);
   border-radius: 999px;
@@ -141,8 +138,8 @@ textarea {
 
 .site-nav {
   position: fixed;
-  top: 94px;
-  right: clamp(18px, 5vw, 72px);
+  top: 68px;
+  right: clamp(18px, 4vw, 64px);
   min-width: 255px;
   max-width: calc(100vw - 28px);
   padding: 14px;
@@ -173,14 +170,40 @@ textarea {
   background: rgba(197, 161, 90, 0.17);
 }
 
+@media (min-width: 1500px) {
+  .menu-toggle {
+    display: none;
+  }
+
+  .site-nav {
+    position: static;
+    min-width: 0;
+    max-width: none;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .site-nav a {
+    padding: 9px 10px;
+    font-size: 13px;
+  }
+}
+
 main {
-  min-height: calc(100vh - 96px);
+  min-height: calc(100vh - 78px);
 }
 
 .page-shell {
   width: min(1040px, 100%);
   margin: 0 auto;
-  padding: 170px 22px 70px;
+  padding: 126px 22px 70px;
 }
 
 .page-shell.narrow {
@@ -290,13 +313,13 @@ h2 {
 }
 
 .home-shell {
-  width: min(1180px, 100%);
+  width: min(940px, 100%);
   min-height: 100vh;
   margin: 0 auto;
-  padding: 150px 30px 74px;
+  padding: 126px 30px 74px;
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-  gap: clamp(38px, 6vw, 90px);
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
   align-items: center;
 }
 
@@ -807,33 +830,33 @@ textarea:focus {
 
 @media (max-width: 680px) {
   .site-header {
-    height: 86px;
-    padding: 16px 18px;
+    height: 70px;
+    padding: 8px 14px;
   }
 
   .brand-mini img {
-    width: 150px;
-    max-width: 58vw;
+    width: 96px;
+    max-width: 46vw;
   }
 
   .menu-toggle {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
   }
 
   .site-nav {
-    top: 76px;
+    top: 62px;
     right: 14px;
     left: 14px;
     min-width: 0;
   }
 
   .page-shell {
-    padding: 132px 16px 48px;
+    padding: 104px 16px 48px;
   }
 
   .home-shell {
-    padding: 122px 18px 48px;
+    padding: 104px 18px 48px;
     gap: 26px;
   }
 
@@ -1195,13 +1218,14 @@ textarea:focus {
 /* ===== Home v2: testo più ampio e titolo più equilibrato ===== */
 
 .page-home .home-shell {
-  width: min(1280px, 100%);
-  grid-template-columns: minmax(250px, 0.7fr) minmax(0, 1.3fr);
-  gap: clamp(34px, 5vw, 76px);
+  width: min(940px, 100%);
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
 }
 
 .page-home .home-copy {
-  max-width: 760px;
+  max-width: 860px;
+  margin: 0 auto;
 }
 
 .page-home .home-copy h1 {

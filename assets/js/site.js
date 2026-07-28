@@ -35,6 +35,11 @@
         button.focus();
       }
     });
+
+    const desktopNavigation = window.matchMedia("(min-width: 1500px)");
+    desktopNavigation.addEventListener("change", function (event) {
+      if (event.matches) closeMenu();
+    });
   }
 
   function getWebAppUrl() {
