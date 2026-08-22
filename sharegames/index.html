@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="ShareGames Alma Tellus: catalogo condiviso dei giochi messi a disposizione dai soci.">
+  <title>ShareGames - Alma Tellus</title>
+  <style>
+    :root{--ink:#19211d;--muted:#64716a;--paper:#f4f1e8;--card:#fffdf7;--green:#255f4c;--gold:#c8a15a;--line:#ded8c8}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,sans-serif}
+    main{width:min(1180px,calc(100% - 32px));margin:auto;padding:48px 0}
+    .top{margin-bottom:28px}
+    .kicker{color:var(--green);font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+    h1{margin:8px 0 10px;font:700 clamp(40px,7vw,74px)/.95 Georgia,serif}
+    .lead{max-width:820px;color:var(--muted);font-size:18px;line-height:1.55}
+    .controls{display:grid;grid-template-columns:1.5fr 1fr auto;gap:14px;align-items:end;position:sticky;top:10px;z-index:5;margin:26px 0;padding:16px;border:1px solid var(--line);border-radius:18px;background:#fffdf7ee;box-shadow:0 12px 32px #263d2b16;backdrop-filter:blur(10px)}
+    label{display:block;color:var(--muted);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+    input,select{display:block;width:100%;height:44px;margin-top:6px;border:1px solid #cdc7b8;border-radius:10px;background:#fff;padding:0 12px;font-size:15px}
+    .count{min-width:110px;padding:8px 0 4px 14px;border-left:1px solid #ddd}.count strong{font:28px Georgia,serif}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{border:1px solid var(--line);border-radius:18px;background:var(--card);box-shadow:0 8px 26px #263d2b0d;padding:18px;min-height:210px;display:flex;flex-direction:column}
+    .tag{display:inline-block;width:max-content;padding:5px 8px;border-radius:99px;background:#e3eee7;color:var(--green);font-size:11px;font-weight:800;text-transform:uppercase}
+    .card h2{margin:11px 0 8px;font:700 24px/1.05 Georgia,serif}.card p{margin:0 0 14px;color:#4f5b55;line-height:1.45;flex:1}
+    .owner{display:block;color:var(--green);font-weight:800}.note{margin-top:30px;padding-top:18px;border-top:1px solid #d8d2c3;color:var(--muted);font-size:13px;line-height:1.5}.empty{display:none;text-align:center;padding:45px;color:var(--muted)}
+    .back{display:inline-flex;gap:8px;align-items:center;margin-bottom:22px;color:var(--green);font-weight:700;text-decoration:none}
+    @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.controls{grid-template-columns:1fr 1fr}.count{border-left:0;padding-left:0}}
+    @media(max-width:560px){main{width:calc(100% - 20px);padding-top:28px}.grid{grid-template-columns:1fr}.controls{position:static;grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<main>
+  <a class="back" href="/">← Torna al sito Alma Tellus</a>
+  <section class="top">
+    <div class="kicker">ShareGames Alma Tellus</div>
+    <h1>ShareGames</h1>
+    <p class="lead">Catalogo condiviso dei giochi messi a disposizione dai soci Alma Tellus. Ogni gioco resta di proprietà del socio indicato nella scheda. Se il gioco è presente in catalogo, è considerato disponibile.</p>
+  </section>
+  <section class="controls">
+    <label>Cerca<input id="q" placeholder="Titolo, descrizione, categoria o proprietario"></label>
+    <label>Categoria<select id="cat"><option value="">Tutte</option></select></label>
+    <div class="count"><strong id="count">0</strong><span> giochi</span></div>
+  </section>
+  <section class="grid" id="grid"></section>
+  <p class="empty" id="empty">Nessun gioco trovato.</p>
+  <p class="note">Prima catalogazione ShareGames. Le schede potranno essere aggiornate con nuovi giochi di altri soci e con ulteriori dettagli.</p>
+</main>
+<script>
+const owner="Bruno Laudadio";
+const games=[
+["Flash","Azione","Sparapalline da tavolo: recupero e attacco."],["Spin Arena","Azione","Sfida con supertrottole da lanciare nell'arena."],["Bingo Delux","Classici","Bingo con 90 palline numerate e 48 cartelle."],["I piccoli dottori","Educativi","Gioco di abilità a tema medico, Globo Family Games."],["Monopoly, scatola rossa","Strategia","Edizione Hasbro del classico gioco immobiliare."],["Paroliere","Parole","Gioco Editrice Giochi delle parole nascoste."],["Il Diario delle Principesse","Creativi","Diario e attività Disney Princess, Clementoni."],["Mikado Shanghai","Classici","Gioco di destrezza con bastoncini."],["Domino, scatola in legno","Classici","Set di tessere conservato nel contenitore in legno."],["Domino Dal Negro, scatola bianca","Classici","Confezione Dal Negro con due fotografie del contenuto sulla scatola."],["Palla trasformabile","Azione","Palla nera e fucsia, modello da identificare."],["Parole Parole Parole","Parole","Luxury Version del gioco a parole Play Family."],["Luna Park","Società","Il grande gioco a squadre di Raiuno, 14+."],["Monopoli, edizione vintage","Strategia","Vecchia edizione italiana in scatola beige."],["La Città delle Regole","Educativi","Gioco dell'oca della legalità, Lisciani."],["Mercante in Fiera","Carte","Gioco tradizionale di carte, Playmaster."],["Carte Dal Negro","Carte","Carte plastificate, edizione da verificare."],["Twister Moves - High School Musical 2","Movimento","Gioco musicale e di movimento MB."],["Il Gioco del Labirinto","Abilità","Labirinto in legno da inclinare."],["La Tombola Automatica","Classici","Tombola Clementoni con 48 cartelle."],["Educazione Stradale","Educativi","Sapientino sulle regole della strada, 5-7 anni."],["Europa - I Puzzle Geografici","Puzzle","Puzzle geografico Clementoni da 104 pezzi."],["Cubix Race","Costruzioni","Costruzioni compatibili a tema gara, Globo."],["Giochi Riuniti","Raccolte","Raccolta Lisciani con più di 60 giochi."],["Scarabeo","Parole","Classico gioco di composizione delle parole."],["Affari Tuoi Elettronico","Elettronici","Gioco televisivo per 1-4 giocatori, 8+."],["The White Stallion","Puzzle","Puzzle Clementoni fluorescente da 1000 pezzi."],["Eddy's Magic","Magia","Confezione deluxe con 30 giochi di prestigio."],["Jenga","Abilità","Edizione Parker del gioco della torre in legno."],["Risiko!","Strategia","Editrice Giochi, 3-6 giocatori, codice 1800."],["Giorno di Paga","Strategia","Edizione da viaggio Parker."],["Salva le Scimmie","Abilità","Rimuovere i bastoncini senza far cadere le scimmie."],["Carte miste","Carte","Scatola con carte di ogni genere e tipo."],["Gioco di calcio elettronico","Elettronici","Campo con 8 calciatori, segnapunti e palloncini, titolo da verificare."],["Flipper Space Planet","Elettronici","Flipper da tavolo con contatore meccanico."]
+].map(g=>({title:g[0],cat:g[1],desc:g[2],owner}));
+const q=document.getElementById('q'),cat=document.getElementById('cat'),grid=document.getElementById('grid'),count=document.getElementById('count'),empty=document.getElementById('empty');
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm=s=>String(s).toLocaleLowerCase('it');
+[...new Set(games.map(g=>g.cat))].sort((a,b)=>a.localeCompare(b,'it')).forEach(c=>cat.add(new Option(c,c)));
+function draw(){const t=norm(q.value.trim());const rows=games.filter(g=>(!cat.value||g.cat===cat.value)&&(!t||norm(`${g.title} ${g.cat} ${g.desc} ${g.owner}`).includes(t)));count.textContent=rows.length;empty.style.display=rows.length?'none':'block';grid.innerHTML=rows.map(g=>`<article class="card"><span class="tag">${esc(g.cat)}</span><h2>${esc(g.title)}</h2><p>${esc(g.desc)}</p><small class="owner">Proprietario: ${esc(g.owner)}</small></article>`).join('')}
+q.oninput=draw;cat.onchange=draw;draw();
+</script>
+</body>
+</html>
