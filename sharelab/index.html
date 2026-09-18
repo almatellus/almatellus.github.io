@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="ShareLab: catalogo condiviso di strumenti, componenti, cavi e materiali di Alma Tellus.">
+<title>ShareLab - Alma Tellus</title>
+<style>
+:root{--bg:#f4f1e8;--card:#fffdf7;--ink:#18231e;--mut:#66736b;--g:#255f4c;--g2:#dceae2;--line:#ded8c8;--amber:#b76a17}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,sans-serif}
+main{width:min(1220px,calc(100% - 32px));margin:auto;padding:38px 0 48px}
+nav{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}
+nav a{padding:9px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--g);font-size:14px;font-weight:800;text-decoration:none}
+header{max-width:860px;margin-bottom:28px}
+.eyebrow{color:var(--g);font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+h1{margin:8px 0 12px;font:700 clamp(44px,8vw,78px)/.95 Georgia,serif}
+header p{color:var(--mut);font-size:18px;line-height:1.55}
+.notice{margin:22px 0;padding:16px 18px;border-left:5px solid var(--g);border-radius:10px;background:var(--g2);line-height:1.5}
+.controls{display:grid;grid-template-columns:1.6fr 1fr 1fr auto;gap:14px;align-items:end;margin:24px 0;padding:16px;border:1px solid var(--line);border-radius:18px;background:#fffdf7ee;box-shadow:0 12px 32px #263d2b16}
+label{display:block;color:var(--mut);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+input,select{width:100%;height:44px;margin-top:6px;padding:0 12px;border:1px solid #cdc7b8;border-radius:10px;background:white;font:15px Arial,sans-serif}
+.count{min-width:110px;padding-left:14px;border-left:1px solid #ddd}.count strong{font:28px Georgia,serif}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{overflow:hidden;border:1px solid var(--line);border-radius:18px;background:var(--card);box-shadow:0 8px 26px #263d2b0d}
+.photo{width:100%;height:235px;object-fit:cover;background:#e6e1d5;cursor:zoom-in}
+.body{padding:18px}
+.tags{display:flex;gap:7px;flex-wrap:wrap}.tag{display:inline-block;padding:5px 8px;border-radius:99px;background:var(--g2);color:var(--g);font-size:11px;font-weight:800;text-transform:uppercase}.bag{background:#f7e8d4;color:var(--amber)}
+h2{margin:10px 0 8px;font:700 24px/1.08 Georgia,serif}.card p{margin:0 0 12px;color:#4f5b55;line-height:1.45}.meta{font-size:13px;color:var(--mut)}
+.empty{padding:42px 22px;border:2px dashed #c9c1ae;border-radius:18px;background:#fffaf0;text-align:center}.empty strong{display:block;margin-bottom:8px;font:700 27px Georgia,serif}.empty span{color:var(--mut);line-height:1.5}
+.light{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:24px;background:#0b100eee}.light[hidden]{display:none}.light img{max-width:min(1100px,94vw);max-height:86vh;border-radius:12px;object-fit:contain}.close{position:fixed;top:16px;right:20px;width:44px;height:44px;border:1px solid #ffffff66;border-radius:50%;background:#18221ecc;color:white;font-size:30px;cursor:pointer}
+footer{margin-top:34px;padding-top:18px;border-top:1px solid #d8d2c3;color:var(--mut);font-size:13px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.controls{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){main{width:calc(100% - 20px)}.grid,.controls{grid-template-columns:1fr}.count{padding-left:0;border-left:0}.photo{height:260px}}
+</style>
+</head>
+<body>
+<main>
+<nav><a href="/">Alma Tellus</a><a href="/sharegames/">ShareGames</a></nav>
+<header>
+<div class="eyebrow">Alma Tellus • condivisione e riuso</div>
+<h1>ShareLab</h1>
+<p>Il catalogo condiviso di strumenti, componenti, cavi e materiali. Ogni oggetto viene pubblicato solo dopo un'identificazione certa e associato a un sacchetto virtuale, così sarà facile sapere che cosa abbiamo e dove cercarlo.</p>
+</header>
+<div class="notice"><strong>Metodo ShareLab:</strong> una foto per oggetto, identificazione, catalogazione e assegnazione del sacchetto. Se rimane un dubbio, l'oggetto non viene pubblicato.</div>
+<section class="controls" aria-label="Filtri catalogo">
+<label>Cerca<input id="q" placeholder="Nome, descrizione o codice"></label>
+<label>Categoria<select id="cat"><option value="">Tutte</option></select></label>
+<label>Sacchetto<select id="bag"><option value="">Tutti</option></select></label>
+<div class="count"><strong id="count">0</strong><span> oggetti</span></div>
+</section>
+<section id="grid" class="grid"></section>
+<div id="empty" class="empty"><strong>Il laboratorio è pronto.</strong><span>Il primo oggetto comparirà qui appena sarà fotografato e identificato senza dubbi.</span></div>
+<footer>ShareLab Alma Tellus • Catalogo aggiornato progressivamente.</footer>
+</main>
+<div id="light" class="light" hidden><button id="close" class="close" aria-label="Chiudi">×</button><img id="big" alt=""></div>
+<script>
+const ITEMS = [
+  // Formato: {code:'SL-001',name:'',category:'',subcategory:'',description:'',bag:'V1.01',bagName:'USB e dati',quantity:1,image:'/assets/sharelab/SL-001.jpg'}
+];
+const $=s=>document.querySelector(s),q=$('#q'),cat=$('#cat'),bag=$('#bag'),grid=$('#grid'),count=$('#count'),empty=$('#empty'),light=$('#light'),big=$('#big');
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm=s=>String(s).toLocaleLowerCase('it');
+function fillFilters(){
+  [...new Set(ITEMS.map(x=>x.category))].sort((a,b)=>a.localeCompare(b,'it')).forEach(x=>cat.add(new Option(x,x)));
+  [...new Set(ITEMS.map(x=>x.bag+' · '+x.bagName))].sort().forEach(x=>bag.add(new Option(x,x)));
+}
+function render(){
+  const term=norm(q.value);
+  const rows=ITEMS.filter(x=>(!cat.value||x.category===cat.value)&&(!bag.value||(x.bag+' · '+x.bagName)===bag.value)&&(!term||norm([x.code,x.name,x.category,x.subcategory,x.description,x.bag,x.bagName].join(' ')).includes(term)));
+  count.textContent=rows.length; empty.hidden=rows.length>0;
+  grid.innerHTML=rows.map(x=>`<article class="card"><img class="photo" src="${esc(x.image)}" alt="${esc(x.name)}" data-src="${esc(x.image)}"><div class="body"><div class="tags"><span class="tag">${esc(x.category)} · ${esc(x.subcategory)}</span><span class="tag bag">${esc(x.bag)}</span></div><h2>${esc(x.name)}</h2><p>${esc(x.description)}</p><div class="meta"><strong>${esc(x.code)}</strong> · Sacchetto ${esc(x.bag)} — ${esc(x.bagName)} · Quantità: ${x.quantity}</div></div></article>`).join('');
+  grid.querySelectorAll('.photo').forEach(img=>img.onclick=()=>{big.src=img.dataset.src;big.alt=img.alt;light.hidden=false;document.body.style.overflow='hidden'});
+}
+function closeLight(){light.hidden=true;big.src='';document.body.style.overflow=''}
+q.oninput=render;cat.onchange=render;bag.onchange=render;$('#close').onclick=closeLight;light.onclick=e=>{if(e.target===light)closeLight()};document.onkeydown=e=>{if(e.key==='Escape')closeLight()};fillFilters();render();
+</script>
+</body>
+</html>
