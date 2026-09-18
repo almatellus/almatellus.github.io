@@ -10,6 +10,9 @@
 - label: ShareGames
   url: /sharegames/
 
+- label: ShareLab
+  url: /sharelab/
+
 - label: Quote tesseramento
   url: /tesseramento.html
 
