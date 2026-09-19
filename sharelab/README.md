@@ -34,9 +34,9 @@ Il vecchio `V1.05 — Antenna` non va usato: gli oggetti antenna confluiscono in
 
 ## Numerazione
 
-Ultimo oggetto pubblicato: `SL-013`.
+Ultimo oggetto pubblicato: `SL-014`.
 
-Prossimo codice disponibile: **`SL-014`**.
+Prossimo codice disponibile: **`SL-015`**.
 
 ## Formato della scheda
 
@@ -59,3 +59,4 @@ Prossimo codice disponibile: **`SL-014`**.
 - Catalogati gli oggetti da `SL-001` a `SL-013`.
 - `SL-012` è un cavo antenna TV IEC 9,5 mm, quantità 2, riposto in `V1.02 — Video e TV`.
 - `SL-013` è un'interfaccia USB–MIDI IN/OUT, riposta in `V1.03 — Audio`.
+- `SL-014` è un cavo audio AUX jack 3,5 mm maschio–maschio, riposto in `V1.03 — Audio`.
