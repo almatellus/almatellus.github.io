@@ -61,6 +61,6 @@ Prossimo codice disponibile: **`SL-019`**.
 - `SL-013` è un'interfaccia USB–MIDI IN/OUT, riposta in `V1.03 — Audio`.
 - `SL-014` è un cavo audio AUX jack 3,5 mm maschio–maschio, riposto in `V1.03 — Audio`.
 - `SL-015` è un cavo FireWire IEEE 1394a 4 poli → 6 poli, riposto in `V1.01 — USB e dati`.
-- `SL-016` è un cavo USB-A → Mini-USB Tipo B, riposto in `V1.01 — USB e dati`.
+- `SL-016` è un cavo USB-A → Mini-USB Tipo B, quantità 5, riposto in `V1.01 — USB e dati`.
 - `SL-017` è un cavo USB-A → Micro-USB Tipo B con ferrite, riposto in `V1.01 — USB e dati`.
 - `SL-018` è un cavo USB-A → USB-B per stampante, riposto in `V1.01 — USB e dati`.
