@@ -34,9 +34,9 @@ Il vecchio `V1.05 — Antenna` non va usato: gli oggetti antenna confluiscono in
 
 ## Numerazione
 
-Ultimo oggetto pubblicato: `SL-018`.
+Ultimo oggetto pubblicato: `SL-019`.
 
-Prossimo codice disponibile: **`SL-019`**.
+Prossimo codice disponibile: **`SL-020`**.
 
 ## Formato della scheda
 
@@ -64,3 +64,5 @@ Prossimo codice disponibile: **`SL-019`**.
 - `SL-016` è un cavo USB-A → Mini-USB Tipo B, quantità 5, riposto in `V1.01 — USB e dati`.
 - `SL-017` è un cavo USB-A → Micro-USB Tipo B con ferrite, riposto in `V1.01 — USB e dati`.
 - `SL-018` è un cavo USB-A → USB-B per stampante, riposto in `V1.01 — USB e dati`.
+
+- `SL-019` è un cavo USB-A → Micro-USB Tipo B, quantità 4, riposto in `V1.01 — USB e dati`.
