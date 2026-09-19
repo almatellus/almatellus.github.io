@@ -61,4 +61,4 @@ Prossimo codice disponibile: **`SL-017`**.
 - `SL-013` è un'interfaccia USB–MIDI IN/OUT, riposta in `V1.03 — Audio`.
 - `SL-014` è un cavo audio AUX jack 3,5 mm maschio–maschio, riposto in `V1.03 — Audio`.
 - `SL-015` è un cavo FireWire IEEE 1394a 4 poli → 6 poli, riposto in `V1.01 — USB e dati`.
-- `SL-016` è un cavo alimentazione USB-A → jack DC cilindrico, riposto in `V1.07 — Bassa tensione`.
+- `SL-016` è un cavo USB-A → Mini-USB Tipo B, riposto in `V1.01 — USB e dati`.
