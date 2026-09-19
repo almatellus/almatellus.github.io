@@ -34,9 +34,9 @@ Il vecchio `V1.05 — Antenna` non va usato: gli oggetti antenna confluiscono in
 
 ## Numerazione
 
-Ultimo oggetto pubblicato: `SL-017`.
+Ultimo oggetto pubblicato: `SL-018`.
 
-Prossimo codice disponibile: **`SL-018`**.
+Prossimo codice disponibile: **`SL-019`**.
 
 ## Formato della scheda
 
@@ -63,3 +63,4 @@ Prossimo codice disponibile: **`SL-018`**.
 - `SL-015` è un cavo FireWire IEEE 1394a 4 poli → 6 poli, riposto in `V1.01 — USB e dati`.
 - `SL-016` è un cavo USB-A → Mini-USB Tipo B, riposto in `V1.01 — USB e dati`.
 - `SL-017` è un cavo USB-A → Micro-USB Tipo B con ferrite, riposto in `V1.01 — USB e dati`.
+- `SL-018` è un cavo USB-A → USB-B per stampante, riposto in `V1.01 — USB e dati`.
