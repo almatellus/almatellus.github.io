@@ -1258,3 +1258,282 @@ textarea:focus {
     font-size: clamp(1.9rem, 9vw, 2.7rem);
   }
 }
+
+
+/* ===== OzoSteam in evidenza nella home ===== */
+
+.page-home .home-shell {
+  width: min(1180px, 100%);
+}
+
+.home-spotlight {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin: clamp(42px, 7vw, 72px) 0 38px;
+  border: 1px solid rgba(197, 161, 90, 0.48);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 14% 18%, rgba(0, 145, 220, 0.14), transparent 32%),
+    linear-gradient(135deg, #ffffff 0%, #f7f4ec 56%, #edf4f2 100%);
+  box-shadow: 0 28px 75px rgba(11, 52, 64, 0.16);
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+}
+
+.home-spotlight::after {
+  content: "";
+  position: absolute;
+  right: -110px;
+  bottom: -145px;
+  z-index: -1;
+  width: 390px;
+  height: 390px;
+  border: 1px solid rgba(197, 161, 90, 0.22);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 34px rgba(197, 161, 90, 0.05),
+    0 0 0 78px rgba(11, 52, 64, 0.035);
+}
+
+.home-spotlight-visual {
+  position: relative;
+  min-height: 470px;
+  padding: clamp(34px, 5vw, 62px);
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(145deg, rgba(11, 52, 64, 0.98), rgba(22, 74, 87, 0.94));
+}
+
+.home-spotlight-rings,
+.home-spotlight-rings::before,
+.home-spotlight-rings::after {
+  position: absolute;
+  border: 1px solid rgba(232, 221, 176, 0.16);
+  border-radius: 50%;
+  content: "";
+}
+
+.home-spotlight-rings {
+  width: 340px;
+  height: 340px;
+}
+
+.home-spotlight-rings::before {
+  inset: 38px;
+}
+
+.home-spotlight-rings::after {
+  inset: 84px;
+}
+
+.home-spotlight-logo {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 460px);
+  padding: 22px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 20px 46px rgba(0, 0, 0, 0.22);
+}
+
+.maker-stamp {
+  position: absolute;
+  top: 25px;
+  right: 22px;
+  z-index: 3;
+  width: 158px;
+  aspect-ratio: 1;
+  padding: 24px 12px;
+  border: 4px double var(--gold-soft);
+  border-radius: 50%;
+  outline: 2px solid rgba(232, 221, 176, 0.52);
+  outline-offset: 5px;
+  background: var(--blue);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-transform: uppercase;
+  transform: rotate(7deg);
+}
+
+.maker-stamp span {
+  color: var(--gold-soft);
+  font-size: 0.63rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+}
+
+.maker-stamp strong {
+  margin: 5px 0 3px;
+  font-size: 1.14rem;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+}
+
+.maker-stamp b {
+  padding-top: 5px;
+  border-top: 1px solid rgba(232, 221, 176, 0.62);
+  color: var(--gold-soft);
+  font-size: 0.72rem;
+  letter-spacing: 0.09em;
+}
+
+.home-spotlight-copy {
+  padding: clamp(36px, 5vw, 64px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.home-copy .spotlight-kicker {
+  margin: 0 0 10px;
+  color: var(--gold-dark);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.home-spotlight h2 {
+  margin: 0;
+  color: var(--blue);
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.home-copy .spotlight-lead {
+  margin: 18px 0 0;
+  color: var(--blue-soft);
+  font-size: clamp(1rem, 1.45vw, 1.12rem);
+  line-height: 1.62;
+}
+
+.spotlight-features {
+  margin: 24px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+}
+
+.spotlight-features li {
+  padding: 8px 12px;
+  border: 1px solid rgba(11, 52, 64, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.75);
+  color: var(--blue);
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+
+.home-copy .spotlight-event {
+  margin: 25px 0 0;
+  padding-left: 14px;
+  border-left: 3px solid var(--gold);
+  display: grid;
+  gap: 3px;
+  color: var(--blue);
+  font-size: 0.92rem;
+  line-height: 1.3;
+}
+
+.spotlight-event span {
+  color: var(--muted);
+  font-size: 0.87rem;
+  font-weight: 700;
+}
+
+.spotlight-actions {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 20px;
+}
+
+.spotlight-text-link {
+  color: var(--blue);
+  font-size: 0.9rem;
+  font-weight: 900;
+  text-decoration-color: rgba(197, 161, 90, 0.75);
+  text-underline-offset: 4px;
+}
+
+.spotlight-text-link span {
+  color: var(--gold-dark);
+}
+
+@media (max-width: 900px) {
+  .home-spotlight {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+
+  .home-spotlight-visual {
+    min-height: 390px;
+  }
+
+  .home-spotlight-copy {
+    text-align: left;
+  }
+}
+
+@media (max-width: 560px) {
+  .home-spotlight {
+    margin-top: 34px;
+    border-radius: 26px;
+  }
+
+  .home-spotlight-visual {
+    min-height: 300px;
+    padding: 50px 25px 36px;
+  }
+
+  .home-spotlight-rings {
+    width: 250px;
+    height: 250px;
+  }
+
+  .home-spotlight-logo {
+    padding: 14px;
+    border-radius: 16px;
+  }
+
+  .maker-stamp {
+    top: 15px;
+    right: 14px;
+    width: 112px;
+    padding: 16px 8px;
+    border-width: 3px;
+    outline-offset: 3px;
+  }
+
+  .maker-stamp span {
+    font-size: 0.49rem;
+  }
+
+  .maker-stamp strong {
+    font-size: 0.82rem;
+  }
+
+  .maker-stamp b {
+    font-size: 0.56rem;
+  }
+
+  .home-spotlight-copy {
+    padding: 30px 22px 34px;
+  }
+
+  .spotlight-actions,
+  .spotlight-actions .btn {
+    width: 100%;
+  }
+}
