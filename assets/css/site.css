@@ -1867,3 +1867,52 @@ body.page-home .maker-stamp b {
     line-height: 1.55;
   }
 }
+
+
+/* ===== Timbro autentico SVG ===== */
+
+body.page-home .home-spotlight-visual {
+  min-height: 660px;
+  padding-top: 375px;
+}
+
+body.page-home .maker-stamp-image {
+  position: absolute;
+  top: -3px;
+  right: 50%;
+  z-index: 4;
+  width: 380px;
+  height: 380px;
+  max-width: none;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 4px 0 rgba(61, 0, 6, 0.28))
+    drop-shadow(0 14px 18px rgba(0, 0, 0, 0.26));
+  transform: translateX(50%) rotate(-8deg);
+  transform-origin: center;
+}
+
+@media (max-width: 900px) {
+  body.page-home .home-spotlight-visual {
+    min-height: 625px;
+    padding-top: 355px;
+  }
+
+  body.page-home .maker-stamp-image {
+    width: 355px;
+    height: 355px;
+  }
+}
+
+@media (max-width: 560px) {
+  body.page-home .home-spotlight-visual {
+    min-height: 510px;
+    padding-top: 292px;
+  }
+
+  body.page-home .maker-stamp-image {
+    top: 5px;
+    width: 285px;
+    height: 285px;
+  }
+}
