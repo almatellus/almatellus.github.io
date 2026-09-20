@@ -1537,3 +1537,168 @@ textarea:focus {
     width: 100%;
   }
 }
+
+
+/* ===== OzoSteam subito in apertura + timbro forte ===== */
+
+body.page-home .home-shell {
+  width: min(1180px, 100%);
+  align-items: start;
+}
+
+body.page-home .home-spotlight {
+  margin: 0 0 clamp(52px, 7vw, 82px);
+  grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
+  border-color: rgba(11, 52, 64, 0.18);
+  box-shadow: 0 30px 84px rgba(11, 52, 64, 0.2);
+}
+
+body.page-home .home-spotlight-visual {
+  min-height: 545px;
+  overflow: visible;
+}
+
+body.page-home .maker-stamp {
+  top: 28px;
+  right: -28px;
+  width: 238px;
+  height: 158px;
+  aspect-ratio: auto;
+  padding: 22px 20px;
+  border: 6px solid #b20f1b;
+  border-radius: 8px;
+  outline: 3px solid rgba(178, 15, 27, 0.92);
+  outline-offset: 5px;
+  background:
+    repeating-linear-gradient(
+      96deg,
+      rgba(255, 255, 255, 0.035) 0 3px,
+      rgba(0, 0, 0, 0.055) 3px 7px
+    ),
+    #c11120;
+  box-shadow:
+    0 13px 0 rgba(38, 0, 4, 0.28),
+    0 20px 38px rgba(0, 0, 0, 0.42);
+  color: #fff8e8;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  transform: rotate(-8deg);
+  clip-path: polygon(
+    2% 8%, 7% 3%, 14% 6%, 20% 1%, 27% 5%, 35% 2%, 43% 6%,
+    51% 1%, 58% 5%, 66% 2%, 73% 6%, 81% 1%, 89% 5%, 97% 3%,
+    99% 12%, 96% 20%, 100% 29%, 97% 38%, 100% 47%, 96% 56%,
+    100% 66%, 97% 75%, 100% 85%, 95% 97%, 87% 94%, 79% 99%,
+    70% 95%, 62% 99%, 53% 95%, 44% 100%, 35% 96%, 27% 99%,
+    18% 95%, 10% 99%, 2% 93%, 5% 83%, 1% 74%, 4% 64%,
+    0 54%, 4% 44%, 1% 34%, 5% 25%, 1% 16%
+  );
+}
+
+body.page-home .maker-stamp::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 3px solid rgba(255, 248, 232, 0.9);
+  border-radius: 3px;
+  opacity: 0.92;
+  pointer-events: none;
+}
+
+body.page-home .maker-stamp::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(12deg, transparent 0 17%, rgba(30, 0, 0, 0.22) 18% 20%, transparent 21% 55%, rgba(255,255,255,0.14) 56% 58%, transparent 59%),
+    repeating-linear-gradient(174deg, transparent 0 12px, rgba(62, 0, 5, 0.13) 13px 15px, transparent 16px 25px);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+body.page-home .maker-stamp span,
+body.page-home .maker-stamp strong,
+body.page-home .maker-stamp b {
+  position: relative;
+  z-index: 1;
+  color: #fff8e8;
+  text-shadow: 2px 2px 0 rgba(75, 0, 7, 0.38);
+}
+
+body.page-home .maker-stamp span {
+  font-size: 0.86rem;
+  letter-spacing: 0.2em;
+}
+
+body.page-home .maker-stamp strong {
+  margin: 7px 0 5px;
+  font-size: 1.86rem;
+  line-height: 0.86;
+  letter-spacing: 0.015em;
+}
+
+body.page-home .maker-stamp b {
+  width: 84%;
+  padding-top: 6px;
+  border-top: 3px solid #fff8e8;
+  font-size: 0.98rem;
+  letter-spacing: 0.14em;
+}
+
+@media (max-width: 900px) {
+  body.page-home .home-spotlight {
+    grid-template-columns: 1fr;
+  }
+
+  body.page-home .home-spotlight-visual {
+    min-height: 430px;
+  }
+
+  body.page-home .maker-stamp {
+    right: 18px;
+  }
+}
+
+@media (max-width: 560px) {
+  body.page-home .home-shell {
+    padding-top: 92px;
+  }
+
+  body.page-home .home-spotlight {
+    margin-bottom: 48px;
+  }
+
+  body.page-home .home-spotlight-visual {
+    min-height: 335px;
+    padding-top: 94px;
+  }
+
+  body.page-home .maker-stamp {
+    top: 14px;
+    right: 9px;
+    width: 172px;
+    height: 112px;
+    padding: 15px 13px;
+    border-width: 4px;
+    outline-width: 2px;
+    outline-offset: 3px;
+  }
+
+  body.page-home .maker-stamp::before {
+    inset: 6px;
+    border-width: 2px;
+  }
+
+  body.page-home .maker-stamp span {
+    font-size: 0.6rem;
+  }
+
+  body.page-home .maker-stamp strong {
+    margin: 5px 0 3px;
+    font-size: 1.24rem;
+  }
+
+  body.page-home .maker-stamp b {
+    padding-top: 4px;
+    border-top-width: 2px;
+    font-size: 0.7rem;
+  }
+}
