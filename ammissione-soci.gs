@@ -1,6 +1,6 @@
 /**
  * Modulo da aggiungere al progetto Apps Script collegato al foglio adesioni.
- * Richiede CONFIG, HEADERS_RICHIESTE e HEADERS_LIBRO_SOCI del Code.gs storico.
+ * Richiede CONFIG, HEADERS_RICHIESTE e HEADERS_LIBRO_SOCI del Code.gs attuale.
  * Eseguire ammettiSocioSelezionato dal menu Alma Tellus dopo avere selezionato
  * una cella della domanda. La decisione viene presa dall'operatore, mai dal sito.
  */
@@ -86,6 +86,8 @@ function registraAmmissioneSocio_(row) {
     requests.getRange(row, r['Data decisione']).setValue(new Date());
     requests.getRange(row, r['Esito']).setValue('Accolta');
     requests.getRange(row, r['Stato domanda']).setValue('Ammessa');
+    const mail = colonneConfermaAmmissione_(requests);
+    requests.getRange(row, mail.status, 1, 3).setValues([['DA INVIARE', '', '']]);
     SpreadsheetApp.flush();
     result = {row, number};
   } finally {
@@ -108,7 +110,8 @@ function inviaConfermaSocioSelezionato() {
     const request = sheet.getRange(row, 1, 1, sheet.getLastColumn()).getValues()[0];
     const cf = String(request[r['Codice fiscale'] - 1] || '').trim().toUpperCase();
     if (String(request[r['Esito'] - 1]) !== 'Accolta') throw Error('Domanda non accolta.');
-    const rows = memberSheet.getRange(2, 1, Math.max(1, memberSheet.getLastRow() - 1), memberSheet.getLastColumn()).getValues();
+    if (memberSheet.getLastRow() < 2) throw Error('Libro soci vuoto.');
+    const rows = memberSheet.getRange(2, 1, memberSheet.getLastRow() - 1, memberSheet.getLastColumn()).getValues();
     const matches = rows.filter(v => String(v[m['Codice fiscale'] - 1] || '').trim().toUpperCase() === cf);
     if (matches.length !== 1) throw Error('Socio assente o duplicato nel Libro soci.');
     ui.alert(inviaConfermaAmmissione_(row, matches[0][m['Numero socio'] - 1]) ? 'Email inviata.' : 'Invio non riuscito; controlla le note della domanda.');
@@ -116,25 +119,57 @@ function inviaConfermaSocioSelezionato() {
 }
 
 function inviaConfermaAmmissione_(row, number) {
+  const lock = LockService.getScriptLock();
+  lock.waitLock(30000);
+  try {
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(CONFIG.SHEET_RICHIESTE);
   const r = intestazioniAmmissione_(sheet, HEADERS_RICHIESTE);
+  const mail = colonneConfermaAmmissione_(sheet);
   const values = sheet.getRange(row, 1, 1, sheet.getLastColumn()).getValues()[0];
-  if (String(values[r['Invio mail richiedente'] - 1]).startsWith('OK ammissione')) return true;
+  if (String(values[mail.status - 1]).startsWith('OK ammissione')) return true;
+  if (String(values[r['Esito'] - 1]) !== 'Accolta') throw Error('Domanda non accolta.');
   const name = String(values[r['Nome'] - 1] || '').trim();
   const email = String(values[r['Email'] - 1] || '').trim();
   const id = String(values[r['ID richiesta'] - 1] || '').trim();
+  if (!id || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw Error('ID o email non validi.');
+  // Una risposta positiva del server email seguita da un errore nel foglio
+  // potrebbe altrimenti causare un secondo invio al successivo tentativo.
   const body = `Gentile ${name},\n\nla tua domanda di adesione ad Alma Tellus è stata accolta.\nNumero socio: ${number}\nID richiesta: ${id}\n\nLa quota prevista è ${values[r['Quota prevista'] - 1]}. Ti comunicheremo le modalità di versamento. La tessera avrà validità di 12 mesi dal pagamento della quota.\n\nAssociazione Alma Tellus`;
   try {
+    const alreadySent = GmailApp.search('in:sent to:' + email + ' "' + id + '" "Numero socio: ' + number + '"', 0, 3);
+    if (alreadySent.length) {
+      sheet.getRange(row, mail.status, 1, 3).setValues([['OK ammissione n. ' + number, new Date(), '']]);
+      return true;
+    }
     GmailApp.sendEmail(email, 'Ammissione ad Alma Tellus - socio n. ' + number, body,
       {name: CONFIG.FROM_NAME, from: CONFIG.OFFICIAL_EMAIL, replyTo: CONFIG.OFFICIAL_EMAIL});
-    sheet.getRange(row, r['Invio mail richiedente'], 1, 3)
+    sheet.getRange(row, mail.status, 1, 3)
       .setValues([['OK ammissione n. ' + number, new Date(), '']]);
     return true;
   } catch (err) {
-    sheet.getRange(row, r['Invio mail richiedente'], 1, 3)
+    sheet.getRange(row, mail.status, 1, 3)
       .setValues([['ERRORE ammissione', new Date(), String(err.message || err)]]);
     return false;
   }
+  } finally { lock.releaseLock(); }
+}
+
+function colonneConfermaAmmissione_(sheet) {
+  const names = ['Invio mail ammissione', 'Data invio mail ammissione', 'Errore mail ammissione'];
+  const header = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  const first = header.indexOf(names[0]);
+  if (first >= 0) {
+    if (header[first + 1] !== names[1] || header[first + 2] !== names[2])
+      throw Error('Colonne email ammissione non consecutive.');
+    return {status: first + 1};
+  }
+  const anyOther = names.slice(1).some(name => header.includes(name));
+  if (anyOther) throw Error('Colonne email ammissione incomplete.');
+  const start = Math.max(sheet.getLastColumn() + 1, HEADERS_RICHIESTE.length + 1);
+  if (sheet.getMaxColumns() < start + 2)
+    sheet.insertColumnsAfter(sheet.getMaxColumns(), start + 2 - sheet.getMaxColumns());
+  sheet.getRange(1, start, 1, 3).setValues([names]);
+  return {status: start};
 }
 
 function intestazioniAmmissione_(sheet, required) {
