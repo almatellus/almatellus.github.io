@@ -25,8 +25,7 @@ domande, non modifica le celle e non invia email.
      return htmlOutput_(`
    ```
 
-   Il resto di `Codice.gs` resta identico. C'è anche un `Code.gs` completo
-   già modificato, preparato sulla base del codice fornito durante la conversazione.
+   Il resto di `Codice.gs` resta identico.
 3. Salvare il progetto.
 4. In **Esegui il deployment → Nuovo deployment → App web**, scegliere
    **Esegui come: Utente che accede all'app web** e **Chi ha accesso: Solo io**;
