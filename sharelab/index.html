@@ -33,8 +33,23 @@ footer{margin-top:34px;padding-top:18px;border-top:1px solid #d8d2c3;color:var(-
 @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.controls{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){main{width:calc(100% - 20px)}.grid,.controls{grid-template-columns:1fr}.count{padding-left:0;border-left:0}.photo{height:260px}}
 </style>
+<link rel="stylesheet" href="/assets/css/catalog-header.css">
+<script defer src="/assets/js/catalog-header.js"></script>
 </head>
 <body>
+<div class="catalog-site-header">
+  <a class="catalog-brand" href="/" aria-label="Alma Tellus, torna alla home"><img src="/logo.png" alt="Alma Tellus"></a>
+  <button class="catalog-menu-toggle" type="button" aria-label="Apri menu" aria-expanded="false" aria-controls="catalog-site-nav"><span></span><span></span><span></span></button>
+  <nav class="catalog-site-nav" id="catalog-site-nav" aria-label="Menu principale">
+    <a href="/">Home</a>
+    <a href="/chi-siamo.html">Chi siamo</a>
+    <a href="/attivita.html">Attività</a>
+    <a href="/progetti.html">Progetti</a>
+    <a href="/share.html">SHARE</a>
+    <a href="/partecipa.html">Partecipa</a>
+    <a href="/contatti.html">Contatti</a>
+  </nav>
+</div>
 <main>
 <nav><a href="/">Alma Tellus</a><a href="/sharegames/">ShareGames</a></nav>
 <header>

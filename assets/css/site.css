@@ -1976,3 +1976,41 @@ body.page-home .maker-stamp-image {
   .alma-home-spirit h2 { font-size: clamp(2.4rem, 9vw, 3.5rem); }
   .alma-editorial { padding: 115px 20px 60px; }
 }
+
+
+/* Schede fotografiche della home. */
+.alma-home-compact { width: min(1160px, 100%); padding-top: 118px; padding-bottom: 44px; }
+.alma-home-feature, .alma-home-spirit { overflow: hidden; border: 1px solid #dddcd2; border-radius: 16px; background: #fffdf8; box-shadow: 0 12px 34px rgba(28, 44, 33, .045); }
+.alma-home-feature { min-height: 0; grid-template-columns: minmax(0, 1fr) minmax(0, .92fr); gap: 0; align-items: stretch; padding: 0; border-bottom: 1px solid #dddcd2; }
+.alma-home-feature-copy { align-self: center; padding: clamp(34px, 5vw, 64px); }
+.alma-home-feature h1 { font-size: clamp(3rem, 5.2vw, 5.2rem); }
+.alma-home-lead { margin-top: 22px; font-size: clamp(1rem, 1.45vw, 1.16rem); }
+.alma-home-button { border-radius: 4px; }
+.alma-home-image { position: relative; min-width: 0; min-height: 470px; padding: 0; background: #ddd9cd; }
+.alma-home-image img { width: 100%; height: 100%; max-height: none; object-fit: cover; object-position: 50% 50%; }
+.alma-home-image figcaption { position: absolute; right: 12px; bottom: 12px; padding: 6px 9px; border-radius: 3px; background: rgba(24, 35, 30, .8); color: #fff; font-size: .7rem; }
+.alma-home-spirit { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 0; align-items: stretch; margin-top: 22px; padding: 0; }
+.alma-home-spirit-image { min-height: 295px; margin: 0; background: #e5e3d7; }
+.alma-home-spirit-image img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 45%; }
+.alma-home-spirit-copy { align-self: center; padding: clamp(30px, 4vw, 48px); }
+.alma-home-spirit h2 { max-width: 520px; font-size: clamp(2.35rem, 3.7vw, 3.8rem); }
+.alma-home-spirit-side { margin-top: 24px; }
+.alma-home-spirit-side p { margin-bottom: 12px; }
+.alma-editorial-photo { overflow: hidden; margin: 30px 0 42px; border: 1px solid #dddcd2; border-radius: 14px; background: #e5e2d7; }
+.alma-editorial-photo img { display: block; width: 100%; max-height: 340px; object-fit: cover; object-position: center 45%; }
+.alma-editorial-photo figcaption { padding: 9px 14px; color: #647168; font-size: .78rem; }
+@media (max-width: 760px) {
+  .alma-home-compact { padding: 92px 16px 36px; }
+  .alma-home-feature, .alma-home-spirit { grid-template-columns: 1fr; }
+  .alma-home-image { order: -1; width: 100%; min-height: 0; height: clamp(210px, 58vw, 340px); }
+  .alma-home-image img { height: 100%; }
+  .alma-home-feature-copy { padding: 28px 25px 34px; }
+  .alma-home-feature h1 { font-size: clamp(2.7rem, 10vw, 4.5rem); }
+  .alma-home-label { margin-bottom: 16px; }
+  .alma-home-lead { margin: 17px 0 20px; }
+  .alma-home-spirit { gap: 0; margin-top: 16px; padding: 0; }
+  .alma-home-spirit-image { height: clamp(175px, 48vw, 280px); min-height: 0; }
+  .alma-home-spirit-copy { padding: 27px 25px 35px; }
+  .alma-home-spirit h2 { font-size: clamp(2.2rem, 8.4vw, 3.5rem); }
+  .alma-home-spirit-side { margin-top: 16px; }
+}
