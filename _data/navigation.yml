@@ -1,26 +1,20 @@
 - label: Home
   url: /
 
+- label: Chi siamo
+  url: /chi-siamo.html
+
 - label: Attività
   url: /attivita.html
 
 - label: Progetti
   url: /progetti.html
 
-- label: ShareGames
-  url: /sharegames/
+- label: SHARE
+  url: /share.html
 
-- label: ShareLab
-  url: /sharelab/
-
-- label: Diventa socio
-  url: /tesseramento.html
-
-- label: Sostenitori
-  url: /sostenitori.html
-
-- label: L'associazione
-  url: /associazione.html
+- label: Partecipa
+  url: /partecipa.html
 
 - label: Contatti
   url: /contatti.html
