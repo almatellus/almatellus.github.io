@@ -1,124 +1,108 @@
 ---
 layout: default
 title: Home
-description: Alma Tellus è un'associazione senza scopo di lucro che sviluppa attività sociali, culturali, formative e progetti di innovazione.
+description: Alma Tellus unisce persone, cultura e innovazione per creare progetti utili e occasioni di condivisione.
 permalink: /
 body_class: page-home
 ---
 
-<section class="home-shell">
-  <div class="home-copy">
-    <section class="home-spotlight" aria-labelledby="ozosteam-home-title">
-      <div class="home-spotlight-visual">
-        <div class="home-spotlight-rings" aria-hidden="true"></div>
-        <img
-          class="home-spotlight-logo"
-          src="{{ '/assets/img/progetti/ozosteam-station.png' | relative_url }}"
-          alt="OzoSteam Station"
-        >
-        <div class="maker-stamp" aria-label="Progetto selezionato per Maker Faire Rome 2026">
-          <span>Selected for</span>
-          <strong>Maker Faire</strong>
-          <b>Rome 2026</b>
+<div class="alma-home">
+  <section class="alma-intro" aria-labelledby="alma-home-title">
+    <p class="alma-overline">Associazione culturale · Castellalto, Teramo</p>
+    <h1 id="alma-home-title">Le idee diventano più grandi <em>quando le condividiamo.</em></h1>
+    <div class="alma-intro-bottom">
+      <p class="alma-intro-lead">Alma Tellus mette insieme persone, competenze e curiosità per creare occasioni di incontro e progetti utili. Partiamo dai bisogni reali: la tecnologia ci aiuta a trovare nuove risposte, ma sono le persone a dare loro un senso.</p>
+      <a class="alma-arrow-link" href="#alma-people-title">Scopri il nostro impegno <span aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+
+  <section class="alma-feature" aria-labelledby="alma-feature-title">
+    <div class="alma-section-heading">
+      <span class="alma-index">01 / In primo piano</span>
+      <p>Uno spazio per raccontare il progetto, l’iniziativa o la notizia che vogliamo condividere adesso.</p>
+    </div>
+    <div class="alma-feature-body">
+      <div class="alma-feature-copy">
+        <span class="alma-pill">Selezionati per Maker Faire Rome 2026</span>
+        <h2 id="alma-feature-title">OzoSteam Station arriva a Roma.</h2>
+        <p>Dal 23 al 25 ottobre saremo al Gazometro Ostiense con un prototipo che combina vapore, ozono, ventilazione e sensori per prendersi cura di vestiti, scarpe e piccoli oggetti. La selezione alla Maker Faire è l’occasione per mostrare quello che può nascere quando una curiosità diventa un esperimento concreto.</p>
+        <p>Ci interessa anche ciò che succede intorno al prototipo: incontrare persone, ascoltare domande, trovare nuove collaborazioni. È così che un progetto continua a crescere.</p>
+        <a class="alma-arrow-link" href="{{ '/ozosteam-station.html' | relative_url }}">Scopri OzoSteam Station <span aria-hidden="true">↗</span></a>
+      </div>
+      <figure class="alma-feature-image">
+        <img src="{{ '/assets/img/progetti/ozosteam-station.png' | relative_url }}" alt="Prototipo OzoSteam Station di Alma Tellus" loading="lazy">
+        <figcaption>Maker Faire Rome · 23–25 ottobre 2026</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="alma-people" aria-labelledby="alma-people-title">
+    <div class="alma-section-heading"><span class="alma-index">02 / Le persone</span></div>
+    <div class="alma-two-col">
+      <h2 id="alma-people-title">L’innovazione migliore <em>non lascia indietro nessuno.</em></h2>
+      <div class="alma-prose">
+        <p>Vogliamo che le opportunità offerte dalle nuove idee siano accessibili anche a chi incontra più ostacoli. Pensiamo agli anziani, alle persone fragili e a chi se ne prende cura ogni giorno: ascoltare le loro difficoltà è il primo passo per immaginare strumenti e attività davvero utili.</p>
+        <p>Alma Tellus è anche cultura, formazione e partecipazione. Mettiamo in relazione generazioni e competenze diverse, perché una soluzione funziona meglio quando nasce con le persone a cui è destinata.</p>
+        <a class="alma-arrow-link" href="{{ '/attivita.html' | relative_url }}">Le nostre attività <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="alma-share" aria-labelledby="alma-share-title">
+    <div class="alma-section-heading"><span class="alma-index">03 / Condividere</span></div>
+    <div class="alma-two-col">
+      <div>
+        <p class="alma-overline">SHARE · Una ricchezza già intorno a noi</p>
+        <h2 id="alma-share-title">La condivisione è antica. <em>L’IA può renderla finalmente facile.</em></h2>
+      </div>
+      <div class="alma-prose">
+        <p>Giochi da tavolo, attrezzi, libri, materiali e conoscenze: molte cose che abbiamo potrebbero essere utili a qualcun altro. ShareGames e ShareLab sono i primi luoghi in cui proviamo a trasformare questa idea in pratica.</p>
+        <p>Immaginiamo anche un aiuto concreto dall’intelligenza artificiale: fotografare uno scaffale, riconoscere gli oggetti, preparare un catalogo da controllare e condividere. Meno fatica nell’organizzazione, più tempo per incontrarsi e fare qualcosa insieme. È una direzione di sviluppo, non una funzione già disponibile.</p>
+        <div class="alma-link-pair">
+          <a class="alma-arrow-link" href="{{ '/sharegames/' | relative_url }}">Vai a ShareGames <span aria-hidden="true">↗</span></a>
+          <a class="alma-arrow-link" href="{{ '/sharelab/' | relative_url }}">Vai a ShareLab <span aria-hidden="true">↗</span></a>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="home-spotlight-copy">
-        <p class="spotlight-kicker">Il progetto di punta di Alma Tellus</p>
-        <h2 id="ozosteam-home-title">OzoSteam Station</h2>
-        <p class="spotlight-lead">
-          Un prototipo funzionante che integra vapore, ozono, ventilazione controllata
-          e sensori per rinfrescare, deodorare e asciugare vestiti, scarpe e piccoli oggetti,
-          riducendo quando possibile il ricorso a lavaggi completi.
-        </p>
+  <section class="alma-work" aria-labelledby="alma-work-title">
+    <div class="alma-section-heading"><span class="alma-index">04 / Cosa facciamo</span></div>
+    <h2 id="alma-work-title">Idee diverse, <em>una direzione comune.</em></h2>
+    <div class="alma-work-grid">
+      <article>
+        <span class="alma-work-number">A</span>
+        <h3>Attività</h3>
+        <p>Incontri, formazione, divulgazione e iniziative per creare legami nella comunità e rendere le competenze più accessibili.</p>
+        <a class="alma-arrow-link" href="{{ '/attivita.html' | relative_url }}">Scopri le attività <span aria-hidden="true">↗</span></a>
+      </article>
+      <article>
+        <span class="alma-work-number">B</span>
+        <h3>Progetti</h3>
+        <p>Da OzoSteam Station ad ACCETTA e NGHE: sperimentiamo, costruiamo prototipi e impariamo insieme strada facendo.</p>
+        <a class="alma-arrow-link" href="{{ '/progetti.html' | relative_url }}">Esplora i progetti <span aria-hidden="true">↗</span></a>
+      </article>
+    </div>
+  </section>
 
-        <ul class="spotlight-features" aria-label="Tecnologie principali">
-          <li>Vapore</li>
-          <li>Ozono controllato</li>
-          <li>Sensori ambientali</li>
-          <li>Home Assistant</li>
-        </ul>
-
-        <p class="spotlight-event">
-          <strong>23–25 ottobre 2026</strong>
-          <span>Gazometro Ostiense · Roma</span>
-        </p>
-
-        <div class="spotlight-actions">
-          <a class="btn btn-primary" href="{{ '/ozosteam-station.html' | relative_url }}">
-            Scopri OzoSteam Station
-          </a>
-          <a class="spotlight-text-link" href="{{ '/soci.html' | relative_url }}">
-            Costruisci il prossimo progetto con noi <span aria-hidden="true">→</span>
-          </a>
-        </div>
+  <section class="alma-news" aria-labelledby="alma-news-title">
+    <div class="alma-section-heading"><span class="alma-index">05 / Novità</span></div>
+    <div class="alma-two-col">
+      <h2 id="alma-news-title">Resta vicino alle idee <em>mentre prendono forma.</em></h2>
+      <div class="alma-prose">
+        <p>Raccontiamo i preparativi per Maker Faire Rome, i passi dei nostri progetti e le occasioni per partecipare. Sul canale WhatsApp trovi gli aggiornamenti di Alma Tellus in un unico posto.</p>
+        <a class="alma-arrow-link" href="https://whatsapp.com/channel/0029Vb8PxsxDDmFSSQJfit0f">Segui il canale WhatsApp <span aria-hidden="true">↗</span></a>
       </div>
-    </section>
-
-    <aside class="maker-result" aria-label="Riconoscimento Maker Faire Rome 2026">
-      <p class="maker-result-label">Un traguardo che parla di noi</p>
-      <p>
-        La selezione di <strong>OzoSteam Station per Maker Faire Rome 2026</strong>
-        è un risultato di grande prestigio per Alma Tellus. Per un’associazione giovane
-        significa vedere riconosciuta la capacità di trasformare un’intuizione in un
-        prototipo reale, funzionante e capace di affrontare un problema concreto.
-        Non presentiamo soltanto un’idea: portiamo a Roma la prova di ciò che possiamo
-        costruire quando competenze, tecnologia e voglia di sperimentare lavorano insieme.
-      </p>
-    </aside>
-
-    <p class="eyebrow">Associazione senza scopo di lucro</p>
-    <h1>Un’associazione nuova, già piena di idee in movimento.</h1>
-
-    <p class="first-line">
-      Alma Tellus è nata da poco, ma non parte da zero: ha già attività avviate,
-      progetti concreti in corso e nuove idee pronte a prendere forma.
-    </p>
-
-    <p>
-      L’associazione unisce cultura, innovazione, sostenibilità e attenzione alle persone.
-      Promuove formazione e divulgazione, partecipazione sociale, riuso responsabile
-      delle tecnologie e iniziative rivolte anche ad anziani, persone fragili e caregiver.
-    </p>
-
-    <p>
-      OzoSteam Station, ACCETTA e NGHE sono i primi esempi di questo percorso:
-      progetti diversi tra loro, ma accomunati dalla volontà di trasformare intuizioni,
-      competenze e tecnologia in esperienze utili, accessibili e condivise.
-    </p>
-
-    <div class="home-feature-grid">
-      <a class="home-feature-card" href="{{ '/attivita.html' | relative_url }}">
-        <span class="home-feature-label">Cosa facciamo</span>
-        <strong>Attività</strong>
-        <span>
-          Formazione, inclusione, sostenibilità, cultura e iniziative per la comunità.
-        </span>
-        <b>Scopri le attività</b>
-      </a>
-
-      <a class="home-feature-card home-feature-card-projects" href="{{ '/progetti.html' | relative_url }}">
-        <span class="home-feature-label">Le nostre idee in azione</span>
-        <strong>Progetti</strong>
-        <span>
-          OzoSteam Station, ACCETTA, NGHE e le nuove sperimentazioni di Alma Tellus.
-        </span>
-        <b>Esplora i progetti</b>
-      </a>
     </div>
+  </section>
 
-    <p class="home-membership-note">
-      Alma Tellus è aperta a persone, associazioni e realtà che desiderano
-      partecipare, collaborare o sostenere le nostre iniziative.
-    </p>
-
-    <div class="home-actions btn-row">
-      <a class="btn btn-primary" href="{{ '/soci.html' | relative_url }}">
-        Prenotazione iscrizione a socio
-      </a>
-      <a class="btn btn-secondary" href="{{ '/contatti.html' | relative_url }}">
-        Contattaci
-      </a>
+  <section class="alma-join" aria-labelledby="alma-join-title">
+    <p class="alma-overline">Partecipa</p>
+    <h2 id="alma-join-title">Aiutate Alma Tellus <em>ad aiutare.</em></h2>
+    <p>Un’idea, un po’ di tempo, una competenza o un sostegno possono far partire il prossimo progetto. Se ti riconosci in quello che facciamo, c’è posto anche per te.</p>
+    <div class="alma-join-links">
+      <a class="alma-solid-link" href="{{ '/tesseramento.html' | relative_url }}">Diventa socio <span aria-hidden="true">↗</span></a>
+      <a class="alma-arrow-link" href="{{ '/contatti.html' | relative_url }}">Parliamone <span aria-hidden="true">↗</span></a>
     </div>
-  </div>
-</section>
+  </section>
+</div>
