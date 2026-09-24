@@ -2014,3 +2014,87 @@ body.page-home .maker-stamp-image {
   .alma-home-spirit h2 { font-size: clamp(2.2rem, 8.4vw, 3.5rem); }
   .alma-home-spirit-side { margin-top: 16px; }
 }
+
+
+/* Linguaggio visivo delle pagine interne: carta chiara, fotografie e titoli editoriali. */
+body:not(.page-home) { background: #f8f6f1; color: #2d332f; }
+body:not(.page-home) .site-header { background: rgba(248,246,241,.97); border-bottom: 1px solid #deded7; box-shadow: none; }
+body:not(.page-home) .menu-toggle { background: #fff; border-color: #d8ddd5; box-shadow: none; }
+body:not(.page-home) .menu-toggle span { background: #2d332f; }
+body:not(.page-home) .site-nav { background: #fffdf9; }
+body:not(.page-home) .site-footer { background: #f8f6f1; }
+.page-shell { width: min(1160px,100%); padding: 122px clamp(20px,5vw,55px) 76px; }
+.page-shell.narrow { width: min(900px,100%); }
+.page-heading { max-width: 920px; margin: 0 0 30px; text-align: left; }
+.page-shell .eyebrow { margin-bottom: 15px; color: #4b6953; font-size: .76rem; font-weight: 800; letter-spacing: .14em; }
+.page-shell h1, .page-shell h2, .page-shell h3 { color: #2c322e; font-family: Georgia,'Times New Roman',serif; font-weight: 400; letter-spacing: -.033em; }
+.page-shell h1 { font-size: clamp(3.2rem,6vw,5.4rem); line-height: 1.06; }
+.page-shell .lead { max-width: 800px; margin: 20px 0 0; color: #48534b; font-size: clamp(1.08rem,1.7vw,1.3rem); line-height: 1.65; }
+.page-shell p, .page-shell li { color: #48534b; }
+.page-shell .btn { border-radius: 4px; font-weight: 700; }
+.page-shell .btn-primary, .page-shell .btn-dark { background: #334b3b; border-color: #334b3b; color: #fff; }
+.page-shell .btn-primary:hover, .page-shell .btn-dark:hover { background: #243a2b; }
+.page-shell .btn-secondary { background: #fffdf8; border-color: #cdd5cb; color: #334b3b; }
+.page-shell .page-actions { justify-content: flex-start; margin-top: 28px; }
+.alma-page-photo { position: relative; overflow: hidden; margin: 0 0 22px; border: 1px solid #dddcd2; border-radius: 15px; background: #ddd9cd; }
+.alma-page-photo img { display: block; width: 100%; height: clamp(260px,34vw,440px); object-fit: cover; object-position: center 50%; }
+.alma-page-photo figcaption { position: absolute; right: 12px; bottom: 12px; padding: 7px 10px; border-radius: 4px; background: rgba(24,35,30,.82); color: #fff; font-size: .72rem; }
+.highlight-grid { margin-top: 0; gap: 16px; }
+.highlight-card, .project-summary-card, .project-panel, .page-shell .surface, .page-shell .form-card { border: 1px solid #dddcd2; border-radius: 15px; background: #fffdf8; box-shadow: 0 12px 34px rgba(28,44,33,.045); }
+.highlight-card { min-height: 215px; padding: 29px 30px; }
+.highlight-card h2, .highlight-card h3 { font-size: clamp(1.6rem,2.4vw,2.15rem); line-height: 1.18; }
+.highlight-card p { color: #48534b; }
+.project-summary-grid { gap: 18px; margin-top: 28px; }
+.project-summary-card img { aspect-ratio: 16/10; }
+.project-summary-card img.project-photo { object-fit: cover; object-position: center; }
+.project-summary-card img.project-cinematic-logo, .project-summary-card img.project-square-logo { object-fit: contain; }
+.project-copy { padding: 23px 25px 28px; gap: 12px; }
+.project-copy h2 { font-size: clamp(1.7rem,2.4vw,2.25rem); line-height: 1.1; }
+.project-copy p { color: #48534b; }
+.project-meta { padding: 0; border: 0; border-radius: 0; background: none; color: #4b6953; font-size: .72rem; letter-spacing: .12em; }
+.project-link { color: #334b3b; text-underline-offset: 5px; }
+.project-photo-credit { display: block; padding: 7px 12px; background: #f6f5ee; color: #647168; font-size: .7rem; }
+.project-hero-image { margin: 0; border: 1px solid #dddcd2; border-radius: 15px; box-shadow: 0 12px 34px rgba(28,44,33,.045); background: #fffdf8; }
+.project-hero-image img { aspect-ratio: auto; height: clamp(260px,36vw,430px); }
+.project-hero-image img.project-photo { object-fit: cover; object-position: center 45%; }
+.project-hero-image img.project-square-logo, .project-hero-image img.project-cinematic-logo { object-fit: contain; }
+.project-hero-image figcaption { padding: 10px 16px; color: #647168; font-size: .79rem; }
+.project-content-grid { gap: 16px; margin-top: 16px; }
+.project-panel { padding: 29px 30px; }
+.project-panel h2 { font-size: clamp(1.8rem,2.8vw,2.4rem); }
+.project-panel .eyebrow { font-family: Arial,Helvetica,sans-serif; font-size: .72rem; font-weight: 800; }
+.project-panel p, .project-list { color: #48534b; }
+.alma-editorial section { margin-top: 16px; padding: clamp(26px,4vw,40px); border: 1px solid #dddcd2; border-radius: 15px; background: #fffdf8; box-shadow: 0 12px 34px rgba(28,44,33,.045); }
+.alma-editorial section h2 { font-size: clamp(1.9rem,3.5vw,2.75rem); }
+.alma-editorial section p { margin-bottom: 0; }
+.alma-editorial .alma-editorial-links { margin-top: 18px; }
+.alma-editorial .alma-editorial-photo { margin-bottom: 22px; }
+.page-shell .surface { backdrop-filter: none; }
+.support-intro { text-align: left; }
+.support-intro p { margin: 0; }
+.support-card { border-color: #dddcd2; border-radius: 12px; background: #f6f5ef; text-align: left; }
+.support-card h3 { font-size: 1.5rem; }
+.quota-grid, .price-options { width: min(920px,100%); margin: 0; }
+.quota-card, .price-option { border: 1px solid #dddcd2; border-radius: 15px; background: #fffdf8; box-shadow: 0 12px 34px rgba(28,44,33,.045); color: #2c322e; }
+.quota-card:hover, .price-option:hover { background: #f1f4ee; }
+.quota-name, .price-option strong { font-family: Georgia,'Times New Roman',serif; font-weight: 400; }
+.quota-price, .price-option span { color: #35583f; font-family: Georgia,'Times New Roman',serif; font-weight: 400; }
+.payment-box, .notice-box { width: min(920px,100%); margin-left: 0; border: 1px solid #d6dfd5; border-radius: 12px; background: #eaf0e9; color: #334b3b; font-weight: 600; text-align: left; }
+.form-card { margin-left: 0; }
+.form-card label { color: #2d4033; }
+.form-card input, .form-card select, .form-card textarea { border-color: #cdd5cb; border-radius: 7px; }
+.form-card input:focus, .form-card select:focus, .form-card textarea:focus { border-color: #4b6953; box-shadow: 0 0 0 3px #cfe0cf; }
+.membership-box { border-color: #d6dfd5; border-radius: 12px; background: #eef2eb; }
+.quota-preview { color: #334b3b; }
+@media (max-width: 760px) {
+  .page-shell { padding: 102px 20px 58px; }
+  .page-shell h1 { font-size: clamp(2.8rem,10vw,4.4rem); }
+  .page-shell .lead { margin-top: 16px; }
+  .alma-page-photo img { height: clamp(205px,56vw,330px); }
+  .highlight-card { min-height: 0; padding: 24px; }
+  .project-summary-grid { grid-template-columns: 1fr; }
+  .project-panel { padding: 25px; }
+  .project-hero-image img { height: clamp(230px,55vw,350px); }
+  .alma-editorial section { padding: 27px 24px; }
+  .page-shell .page-actions { gap: 10px; }
+}
