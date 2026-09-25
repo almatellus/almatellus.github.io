@@ -2229,3 +2229,13 @@ body:not(.page-home) .site-footer { background: #f8f6f1; }
 }
 
 .alma-home-feature .alma-home-official-poster { justify-content: center; }
+
+/* Bilanciamento dell'hero su desktop e schermi intermedi. */
+@media (min-width: 761px) {
+  .alma-home-feature h1 { font-size: clamp(2.9rem, 4.7vw, 4.8rem); }
+  .alma-home-feature .alma-home-official-poster { justify-content: center; }
+}
+@media (min-width: 761px) and (max-width: 1150px) {
+  .alma-home-feature h1 { font-size: clamp(2.7rem, 4.8vw, 3.6rem); }
+  .alma-home-feature-copy { padding: clamp(28px, 4vw, 48px); }
+}
