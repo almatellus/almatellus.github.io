@@ -2227,3 +2227,5 @@ body:not(.page-home) .site-footer { background: #f8f6f1; }
   .alma-inauguration-card { min-height: 200px; padding: 23px; }
   .alma-inauguration-price small { display: inline-block; }
 }
+
+.alma-home-feature .alma-home-official-poster { justify-content: center; }
