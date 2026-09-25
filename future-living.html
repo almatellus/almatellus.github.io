@@ -1,5 +1,4 @@
 ---
-layout: default
 title: OzoSteam Future Living
 description: OzoSteam Future Living: una visione per portare la cura dei capi e degli oggetti nell'arredo di casa, sport, hotel, uffici e negozi.
 permalink: /future-living/
@@ -7,6 +6,24 @@ body_class: page-future-living
 extra_css: /assets/css/future-living.css
 ---
 
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f6f0">
+  <meta name="description" content="{{ page.description | escape }}">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <link rel="icon" href="{{ '/logo.png' | relative_url }}" type="image/png">
+  <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/future-living.css' | relative_url }}">
+  <script defer src="{{ '/config.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/js/site.js' | relative_url }}"></script>
+</head>
+<body class="page-future-living">
+  <a class="skip-link" href="#contenuto">Vai al contenuto</a>
+  {% include header.html %}
+  <main id="contenuto">
 <div class="future-deck" id="future-deck" aria-label="OzoSteam Future Living, presentazione">
   <section class="future-slide future-cover" id="visione" aria-labelledby="future-cover-title">
     <div class="future-cover-inner">
@@ -79,3 +96,7 @@ extra_css: /assets/css/future-living.css
   <button type="button" id="future-prev" aria-label="Schermata precedente">←</button><span id="future-counter" aria-live="polite">01 / 11</span><button type="button" id="future-next" aria-label="Schermata successiva">→</button><button type="button" id="future-exit">Esci</button>
 </div>
 <script defer src="{{ '/assets/js/future-living.js' | relative_url }}"></script>
+  </main>
+  {% include footer.html %}
+</body>
+</html>
