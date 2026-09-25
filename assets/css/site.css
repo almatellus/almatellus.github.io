@@ -2192,3 +2192,38 @@ body:not(.page-home) .site-footer { background: #f8f6f1; }
 .alma-project-story-featured .share-games-photo img { object-position: center bottom; }
 .alma-project-story-featured .share-games-photo .share-game-pointer { left: 43%; top: 64%; }
 @media (max-width: 760px) { .alma-project-story-featured .share-games-photo .share-game-pointer { top: 69%; } }
+
+
+/* Grafica ufficiale MFR 2026 nella vetrina della home. */
+.alma-home-official-poster { display: flex; flex-direction: column; min-height: 0; padding: 15px; background: #eff1e9; }
+.alma-home-official-poster .alma-home-poster-frame { display: block; width: 100%; aspect-ratio: 1; overflow: hidden; background: #fff; }
+.alma-home-official-poster .alma-home-poster-frame img { width: 100%; height: 100%; max-height: none; object-fit: cover; object-position: center; transform: scale(1.13); }
+.alma-home-official-poster figcaption { position: static; margin-top: 10px; padding: 0; background: transparent; color: #607066; font-size: .74rem; text-align: center; }
+@media (max-width: 760px) {
+  .alma-home-feature .alma-home-official-poster { width: 100%; height: auto; min-height: 0; padding: 12px; }
+  .alma-home-official-poster .alma-home-poster-frame img { max-height: none; }
+}
+
+/* Quote speciali per l'inaugurazione. */
+.alma-inauguration-page .page-heading { max-width: 950px; }
+.alma-inauguration-page .page-heading h1 { max-width: 920px; }
+.alma-inauguration-page .page-heading .lead { max-width: 850px; }
+.alma-inauguration-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; margin-top: 38px; }
+.alma-inauguration-card { display: flex; flex-direction: column; min-height: 230px; padding: 27px 30px; border: 1px solid #d7dfd5; border-radius: 14px; background: #fffdf8; box-shadow: 0 12px 34px rgba(28,44,33,.05); color: #2d4033; text-decoration: none; transition: transform .18s ease, background .18s ease; }
+.alma-inauguration-card:hover, .alma-inauguration-card:focus-visible { transform: translateY(-3px); background: #f4f8f1; }
+.alma-inauguration-card.main { background: #e9f0e8; }
+.alma-inauguration-name { font-family: Georgia,'Times New Roman',serif; font-size: clamp(1.6rem,2.3vw,2.15rem); line-height: 1.15; }
+.alma-inauguration-price { margin-top: 15px; color: #35583f; font-family: Georgia,'Times New Roman',serif; font-size: clamp(2.7rem,4vw,4.2rem); line-height: 1; }
+.alma-inauguration-price small { font: 600 1rem/1.5 Arial,Helvetica,sans-serif; color: #66736a; }
+.alma-inauguration-action { margin-top: auto; padding-top: 23px; font-size: .96rem; font-weight: 800; text-decoration: underline; text-underline-offset: 4px; }
+.alma-inauguration-note { margin-top: 22px; padding: clamp(24px,4vw,42px); border: 1px solid #d7dfd5; border-radius: 14px; background: #f1f5ee; }
+.alma-inauguration-note h2 { margin: 0 0 12px; font-size: clamp(1.8rem,3vw,2.55rem); }
+.alma-inauguration-note p { max-width: 850px; margin: 0; color: #48534b; font-size: 1.05rem; line-height: 1.65; }
+.alma-inauguration-note a { display: inline-block; margin-top: 18px; color: #2d4033; font-weight: 800; text-underline-offset: 4px; }
+.alma-editorial .alma-inauguration-promo { background: #edf3eb; border-radius: 12px; border: 1px solid #d7dfd5; padding: clamp(25px,4vw,42px); }
+.alma-editorial .alma-inauguration-promo .alma-eyebrow { margin: 0 0 13px; font-size: .75rem; line-height: 1.4; }
+@media (max-width: 760px) {
+  .alma-inauguration-grid { grid-template-columns: 1fr; margin-top: 25px; }
+  .alma-inauguration-card { min-height: 200px; padding: 23px; }
+  .alma-inauguration-price small { display: inline-block; }
+}

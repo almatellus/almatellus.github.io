@@ -56,6 +56,7 @@
     const memberType = document.getElementById("tipo-socio");
     const preview = document.getElementById("quota-preview");
     const hiddenFee = document.getElementById("quota-socio-hidden");
+    const promoNote = document.getElementById("promo-eligibility-note");
 
     const queryValue = new URLSearchParams(window.location.search).get("tipo");
     const typeMap = {
@@ -65,13 +66,18 @@
       familiare: "Familiare convivente",
       familiare_successivo: "Dal secondo familiare convivente in poi",
       under25: "Under 25",
-      over70: "Over 70"
+      over70: "Over 70",
+      ordinario_inaugurazione: "Socio ordinario - Inaugurazione",
+      familiare_inaugurazione: "Familiare convivente - Inaugurazione",
+      under25_inaugurazione: "Under 25 - Inaugurazione",
+      over70_inaugurazione: "Over 70 - Inaugurazione"
     };
 
     function updateFee() {
       if (!memberType || !preview || !hiddenFee) return;
       const option = memberType.options[memberType.selectedIndex];
       const fee = option ? option.dataset.quota : "";
+      if (promoNote) promoNote.hidden = !option || !option.value.endsWith(" - Inaugurazione");
 
       if (fee) {
         hiddenFee.value = fee + " euro";
