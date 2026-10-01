@@ -7,10 +7,32 @@ body_class: page-ozosteam-experience
 ---
 
 <style>
+  body.page-ozosteam-experience {
+    background: #f8f6f1;
+    color: #2d332f;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  body.page-ozosteam-experience .site-header {
+    background: rgba(248,246,241,.97);
+    border-bottom: 1px solid #deded7;
+    box-shadow: none;
+  }
+
+  body.page-ozosteam-experience .menu-toggle {
+    background: #fff;
+    border-color: #d8ddd5;
+    box-shadow: none;
+  }
+
+  body.page-ozosteam-experience .menu-toggle span { background: #2d332f; }
+  body.page-ozosteam-experience .site-nav { background: #fffdf9; }
   body.page-ozosteam-experience .site-footer { display: none; }
+
   body.page-ozosteam-experience main {
     min-height: 100dvh;
     overflow: hidden;
+    background: #f8f6f1;
   }
 
   .ozx-shell {
@@ -31,7 +53,7 @@ body_class: page-ozosteam-experience
 
   .ozx-kicker {
     margin: 0 0 7px;
-    color: var(--gold-dark);
+    color: #4b6953;
     font-size: .78rem;
     font-weight: 900;
     letter-spacing: .16em;
@@ -40,20 +62,22 @@ body_class: page-ozosteam-experience
 
   .ozx-head h1 {
     margin: 0;
-    color: var(--blue);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400;
+    color: #2c322e;
     font-size: clamp(2.2rem, 7vw, 4.8rem);
     line-height: .95;
     letter-spacing: -.05em;
   }
 
   .ozx-head h1 em {
-    color: var(--gold-dark);
+    color: #4b6953;
     font-style: normal;
   }
 
   .ozx-sub {
     margin: 9px auto 0;
-    color: var(--muted);
+    color: #48534b;
     font-size: clamp(.9rem, 1.7vw, 1.06rem);
     line-height: 1.35;
   }
@@ -69,11 +93,11 @@ body_class: page-ozosteam-experience
   .ozx-card {
     width: 100%;
     min-height: 160px;
-    border: 1px solid var(--border);
+    border: 1px solid #dce0d8;
     border-radius: 24px;
-    background: rgba(255,255,255,.78);
-    box-shadow: var(--shadow-small);
-    color: var(--blue);
+    background: #fffdf9;
+    box-shadow: none;
+    color: #2c322e;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -90,14 +114,14 @@ body_class: page-ozosteam-experience
     border-radius: 999px;
     display: grid;
     place-items: center;
-    background: var(--gold-soft);
-    border: 1px solid rgba(197,161,90,.52);
+    background: #efeee8;
+    border: 1px solid #d8ddd5;
     font-size: 1.45rem;
     font-weight: 900;
   }
 
   .ozx-card small {
-    color: var(--gold-dark);
+    color: #4b6953;
     font-size: .72rem;
     font-weight: 900;
     letter-spacing: .14em;
@@ -105,16 +129,19 @@ body_class: page-ozosteam-experience
   }
 
   .ozx-card strong {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400;
+    color: #2c322e;
     font-size: clamp(1.15rem, 2.4vw, 1.65rem);
     line-height: 1.05;
   }
 
   .ozx-bottom {
     padding: 16px;
-    border: 1px solid var(--border);
+    border: 1px solid #dce0d8;
     border-radius: 24px;
-    background: rgba(255,255,255,.82);
-    box-shadow: var(--shadow-small);
+    background: #fffdf9;
+    box-shadow: none;
   }
 
   .ozx-verb-copy {
@@ -126,17 +153,19 @@ body_class: page-ozosteam-experience
   }
 
   .ozx-verb-copy strong {
-    color: var(--blue);
+    color: #2c322e;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400;
     font-size: clamp(1.05rem, 2.2vw, 1.35rem);
   }
 
   .ozx-verb-copy span {
-    color: var(--muted);
+    color: #48534b;
     font-size: .82rem;
     text-align: right;
   }
 
-  .ozx-verb-copy b { color: var(--gold-dark); }
+  .ozx-verb-copy b { color: #4b6953; }
 
   .ozx-form {
     display: grid;
@@ -148,17 +177,17 @@ body_class: page-ozosteam-experience
     min-width: 0;
     height: 48px;
     padding: 0 15px;
-    border: 1px solid var(--border);
+    border: 1px solid #dce0d8;
     border-radius: 14px;
-    background: var(--paper);
-    color: var(--blue);
+    background: #f8f6f1;
+    color: #2c322e;
     font-weight: 800;
     outline: none;
   }
 
   .ozx-form input:focus {
-    border-color: var(--gold);
-    box-shadow: 0 0 0 3px rgba(197,161,90,.12);
+    border-color: #93a497;
+    box-shadow: 0 0 0 3px rgba(75,105,83,.10);
   }
 
   .ozx-submit,
@@ -167,8 +196,8 @@ body_class: page-ozosteam-experience
     padding: 0 20px;
     border: 0;
     border-radius: 999px;
-    background: var(--blue);
-    color: white;
+    background: #334b3b;
+    color: #ffffff;
     font-weight: 900;
     text-decoration: none;
     display: inline-flex;
@@ -180,7 +209,7 @@ body_class: page-ozosteam-experience
   .ozx-status {
     min-height: 14px;
     margin: 6px 2px 0;
-    color: var(--muted);
+    color: #48534b;
     font-size: .74rem;
     font-weight: 700;
   }
@@ -194,7 +223,7 @@ body_class: page-ozosteam-experience
 
   .ozx-join-kicker {
     margin: 0 0 3px;
-    color: var(--gold-dark);
+    color: #4b6953;
     font-size: .72rem;
     font-weight: 900;
     letter-spacing: .12em;
@@ -203,14 +232,16 @@ body_class: page-ozosteam-experience
 
   .ozx-join-title {
     margin: 0 0 9px;
-    color: var(--blue);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400;
+    color: #2c322e;
     font-size: clamp(1.35rem, 3vw, 2rem);
     line-height: 1.06;
     font-weight: 900;
   }
 
   .ozx-join-title em {
-    color: var(--gold-dark);
+    color: #4b6953;
     font-style: normal;
   }
 
@@ -226,7 +257,7 @@ body_class: page-ozosteam-experience
     display: none;
     place-items: center;
     padding: 18px;
-    background: rgba(11,52,64,.76);
+    background: rgba(44,50,46,.76);
     backdrop-filter: blur(7px);
   }
 
@@ -235,10 +266,10 @@ body_class: page-ozosteam-experience
   .ozx-modal {
     width: min(680px, 94vw);
     padding: 16px;
-    border: 1px solid var(--border);
+    border: 1px solid #dce0d8;
     border-radius: 24px;
-    background: var(--paper);
-    box-shadow: var(--shadow);
+    background: #f8f6f1;
+    box-shadow: 0 22px 60px rgba(44,50,46,.16);
   }
 
   .ozx-modal-head {
@@ -250,17 +281,17 @@ body_class: page-ozosteam-experience
   }
 
   .ozx-modal-head strong {
-    color: var(--blue);
+    color: #2c322e;
     font-size: 1.05rem;
   }
 
   .ozx-close {
     width: 40px;
     height: 40px;
-    border: 1px solid var(--border);
+    border: 1px solid #dce0d8;
     border-radius: 999px;
-    background: white;
-    color: var(--blue);
+    background: #fffdf9;
+    color: #2c322e;
     font-size: 1.25rem;
     cursor: pointer;
   }
@@ -270,13 +301,13 @@ body_class: page-ozosteam-experience
     width: 100%;
     display: block;
     border-radius: 16px;
-    background: #082730;
+    background: #2c322e;
   }
 
   .ozx-media-fallback {
     display: none;
     margin: 10px 0 0;
-    color: var(--muted);
+    color: #48534b;
     font-size: .86rem;
     text-align: center;
   }
