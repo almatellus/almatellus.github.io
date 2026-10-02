@@ -6,196 +6,174 @@ permalink: /inaugurazione.html
 ---
 
 <style>
-  .inaug-v4{
+  .inaug-v5{
     width:min(1160px,100%);
     margin:0 auto;
-    padding:132px clamp(20px,5vw,55px) 64px;
+    padding:105px clamp(20px,5vw,55px) 42px;
   }
-  .inaug-v4-hero{
+  .inaug-v5-hero{
     max-width:980px;
-    margin:0 0 34px;
+    margin:0 0 24px;
   }
-  .inaug-v4-kicker{
-    display:inline-block;
-    margin:0 0 14px;
-    padding:7px 11px 6px;
-    border:1px solid #cbd7cc;
-    border-radius:999px;
-    background:#edf3eb;
-    color:#3f6149;
+  .inaug-v5-kicker{
+    margin:0 0 8px;
+    color:#4b6953;
     font:800 .74rem/1.2 Arial,Helvetica,sans-serif;
-    letter-spacing:.12em;
+    letter-spacing:.13em;
     text-transform:uppercase;
   }
-  .inaug-v4 h1{
+  .inaug-v5 h1{
     display:block !important;
     visibility:visible !important;
     opacity:1 !important;
-    max-width:950px;
     margin:0 !important;
     color:#2c322e !important;
-    font:400 clamp(3.2rem,6vw,5.45rem)/1.03 Georgia,"Times New Roman",serif !important;
-    letter-spacing:-.04em !important;
+    font:400 clamp(2.8rem,4.5vw,4.25rem)/1.02 Georgia,"Times New Roman",serif !important;
+    letter-spacing:-.035em !important;
   }
-  .inaug-v4-intro{
-    max-width:820px;
-    margin:18px 0 0 !important;
+  .inaug-v5-intro{
+    max-width:900px;
+    margin:12px 0 0 !important;
     color:#48534b !important;
-    font-size:clamp(1.08rem,1.65vw,1.28rem);
-    line-height:1.55;
+    font-size:clamp(1rem,1.35vw,1.14rem);
+    line-height:1.45;
   }
-  .inaug-v4-grid{
+  .inaug-v5-grid{
     display:grid;
     grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:16px;
+    gap:14px;
   }
-  .inaug-v4-card{
-    position:relative;
-    display:flex;
-    flex-direction:column;
-    min-height:220px;
-    padding:27px 30px 25px;
-    overflow:hidden;
+  .inaug-v5-card{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    grid-template-rows:auto auto auto;
+    column-gap:18px;
+    min-height:170px;
+    padding:22px 26px 20px;
     border:1px solid #d6ddd4;
-    border-radius:15px;
+    border-radius:14px;
     background:#fffdf8;
-    box-shadow:0 12px 34px rgba(28,44,33,.05);
+    box-shadow:0 10px 26px rgba(28,44,33,.045);
     color:#2d4033;
     text-decoration:none;
     transition:transform .16s ease,background .16s ease,border-color .16s ease;
   }
-  .inaug-v4-card:first-child{
-    background:#e9f0e8;
-    border-color:#cbd8cc;
-  }
-  .inaug-v4-card:hover,
-  .inaug-v4-card:focus-visible{
+  .inaug-v5-card:hover,
+  .inaug-v5-card:focus-visible{
     transform:translateY(-2px);
-    background:#f1f6ef;
-    border-color:#bfcdbf;
+    background:#f4f8f1;
+    border-color:#c4d0c4;
   }
-  .inaug-v4-name{
-    padding-right:88px;
+  .inaug-v5-name{
+    grid-column:1;
     color:#293d31;
-    font:400 clamp(1.65rem,2.25vw,2.2rem)/1.15 Georgia,"Times New Roman",serif;
+    font:400 clamp(1.5rem,2vw,1.95rem)/1.15 Georgia,"Times New Roman",serif;
   }
-  .inaug-v4-save{
-    position:absolute;
-    top:25px;
-    right:27px;
-    padding:6px 9px;
-    border-radius:999px;
-    background:#dfeadf;
-    color:#35583f;
-    font:800 .72rem/1 Arial,Helvetica,sans-serif;
-    letter-spacing:.03em;
+  .inaug-v5-save{
+    grid-column:2;
+    align-self:start;
+    padding-top:5px;
+    color:#52675a;
+    font:800 .72rem/1.1 Arial,Helvetica,sans-serif;
+    letter-spacing:.035em;
     text-transform:uppercase;
+    white-space:nowrap;
   }
-  .inaug-v4-price-row{
+  .inaug-v5-price-row{
+    grid-column:1 / -1;
     display:flex;
     align-items:baseline;
-    gap:14px;
-    margin-top:22px;
+    gap:12px;
+    margin-top:12px;
   }
-  .inaug-v4-price{
+  .inaug-v5-price{
     color:#35583f;
-    font:400 clamp(3.1rem,4.6vw,4.75rem)/.95 Georgia,"Times New Roman",serif;
+    font:400 clamp(2.7rem,3.8vw,3.9rem)/.95 Georgia,"Times New Roman",serif;
     white-space:nowrap;
   }
-  .inaug-v4-old{
+  .inaug-v5-old{
     color:#858d87;
-    font:700 1rem/1.2 Arial,Helvetica,sans-serif;
+    font:700 .92rem/1.2 Arial,Helvetica,sans-serif;
     text-decoration:line-through;
-    text-decoration-thickness:1.5px;
+    text-decoration-thickness:1.4px;
     white-space:nowrap;
   }
-  .inaug-v4-cta{
-    display:inline-flex;
-    align-items:center;
-    align-self:flex-start;
-    gap:8px;
-    margin-top:auto;
-    padding-top:24px;
+  .inaug-v5-cta{
+    grid-column:1 / -1;
+    align-self:end;
+    margin-top:14px;
     color:#223b2c;
-    font:800 .98rem/1.2 Arial,Helvetica,sans-serif;
+    font:800 .94rem/1.2 Arial,Helvetica,sans-serif;
     text-decoration:underline;
-    text-underline-offset:5px;
+    text-underline-offset:4px;
   }
   @media(max-width:760px){
-    .inaug-v4{
-      padding:108px 18px 48px;
+    .inaug-v5{
+      padding:92px 16px 34px;
     }
-    .inaug-v4-hero{
-      margin-bottom:24px;
+    .inaug-v5-hero{
+      margin-bottom:18px;
     }
-    .inaug-v4 h1{
-      font-size:clamp(2.75rem,12vw,4.2rem) !important;
+    .inaug-v5 h1{
+      font-size:clamp(2.45rem,11vw,3.5rem) !important;
     }
-    .inaug-v4-grid{
+    .inaug-v5-intro{
+      font-size:1rem;
+    }
+    .inaug-v5-grid{
       grid-template-columns:1fr;
-      gap:12px;
+      gap:10px;
     }
-    .inaug-v4-card{
-      min-height:190px;
-      padding:23px;
+    .inaug-v5-card{
+      min-height:145px;
+      padding:19px 20px 17px;
     }
-    .inaug-v4-name{
-      padding-right:78px;
-      font-size:clamp(1.55rem,7vw,2rem);
+    .inaug-v5-name{
+      font-size:1.55rem;
     }
-    .inaug-v4-save{
-      top:22px;
-      right:22px;
+    .inaug-v5-price{
+      font-size:3rem;
+    }
+    .inaug-v5-save{
+      font-size:.68rem;
     }
   }
 </style>
 
-<section class="inaug-v4">
-  <header class="inaug-v4-hero">
-    <p class="inaug-v4-kicker">Inaugurazione Alma Tellus · quote speciali</p>
+<section class="inaug-v5">
+  <header class="inaug-v5-hero">
+    <p class="inaug-v5-kicker">Inaugurazione Alma Tellus · quote speciali</p>
     <h1>Entra in Alma Tellus.</h1>
-    <p class="inaug-v4-intro">Prenota la tua adesione durante l’inaugurazione. Scegli la tua categoria: bastano pochi secondi.</p>
+    <p class="inaug-v5-intro">Prenota la tua adesione durante l’inaugurazione. Scegli la tua categoria: bastano pochi secondi.</p>
   </header>
 
-  <div class="inaug-v4-grid">
-    <a class="inaug-v4-card" href="{{ '/soci.html' | relative_url }}?tipo=ordinario_inaugurazione">
-      <span class="inaug-v4-name">Socio ordinario</span>
-      <span class="inaug-v4-save">Risparmi 5 €</span>
-      <span class="inaug-v4-price-row">
-        <span class="inaug-v4-price">15 €</span>
-        <span class="inaug-v4-old">20 €</span>
-      </span>
-      <span class="inaug-v4-cta">Prenota l’adesione →</span>
+  <div class="inaug-v5-grid">
+    <a class="inaug-v5-card" href="{{ '/soci.html' | relative_url }}?tipo=ordinario_inaugurazione">
+      <span class="inaug-v5-name">Socio ordinario</span>
+      <span class="inaug-v5-save">Risparmi 5 €</span>
+      <span class="inaug-v5-price-row"><span class="inaug-v5-price">15 €</span><span class="inaug-v5-old">20 €</span></span>
+      <span class="inaug-v5-cta">Prenota l’adesione →</span>
     </a>
 
-    <a class="inaug-v4-card" href="{{ '/soci.html' | relative_url }}?tipo=familiare_inaugurazione">
-      <span class="inaug-v4-name">Familiare convivente</span>
-      <span class="inaug-v4-save">Risparmi 5 €</span>
-      <span class="inaug-v4-price-row">
-        <span class="inaug-v4-price">5 €</span>
-        <span class="inaug-v4-old">10 €</span>
-      </span>
-      <span class="inaug-v4-cta">Prenota l’adesione →</span>
+    <a class="inaug-v5-card" href="{{ '/soci.html' | relative_url }}?tipo=familiare_inaugurazione">
+      <span class="inaug-v5-name">Familiare convivente</span>
+      <span class="inaug-v5-save">Risparmi 5 €</span>
+      <span class="inaug-v5-price-row"><span class="inaug-v5-price">5 €</span><span class="inaug-v5-old">10 €</span></span>
+      <span class="inaug-v5-cta">Prenota l’adesione →</span>
     </a>
 
-    <a class="inaug-v4-card" href="{{ '/soci.html' | relative_url }}?tipo=under25_inaugurazione">
-      <span class="inaug-v4-name">Under 25</span>
-      <span class="inaug-v4-save">Risparmi 5 €</span>
-      <span class="inaug-v4-price-row">
-        <span class="inaug-v4-price">5 €</span>
-        <span class="inaug-v4-old">10 €</span>
-      </span>
-      <span class="inaug-v4-cta">Prenota l’adesione →</span>
+    <a class="inaug-v5-card" href="{{ '/soci.html' | relative_url }}?tipo=under25_inaugurazione">
+      <span class="inaug-v5-name">Under 25</span>
+      <span class="inaug-v5-save">Risparmi 5 €</span>
+      <span class="inaug-v5-price-row"><span class="inaug-v5-price">5 €</span><span class="inaug-v5-old">10 €</span></span>
+      <span class="inaug-v5-cta">Prenota l’adesione →</span>
     </a>
 
-    <a class="inaug-v4-card" href="{{ '/soci.html' | relative_url }}?tipo=over70_inaugurazione">
-      <span class="inaug-v4-name">Over 70</span>
-      <span class="inaug-v4-save">Risparmi 5 €</span>
-      <span class="inaug-v4-price-row">
-        <span class="inaug-v4-price">5 €</span>
-        <span class="inaug-v4-old">10 €</span>
-      </span>
-      <span class="inaug-v4-cta">Prenota l’adesione →</span>
+    <a class="inaug-v5-card" href="{{ '/soci.html' | relative_url }}?tipo=over70_inaugurazione">
+      <span class="inaug-v5-name">Over 70</span>
+      <span class="inaug-v5-save">Risparmi 5 €</span>
+      <span class="inaug-v5-price-row"><span class="inaug-v5-price">5 €</span><span class="inaug-v5-old">10 €</span></span>
+      <span class="inaug-v5-cta">Prenota l’adesione →</span>
     </a>
   </div>
 </section>
