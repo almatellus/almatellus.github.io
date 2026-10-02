@@ -6,6 +6,54 @@ permalink: /
 body_class: page-home
 ---
 
+<style>
+/* Bilanciamento grafico del riquadro Maker Faire: desktop e tablet. */
+@media (min-width: 761px) {
+  .alma-home-feature {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .alma-home-feature-copy {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(38px, 4.2vw, 54px);
+  }
+
+  .alma-home-feature h1 {
+    max-width: 100%;
+    font-size: clamp(3rem, 4.15vw, 4.15rem);
+    line-height: 1.04;
+  }
+
+  .alma-home-lead {
+    margin: 24px 0 22px;
+  }
+
+  .alma-home-button {
+    align-self: flex-start;
+  }
+
+  .alma-home-feature-copy .alma-home-place:first-of-type {
+    margin-top: auto;
+    padding-top: 26px;
+  }
+
+  .alma-home-feature-copy .alma-home-place:last-of-type {
+    margin-top: 16px;
+  }
+
+  .alma-home-official-poster {
+    justify-content: center;
+    padding: clamp(18px, 2vw, 24px);
+  }
+
+  .alma-home-official-poster .alma-home-poster-frame {
+    width: 100%;
+  }
+}
+</style>
+
 <div class="alma-home-compact">
   <section class="alma-home-feature" aria-labelledby="home-feature-title">
     <div class="alma-home-feature-copy">
