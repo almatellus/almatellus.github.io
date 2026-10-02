@@ -5,6 +5,60 @@ description: Quote promozionali per chi chiede di associarsi ad Alma Tellus in s
 permalink: /inaugurazione.html
 ---
 
+<style>
+  .alma-inauguration-page .page-heading {
+    margin-bottom: 2rem;
+  }
+  .alma-inauguration-page .page-heading h1,
+  .alma-inauguration-page .page-heading .eyebrow {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  .alma-inauguration-page .page-heading h1 {
+    margin-bottom: .65rem;
+  }
+  .alma-inauguration-page .lead {
+    max-width: 900px;
+  }
+  .alma-inauguration-grid {
+    gap: 1rem;
+  }
+  .alma-inauguration-card {
+    min-height: 205px;
+    padding: 1.7rem 1.9rem;
+  }
+  .alma-inauguration-price {
+    display: flex;
+    align-items: baseline;
+    gap: .8rem;
+  }
+  .alma-inauguration-old-price {
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #7d847f;
+    text-decoration: line-through;
+    text-decoration-thickness: 1.5px;
+  }
+  .alma-inauguration-saving {
+    display: block;
+    margin-top: -.35rem;
+    font-family: inherit;
+    font-size: .82rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: #52675a;
+  }
+  @media (max-width: 720px) {
+    .alma-inauguration-card {
+      min-height: 0;
+      padding: 1.35rem 1.4rem;
+    }
+  }
+</style>
+
 <section class="page-shell alma-inauguration-page">
   <header class="page-heading">
     <p class="eyebrow">Partecipa · Inaugurazione Alma Tellus</p>
@@ -15,25 +69,29 @@ permalink: /inaugurazione.html
   <div class="alma-inauguration-grid">
     <a class="alma-inauguration-card main" href="{{ '/soci.html' | relative_url }}?tipo=ordinario_inaugurazione">
       <span class="alma-inauguration-name">Socio ordinario</span>
-      <span class="alma-inauguration-price">15 € <small><span style="text-decoration:line-through; opacity:.62;">20 €</span></small></span>
+      <span class="alma-inauguration-price">15 € <span class="alma-inauguration-old-price">20 €</span></span>
+      <span class="alma-inauguration-saving">Risparmi 5 €</span>
       <span class="alma-inauguration-action">Prenota l’adesione →</span>
     </a>
 
     <a class="alma-inauguration-card" href="{{ '/soci.html' | relative_url }}?tipo=familiare_inaugurazione">
       <span class="alma-inauguration-name">Familiare convivente</span>
-      <span class="alma-inauguration-price">5 € <small><span style="text-decoration:line-through; opacity:.62;">10 €</span></small></span>
+      <span class="alma-inauguration-price">5 € <span class="alma-inauguration-old-price">10 €</span></span>
+      <span class="alma-inauguration-saving">Risparmi 5 €</span>
       <span class="alma-inauguration-action">Prenota l’adesione →</span>
     </a>
 
     <a class="alma-inauguration-card" href="{{ '/soci.html' | relative_url }}?tipo=under25_inaugurazione">
       <span class="alma-inauguration-name">Under 25</span>
-      <span class="alma-inauguration-price">5 € <small><span style="text-decoration:line-through; opacity:.62;">10 €</span></small></span>
+      <span class="alma-inauguration-price">5 € <span class="alma-inauguration-old-price">10 €</span></span>
+      <span class="alma-inauguration-saving">Risparmi 5 €</span>
       <span class="alma-inauguration-action">Prenota l’adesione →</span>
     </a>
 
     <a class="alma-inauguration-card" href="{{ '/soci.html' | relative_url }}?tipo=over70_inaugurazione">
       <span class="alma-inauguration-name">Over 70</span>
-      <span class="alma-inauguration-price">5 € <small><span style="text-decoration:line-through; opacity:.62;">10 €</span></small></span>
+      <span class="alma-inauguration-price">5 € <span class="alma-inauguration-old-price">10 €</span></span>
+      <span class="alma-inauguration-saving">Risparmi 5 €</span>
       <span class="alma-inauguration-action">Prenota l’adesione →</span>
     </a>
   </div>
