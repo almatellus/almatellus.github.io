@@ -1,6 +1,20 @@
 (function () {
   "use strict";
 
+  const joinLink = document.querySelector(".ozx-join");
+  const promoCopy = document.getElementById("ozx-join-offer");
+  const promoHref = joinLink.getAttribute("href");
+  const regularHref = joinLink.dataset.regularHref;
+  const promoEnds = Date.parse(joinLink.dataset.promoUntil);
+
+  function updateJoinOffer() {
+    const inPromotion = Date.now() < promoEnds;
+    joinLink.setAttribute("href", inPromotion ? promoHref : regularHref);
+    promoCopy.hidden = !inPromotion;
+  }
+  updateJoinOffer();
+  joinLink.addEventListener("click", updateJoinOffer);
+
   const overlay = document.getElementById("ozx-audio");
   const opener = document.querySelector('[data-open="ozx-audio"]');
   const audio = document.getElementById("ozx-audio-player");
@@ -67,6 +81,7 @@
     form.removeAttribute("aria-busy");
     document.getElementById("ozx-verb-step").hidden = true;
     const joinStep = document.getElementById("ozx-join-step");
+    updateJoinOffer();
     joinStep.hidden = false;
     joinStep.querySelector(".ozx-join").focus({ preventScroll: true });
   });
