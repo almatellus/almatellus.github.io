@@ -7,6 +7,21 @@ body_class: page-home
 ---
 
 <style>
+.alma-home-imprese {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+  margin-top: 26px;
+  padding: 28px 30px;
+  border-top: 1px solid #d9ddd4;
+}
+.alma-home-imprese h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); }
+.alma-home-imprese p:not(.alma-home-label) { max-width: 670px; margin-bottom: 0; font-size: 1.05rem; }
+.alma-home-imprese > a { color: #35523b; font-weight: 700; text-underline-offset: 5px; }
+@media (max-width: 760px) {
+  .alma-home-imprese { grid-template-columns: 1fr; gap: 20px; padding: 27px 6px; }
+}
 /* Bilanciamento grafico del riquadro Maker Faire: desktop e tablet. */
 @media (min-width: 761px) {
   .alma-home-feature {
@@ -86,5 +101,14 @@ body_class: page-home
         <a href="{{ '/attivita.html' | relative_url }}">Scopri cosa facciamo <span aria-hidden="true">↗</span></a>
       </div>
     </div>
+  </section>
+
+  <section class="alma-home-imprese" aria-labelledby="home-imprese-title">
+    <div>
+      <p class="alma-home-label">Imprese e professionisti</p>
+      <h2 id="home-imprese-title">C’è spazio anche per la tua attività.</h2>
+      <p>Un’esigenza da affrontare, competenze da condividere o un progetto da sostenere. Aziende, artigiani e professionisti possono costruire qualcosa insieme ad Alma Tellus.</p>
+    </div>
+    <a href="{{ '/imprese.html' | relative_url }}">Scopri come partecipare</a>
   </section>
 </div>

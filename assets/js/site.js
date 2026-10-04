@@ -145,6 +145,18 @@
     const submittedAt = document.getElementById("submitted-at-client");
     const webAppUrl = getWebAppUrl();
 
+    const contactTopic = new URLSearchParams(window.location.search).get("tema");
+    const contactSubjects = {
+      imprese: "Imprese e professionisti - Proposta di collaborazione",
+      benemerito: "Impresa - Richiesta di adesione come Socio Benemerito"
+    };
+    if (Object.prototype.hasOwnProperty.call(contactSubjects, contactTopic)) {
+      form.elements.oggetto.value = contactSubjects[contactTopic];
+      form.elements.oggetto.defaultValue = contactSubjects[contactTopic];
+      form.elements.messaggio.placeholder =
+        "Indica il nome della tua attività, un referente e cosa vorresti realizzare con Alma Tellus.";
+    }
+
     let submitted = false;
     let completed = false;
     let timeoutId = null;
