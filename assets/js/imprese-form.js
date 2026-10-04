@@ -11,7 +11,7 @@
     }));
     const originOK = origin => {
       try { const u = new URL(origin); return u.protocol === 'https:' &&
-        (u.hostname === 'script.google.com' || u.hostname === 'script.googleusercontent.com' || u.hostname.endsWith('.script.googleusercontent.com')); }
+        (u.hostname === 'script.google.com' || u.hostname === 'script.googleusercontent.com' || u.hostname.endsWith('-script.googleusercontent.com') || u.hostname.endsWith('.script.googleusercontent.com')); }
       catch (_) { return false; }
     };
     window.addEventListener('message', e => {
