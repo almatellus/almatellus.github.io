@@ -46,5 +46,5 @@ function handleOzoSteamVerbPost_(p) {
 
 function ozosteamVerbReply_(reply) {
   const payload = JSON.stringify(reply).replace(/</g, "\\u003c");
-  return htmlOutput_('<!doctype html><html lang="it"><head><meta charset="utf-8"></head><body><script>window.top.postMessage(' + payload + ', "https://almatellus.github.io");</script></body></html>');
+  return htmlOutput_('<!doctype html><html lang="it"><head><meta charset="utf-8"></head><body><script>var reply=' + payload + ';var target=window.parent;for(var i=0;i<5;i++){target.postMessage(reply,"https://almatellus.github.io");if(target===target.parent)break;target=target.parent;}</script></body></html>');
 }
