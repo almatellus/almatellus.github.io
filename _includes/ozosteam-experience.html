@@ -1,0 +1,57 @@
+<section class="ozx-shell" aria-labelledby="ozx-title">
+  <header class="ozx-head">
+    <p class="ozx-kicker">OzoSteam Station · Maker Faire Rome 2026</p>
+    <h1 id="ozx-title">Ascolta. Guarda. <em>Inventalo.</em></h1>
+    <p class="ozx-sub">Scopri il progetto e aiutaci a dare un nome a questa nuova idea.</p>
+  </header>
+
+  <div class="ozx-actions">
+    <button class="ozx-card" type="button" data-open="ozx-audio" aria-haspopup="dialog">
+      <span class="ozx-card-icon" aria-hidden="true">▶</span>
+      <span class="ozx-card-copy"><small>Audio · 2 min 21 s</small><strong>La storia di OzoSteam</strong></span>
+    </button>
+    <a class="ozx-card" href="https://youtu.be/JY0CnPF4K-M?is=bEPStkY3nW1nptJ0" target="_blank" rel="noopener noreferrer">
+      <span class="ozx-card-icon" aria-hidden="true">▷</span>
+      <span class="ozx-card-copy"><small>Video</small><strong>Guardalo in azione</strong></span>
+    </a>
+  </div>
+
+  <div class="ozx-bottom">
+    <div id="ozx-verb-step">
+      <h2>Come si chiama questa azione?</h2>
+      <p class="ozx-verb-copy">Per ora diciamo <strong>OzoStimmare.</strong> Tu?</p>
+      <form class="ozx-form" id="ozx-verb-form" method="post" target="ozx-save-frame">
+        <label for="ozx-verb" class="ozx-visually-hidden">Il tuo verbo</label>
+        <input id="ozx-verb" name="verbo" minlength="2" maxlength="40" autocomplete="off" placeholder="Il tuo verbo…" required>
+        <input type="hidden" name="form_type" value="ozosteam_verbo">
+        <input type="hidden" name="request_id" id="ozx-request-id">
+        <input type="hidden" name="pagina" id="ozx-source-page">
+        <input type="text" name="website" tabindex="-1" autocomplete="off" hidden>
+        <button class="ozx-submit" type="submit">Invia</button>
+      </form>
+    </div>
+
+    <div class="ozx-join-step" id="ozx-join-step" hidden>
+      <p class="ozx-join-kicker">Hai appena partecipato a un progetto Alma Tellus.</p>
+      <h2>Non limitarti a seguirci. <em>Entra dentro.</em></h2>
+      <a class="ozx-join" href="{{ '/tesseramento.html' | relative_url }}">Diventa socio</a>
+    </div>
+    <p class="ozx-status" id="ozx-status" role="status" aria-live="polite"></p>
+  </div>
+  <iframe name="ozx-save-frame" id="ozx-save-frame" title="Invio della proposta" hidden></iframe>
+</section>
+
+<div class="ozx-overlay" id="ozx-audio" hidden>
+  <div class="ozx-modal" role="dialog" aria-modal="true" aria-labelledby="ozx-audio-title" tabindex="-1">
+    <div class="ozx-modal-head">
+      <h2 id="ozx-audio-title">La storia di OzoSteam</h2>
+      <button class="ozx-close" type="button" aria-label="Chiudi l'audio">×</button>
+    </div>
+    <audio controls preload="none" id="ozx-audio-player">
+      <source src="{{ '/assets/media/ozosteam-racconto-maker-faire.mp3' | relative_url }}" type="audio/mpeg">
+      <a href="{{ '/assets/media/ozosteam-racconto-maker-faire.mp3' | relative_url }}">Apri l'audio</a>
+    </audio>
+    <p class="ozx-media-fallback" id="ozx-audio-fallback" hidden>Non riesci ad ascoltarlo? <a href="{{ '/assets/media/ozosteam-racconto-maker-faire.mp3' | relative_url }}">Apri direttamente l'audio.</a></p>
+  </div>
+</div>
+<script defer src="{{ '/assets/js/ozosteam-experience.js' | relative_url }}?v=20261004-4"></script>
