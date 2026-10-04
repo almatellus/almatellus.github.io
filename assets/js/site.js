@@ -154,7 +154,7 @@
       form.elements.oggetto.value = contactSubjects[contactTopic];
       form.elements.oggetto.defaultValue = contactSubjects[contactTopic];
       form.elements.messaggio.placeholder =
-        "Indica il nome della tua attività, un referente e cosa vorresti realizzare con Alma Tellus.";
+        "Indica la tua società ed un referente.";
     }
 
     let submitted = false;
