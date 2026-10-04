@@ -50,7 +50,7 @@
 .enterprise-text-link { color: #35523b; font-size: 1rem; font-weight: 700; line-height: 1.6; text-underline-offset: 5px; }
 .alma-enterprises a:focus-visible { outline: 3px solid #9d7b38; outline-offset: 5px; }
 .alma-enterprises section { scroll-margin-top: 98px; }
-.enterprise-section-heading h2, .enterprise-project h2, .enterprise-membership h2, .enterprise-thanks h2, .enterprise-contact h2 {
+.enterprise-section-heading h2, .enterprise-project h2, .enterprise-support h2, .enterprise-thanks h2, .enterprise-contact h2 {
   margin: 0 0 20px;
   font-size: clamp(2rem, 3.3vw, 3rem);
 }
@@ -71,11 +71,14 @@
 .enterprise-project img { display: block; width: 100%; height: auto; object-fit: contain; }
 .enterprise-project p { margin: 0 0 16px; }
 .alma-enterprises .enterprise-project-note { font-size: .9375rem; line-height: 1.6; }
-.enterprise-membership { display: grid; grid-template-columns: minmax(0, 1fr) 230px; gap: 40px; align-items: center; margin-top: 26px; padding: 36px; border: 1px solid #d7dfd5; border-radius: 15px; background: #e9eee6; }
-.enterprise-membership p { max-width: 680px; margin: 0 0 22px; }
-.enterprise-fee { display: grid; gap: 14px; padding-left: 32px; border-left: 1px solid #bac9bb; }
-.enterprise-fee strong { font: 400 clamp(3.5rem, 5vw, 4.5rem)/1.1 Georgia, serif; color: #334b3b; }
-.enterprise-fee span { color: #48534b; font-size: .9375rem; line-height: 1.5; }
+.enterprise-support { display: grid; grid-template-columns: minmax(0, 1fr) 230px; gap: 40px; align-items: center; margin-top: 26px; padding: 36px; border: 1px solid #d7dfd5; border-radius: 15px; background: #e9eee6; }
+.enterprise-support p { max-width: 680px; margin: 0 0 22px; }
+.enterprise-support-options { margin: 0 0 22px; padding-left: 1.3em; color: #48534b; font-size: 1.0625rem; line-height: 1.65; }
+.enterprise-support-options li + li { margin-top: 10px; }
+.enterprise-support-options li::marker { color: #4b6953; }
+.enterprise-support-summary { display: grid; gap: 14px; padding-left: 32px; border-left: 1px solid #bac9bb; }
+.enterprise-support-summary strong { font: 400 clamp(1.75rem, 3vw, 2.25rem)/1.2 Georgia, serif; color: #334b3b; }
+.enterprise-support-summary span { color: #48534b; font-size: .9375rem; line-height: 1.5; }
 .enterprise-thanks { padding: 42px 0; border-bottom: 1px solid #d9ddd4; }
 .enterprise-thanks p, .enterprise-contact p { max-width: 850px; }
 .enterprise-contact { padding-top: 42px; }
@@ -91,6 +94,6 @@
   .enterprise-contributions > div { grid-template-columns: 1fr; gap: 9px; }
   .enterprise-project { grid-template-columns: 1fr; gap: 23px; padding: 25px 22px; }
   .enterprise-project figure { max-width: 220px; margin: 0 auto; }
-  .enterprise-membership { grid-template-columns: 1fr; gap: 25px; padding: 27px 22px; }
-  .enterprise-fee { padding: 23px 0 0; border-left: 0; border-top: 1px solid #bac9bb; }
+  .enterprise-support { grid-template-columns: 1fr; gap: 25px; padding: 27px 22px; }
+  .enterprise-support-summary { padding: 23px 0 0; border-left: 0; border-top: 1px solid #bac9bb; }
 }

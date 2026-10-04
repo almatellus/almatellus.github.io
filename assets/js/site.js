@@ -148,13 +148,24 @@
     const contactTopic = new URLSearchParams(window.location.search).get("tema");
     const contactSubjects = {
       imprese: "Imprese e professionisti - Proposta di collaborazione",
-      benemerito: "Impresa - Richiesta di adesione come Socio Benemerito"
+      "sostegno-fiera": "Sostegno alla Maker Faire Rome 2026",
+      benemerito: "Sostegno alla Maker Faire Rome 2026"
     };
     if (Object.prototype.hasOwnProperty.call(contactSubjects, contactTopic)) {
       form.elements.oggetto.value = contactSubjects[contactTopic];
       form.elements.oggetto.defaultValue = contactSubjects[contactTopic];
       form.elements.messaggio.placeholder =
         "Indica la tua società ed un referente.";
+    }
+
+    if (contactTopic === "sostegno-fiera" || contactTopic === "benemerito") {
+      const heading = document.getElementById("contact-title");
+      const intro = document.getElementById("contact-intro");
+      if (heading) heading.textContent = "Il tuo contributo per la fiera";
+      if (intro) {
+        intro.textContent =
+          "Puoi sostenere Alma Tellus alla Maker Faire Rome 2026 con un contributo economico, materiali in donazione o attrezzature e materiali in prestito.";
+      }
     }
 
     let submitted = false;
