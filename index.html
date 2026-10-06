@@ -22,6 +22,77 @@ body_class: page-home
 @media (max-width: 760px) {
   .alma-home-imprese { grid-template-columns: 1fr; gap: 20px; padding: 27px 6px; }
 }
+
+.alma-home-entry {
+  margin-top: 22px;
+  padding-top: 22px;
+  border-top: 1px solid #d9ddd4;
+}
+.alma-home-entry-title {
+  max-width: 720px;
+  margin: 0 0 14px;
+  font-size: clamp(1.22rem, 2vw, 1.55rem);
+  line-height: 1.25;
+  font-weight: 800;
+}
+.alma-home-entry-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 11px;
+}
+.alma-home-feature-copy .alma-home-entry-actions a {
+  margin: 0;
+}
+
+.alma-home-verb {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+  margin-top: 26px;
+  padding: 28px 30px;
+  border-top: 1px solid #d9ddd4;
+  border-bottom: 1px solid #d9ddd4;
+}
+.alma-home-verb h2 {
+  margin-bottom: 10px;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+}
+.alma-home-verb p:not(.alma-home-label) {
+  max-width: 700px;
+  margin-bottom: 0;
+  font-size: 1.05rem;
+}
+.alma-home-verb > a {
+  white-space: nowrap;
+}
+
+.alma-home-start {
+  margin-top: 8px;
+  padding: 30px;
+  border-top: 1px solid #d9ddd4;
+}
+.alma-home-start h2 {
+  margin-bottom: 14px;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+}
+.alma-home-start-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+}
+.alma-home-start-links a {
+  color: #35523b;
+  font-weight: 700;
+  text-underline-offset: 5px;
+}
+@media (max-width: 760px) {
+  .alma-home-entry-actions { align-items: stretch; }
+  .alma-home-entry-actions a { width: 100%; text-align: center; }
+  .alma-home-verb { grid-template-columns: 1fr; gap: 18px; padding: 27px 6px; }
+  .alma-home-verb > a { justify-self: start; }
+  .alma-home-start { padding: 27px 6px; }
+}
 /* Bilanciamento grafico del riquadro Maker Faire: desktop e tablet. */
 @media (min-width: 761px) {
   .alma-home-feature {
@@ -81,7 +152,16 @@ body_class: page-home
       <p class="alma-home-label">In primo piano <span aria-hidden="true">/</span> Maker Faire Rome 2026</p>
       <h1 id="home-feature-title">Le idee prendono forma. Insieme.</h1>
       <p class="alma-home-lead"><strong>Alma Tellus è un’associazione senza scopo di lucro</strong> che mette in relazione persone, strumenti e competenze per trasformare idee in progetti utili. Dal <strong>23 al 25 ottobre</strong> saremo a Maker Faire Rome 2026, al Gazometro Ostiense, con OzoSteam Station.</p>
-      <div class="conversion-actions"><a class="alma-home-button" data-alma-event="membership_cta" href="{{ '/diventa-socio.html' | relative_url }}">Diventa socio</a><a class="btn btn-secondary" data-alma-event="b2b_cta" href="{{ '/collabora-ozosteam.html' | relative_url }}">Sei un’impresa? Collabora con OzoSteam</a></div><p>OzoSteam è un prototipo sperimentale in sviluppo. Cerchiamo partner per le prossime fasi.</p><a href="{{ '/ozosteam-station.html' | relative_url }}#maker-faire-title">Incontraci alla Maker Faire Rome 2026</a>
+      <div class="alma-home-entry">
+        <p class="alma-home-entry-title">Porta un’idea. Fai una domanda. Dicci cosa ne pensi.</p>
+        <div class="conversion-actions alma-home-entry-actions">
+          <a class="alma-home-button" href="{{ '/contatti.html' | relative_url }}">Raccontaci la tua idea</a>
+          <a class="btn btn-secondary" href="{{ '/ozosteam-experience.html' | relative_url }}">Scopri OzoSteam</a>
+          <a class="btn btn-secondary" data-alma-event="membership_cta" href="{{ '/diventa-socio.html' | relative_url }}">Diventa socio</a>
+        </div>
+      </div>
+      <p>OzoSteam è un prototipo sperimentale in sviluppo. Cerchiamo partner per le prossime fasi.</p>
+      <a href="{{ '/ozosteam-station.html' | relative_url }}#maker-faire-title">Incontraci alla Maker Faire Rome 2026</a>
     </div>
     <figure class="alma-home-image alma-home-official-poster">
       <a class="alma-home-poster-frame" href="https://makerfairerome.eu/" target="_blank" rel="noopener noreferrer" aria-label="Visita il sito ufficiale di Maker Faire Rome 2026">
@@ -103,6 +183,15 @@ body_class: page-home
     </div>
   </section>
 
+  <section class="alma-home-verb" aria-labelledby="home-verb-title">
+    <div>
+      <p class="alma-home-label">Partecipa a OzoSteam</p>
+      <h2 id="home-verb-title">Come chiameresti questa azione?</h2>
+      <p>OzoSteam sta cercando anche il suo verbo. Per ora diciamo <strong>OzoStimmare</strong>. Tu come lo chiameresti?</p>
+    </div>
+    <a class="alma-home-button" href="{{ '/ozosteam-experience.html' | relative_url }}">Inventalo tu</a>
+  </section>
+
   <section class="alma-home-imprese" aria-labelledby="home-imprese-title">
     <div>
       <p class="alma-home-label">Imprese e professionisti</p>
@@ -110,5 +199,16 @@ body_class: page-home
       <p>Un’esigenza da affrontare, competenze da condividere o un progetto da sostenere. Aziende, artigiani e professionisti possono costruire qualcosa insieme ad Alma Tellus.</p>
     </div>
     <a href="{{ '/imprese.html' | relative_url }}">Scopri come partecipare</a>
+  </section>
+
+  <section class="alma-home-start" aria-labelledby="home-start-title">
+    <p class="alma-home-label">Partecipa</p>
+    <h2 id="home-start-title">Scegli da dove iniziare.</h2>
+    <div class="alma-home-start-links">
+      <a href="{{ '/contatti.html' | relative_url }}">Porta un’idea</a>
+      <a href="https://whatsapp.com/channel/0029Vb8PxsxDDmFSSQJfit0f">Segui il canale WhatsApp</a>
+      <a href="{{ '/progetti.html' | relative_url }}">Scopri i progetti</a>
+      <a data-alma-event="membership_cta" href="{{ '/diventa-socio.html' | relative_url }}">Diventa socio</a>
+    </div>
   </section>
 </div>
