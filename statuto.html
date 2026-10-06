@@ -15,8 +15,8 @@ robots: noindex,nofollow,noarchive,nosnippet,noimageindex
 .statuto-pages{display:grid;gap:26px;justify-items:center}
 .statuto-page{display:block;width:min(900px,94vw);height:auto;background:#fff;box-shadow:0 10px 34px rgba(25,45,32,.10);border:1px solid #e2e5df;border-radius:5px;touch-action:pan-y}
 .statuto-back{display:flex;justify-content:center;margin-top:34px}
-.statuto-back a{font-weight:700;color:#35523b;text-underline-offset:4px}
-.statuto-shell,.statuto-shell *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.statuto-back{font-weight:700;color:#35523b}
+.statuto-shell,.statuto-shell *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none} body{cursor:pointer}
 @media print{body{display:none!important}}
 </style>
 
@@ -27,7 +27,7 @@ robots: noindex,nofollow,noarchive,nosnippet,noimageindex
   </header>
   <div class="statuto-note">Consultazione a schermo del testo statutario. La copia registrata e sottoscritta è conservata agli atti dell’associazione.</div>
   <div id="statuto-pages" class="statuto-pages" aria-label="Pagine dello statuto"></div>
-  <div class="statuto-back"><a href="{{ '/soci.html' | relative_url }}">Torna alla richiesta di adesione</a></div>
+  <div class="statuto-back" aria-hidden="true">Clicca in qualsiasi punto per tornare indietro</div>
 </section>
 
 <script>
@@ -130,6 +130,14 @@ robots: noindex,nofollow,noarchive,nosnippet,noimageindex
   });
   document.addEventListener("keydown",function(e){
     if((e.ctrlKey||e.metaKey) && ["c","x","s","p","u","a"].includes(e.key.toLowerCase())) e.preventDefault();
+  },{capture:true});
+
+  const returnTo=document.referrer && document.referrer.indexOf(location.host)!==-1
+    ? document.referrer
+    : "{{ '/soci.html' | relative_url }}";
+  document.addEventListener("click",function(e){
+    e.preventDefault();
+    location.href=returnTo;
   },{capture:true});
 
   render();
