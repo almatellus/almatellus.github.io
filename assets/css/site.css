@@ -43,6 +43,12 @@ a {
   color: inherit;
 }
 
+.legal-inline-link,
+.legal-inline-link:hover,
+.legal-inline-link:focus-visible {
+  text-decoration: none;
+}
+
 img {
   max-width: 100%;
 }
