@@ -40,7 +40,9 @@
   }
   </script>
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-  <link rel="icon" href="{{ '/logo.png' | relative_url }}" type="image/png">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/logo.png' | absolute_url }}?v=20261007">
+  <link rel="shortcut icon" type="image/png" href="{{ '/logo.png' | absolute_url }}?v=20261007">
+  <link rel="apple-touch-icon" href="{{ '/logo.png' | absolute_url }}?v=20261007">
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}?v=imprese-20261004">
   {% if page.extra_css %}<link rel="stylesheet" href="{{ page.extra_css | relative_url }}">{% endif %}
   <script defer src="{{ '/config.js' | relative_url }}?v=ozosteam-verbi-20261004"></script>
