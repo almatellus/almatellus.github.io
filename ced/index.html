@@ -33,7 +33,7 @@ permalink: /ced/
 <pre id="editor" aria-label="Codice COBOL">****** ***************************** TOP OF DATA ******************************
             WAITING FOR INPUT...
 ****** **************************** BOTTOM OF DATA ***************************</pre>
-<div class="row"><button id="replay" disabled>Rivedi la scrittura</button><button id="execute" disabled>Esegui programma</button><span id="version" class="sub"></span></div>
+<div class="row"><button id="execute" disabled>Esegui programma</button><span id="version" class="sub"></span></div>
 <div class="run" id="console" aria-live="polite">READY.</div>
 <p class="small">Dimostrazione Alma Tellus. La visualizzazione del sorgente è reale. Il pulsante Esegui interpreta nel browser un sottoinsieme di istruzioni COBOL (DISPLAY, ACCEPT, MULTIPLY, COMPUTE e lettura della data/ora), senza compilare con GnuCOBOL. Altri programmi richiedono un motore di esecuzione dedicato.</p>
 </div>
@@ -42,7 +42,7 @@ permalink: /ced/
 (function(){
 "use strict";
 const $=id=>document.getElementById(id);
-const runtimeVersion="CED-1.5";
+const runtimeVersion="CED-1.6";
 let last=null, active=null, timer=null, stepping=false;
 const endpoint="/ced/live.json";
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
@@ -51,14 +51,14 @@ async function animate(data){
   const id=data.id;stepping=true;$("status").textContent="GENERAZIONE SORGENTE...";
   $("editor").textContent="****** ***************************** TOP OF DATA ******************************\n";
   $("console").textContent="READY.";
-  $("execute").disabled=true;$("replay").disabled=true;
+  $("execute").disabled=true;
   const all=lines(data.code);for(const line of all){
     if(!active||active.id!==id){stepping=false;return}
     $("editor").textContent+=line+"\n";
-    await pause(95);
+    await pause(30);
   }
   $("editor").textContent+="****** **************************** BOTTOM OF DATA ***************************";
-  stepping=false;$("status").textContent="SORGENTE PRONTO";$("replay").disabled=false;
+  stepping=false;$("status").textContent="SORGENTE PRONTO";
   $("execute").disabled=!isSupported(data.code);
 }
 function isSupported(code){
@@ -149,7 +149,7 @@ async function check(){
     }
   }catch(e){$("status").textContent="CONNESSIONE IN ATTESA"}
 }
-$("replay").addEventListener("click",()=>{if(active&&!stepping)animate(active)});
+
 $("execute").addEventListener("click",execute);
 check();setInterval(check,8000);
 })();
