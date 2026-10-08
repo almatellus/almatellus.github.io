@@ -42,7 +42,7 @@ permalink: /ced/
 (function(){
 "use strict";
 const $=id=>document.getElementById(id);
-const runtimeVersion="CED-1.6";
+const runtimeVersion="CED-1.7";
 let last=null, active=null, timer=null, stepping=false;
 const endpoint="/ced/live.json";
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
@@ -55,7 +55,7 @@ async function animate(data){
   const all=lines(data.code);for(const line of all){
     if(!active||active.id!==id){stepping=false;return}
     $("editor").textContent+=line+"\n";
-    await pause(30);
+    await pause(95);
   }
   $("editor").textContent+="****** **************************** BOTTOM OF DATA ***************************";
   stepping=false;$("status").textContent="SORGENTE PRONTO";
