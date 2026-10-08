@@ -149,7 +149,7 @@ async function fetchLatest(){
       const response=await fetch(githubEndpoint+"&t="+now,{cache:"no-store",headers:{"Accept":"application/vnd.github+json"}});
       if(response.ok){
         const file=await response.json();
-        const encoded=String(file.content||"").replace(/\\s/g,"");
+        const encoded=String(file.content||"").replace(/\s/g,"");
         const binary=atob(encoded);
         const bytes=Uint8Array.from(binary,c=>c.charCodeAt(0));
         return JSON.parse(new TextDecoder("utf-8").decode(bytes));
@@ -157,7 +157,11 @@ async function fetchLatest(){
       if(response.status===403||response.status===429)apiCalls=35;
     }catch(e){/* Fall back to the published site */ }
   }
-  // After the short live demonstration, reduce API traffic automatically.
+  // Use the repository raw source when API quota is exhausted.
+  try{
+    const raw=await fetch("https://raw.githubusercontent.com/almatellus/almatellus.github.io/main/ced/live.json?t="+now,{cache:"no-store"});
+    if(raw.ok)return await raw.json();
+  }catch(e){/* Fall back to Pages */}
   const response=await fetch(endpoint+"?t="+now,{cache:"no-store"});
   if(!response.ok)throw new Error("HTTP "+response.status);
   return response.json();
