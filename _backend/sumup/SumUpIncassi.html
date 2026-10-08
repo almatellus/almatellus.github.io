@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <base target="_top">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Incassi SumUp · Alma Tellus</title>
+  <style>
+    :root{color-scheme:light;--ink:#153a42;--accent:#237363;--paper:#f6f3ec;--line:#dbe4dd}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+    main{max-width:1100px;margin:auto;padding:24px}a{color:var(--accent)}header{margin-bottom:24px}header a{text-decoration:none}h1{margin:14px 0 4px;font-size:clamp(27px,4vw,38px);line-height:1.2}h2{font-size:21px;margin:0 0 12px}.intro{margin:0;color:#56706f}
+    .panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:18px}.filters{display:flex;align-items:end;gap:12px;flex-wrap:wrap}label{display:flex;flex-direction:column;font-size:14px;font-weight:600;gap:5px}input,select,button{font:inherit;border:1px solid #b9cac1;border-radius:9px;background:#fff;color:var(--ink);min-height:44px;padding:9px 12px}button{cursor:pointer;font-weight:600}button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}button:disabled{opacity:.6;cursor:wait}:focus-visible{outline:3px solid #b88728;outline-offset:3px}.quick{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 0}.quick button{font-size:14px;min-height:36px}
+    .notice{border-radius:12px;padding:14px 16px;margin-bottom:16px;background:#eaf0ec;border:1px solid #c9d8cd}.notice.error{background:#fff0ee;border-color:#edc1b9}.notice.warn{background:#fff6df;border-color:#e5d5a4}.notice p{margin:6px 0 0}.totals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:18px}.metric{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fff}.metric span{display:block;color:#56706f;font-size:14px}.metric strong{display:block;font-size:27px;margin-top:5px}.metric small{display:block;color:#56706f;margin-top:5px}.subtle{color:#56706f;font-size:14px}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:13px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{color:#56706f;font-weight:600}.money{white-space:nowrap;font-weight:700}.code{display:block;font:12px/1.5 ui-monospace,monospace;color:#56706f;overflow-wrap:anywhere}.badge{display:inline-block;border-radius:7px;padding:3px 8px;background:#edf1ed;white-space:nowrap}.badge.good{background:#e0f2e7;color:#205d3e}.badge.bad{background:#ffe8e4;color:#9f392d}td button{padding:6px 9px;min-height:36px;font-size:13px}.empty{text-align:center;padding:30px 12px;color:#56706f}dialog{width:min(480px,calc(100% - 32px));border:1px solid var(--line);border-radius:16px;padding:24px;color:var(--ink)}dialog::backdrop{background:#153a4270}dl{display:grid;grid-template-columns:1fr 1fr;gap:10px}dt{color:#56706f}dd{margin:0;overflow-wrap:anywhere}[hidden]{display:none!important}.footer{max-width:800px;margin-top:16px}
+    @media(max-width:650px){main{padding:16px}.panel{padding:16px}.filters>label{flex:1 1 140px}.filters button.primary{flex:1 1 100%}.totals{grid-template-columns:1fr}.metric strong{font-size:25px}thead{display:none}table,tbody,tr,td{display:block}tr{border-bottom:1px solid var(--line);padding:12px 0}td{padding:4px 0;border:0}td[data-label]::before{content:attr(data-label) ": ";color:#56706f;font-weight:400}.money{font-size:19px}.table-wrap{overflow:visible}.code{font-size:12px}}
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <a href="<?= areaRiservataUrl ?>?view=richieste">← Area riservata Alma Tellus</a>
+    <h1>Incassi SumUp</h1>
+    <p class="intro">I pagamenti ricevuti da Alma Tellus, in un unico elenco.</p>
+  </header>
+  <section class="panel" aria-label="Filtri">
+    <form id="filters" class="filters">
+      <label>Dal<input id="from" type="date" required></label>
+      <label>Al<input id="to" type="date" required></label>
+      <label>Visualizza<select id="status"><option value="paid">Pagamenti ricevuti</option><option value="all">Tutti i tentativi di pagamento</option></select></label>
+      <label>Importo<select id="amount"><option value="all">Tutti gli importi</option><option value="500">5 €</option><option value="1500">15 €</option></select></label>
+      <button id="refresh" class="primary" type="submit">Aggiorna incassi</button>
+    </form>
+    <div class="quick"><button type="button" data-period="today">Oggi</button><button type="button" data-period="month">Questo mese</button><button type="button" data-period="30">Ultimi 30 giorni</button></div>
+  </section>
+  <div id="notice" class="notice" role="status" aria-live="polite">Caricamento degli incassi…</div>
+  <section id="totals" class="totals" aria-label="Totali dei pagamenti visibili" hidden></section>
+  <section id="results" class="panel" hidden>
+    <h2>Transazioni</h2>
+    <p id="updated" class="subtle"></p>
+    <div class="table-wrap"><table><thead><tr><th>Data e ora</th><th>Descrizione</th><th>Importo</th><th>Stato</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
+  </section>
+  <p class="subtle footer">Gli importi dei riepiloghi sono prima delle commissioni SumUp. Un pagamento ricevuto e il successivo trasferimento al conto sono due momenti distinti. Il nominativo del pagante può non essere disponibile.</p>
+  <dialog id="detail"><h2>Dettaglio transazione</h2><div id="detail-body"></div><form method="dialog"><button>Chiudi</button></form></dialog>
+</main>
+<script>
+  'use strict';
+  const $ = id => document.getElementById(id);
+  let data = null, request = 0, detailRequest = 0, loading = false;
+  const labels = {SUCCESSFUL:'Ricevuto',PAID_OUT:'Trasferito da SumUp',REFUNDED:'Rimborso',REFUND_FAILED:'Rimborso non riuscito',FAILED:'Non riuscito',CANCELLED:'Annullato',PENDING:'In attesa',CHARGE_BACK:'Stornato',CHARGEBACK:'Stornato',NON_COLLECTION:'Stornato',CANCEL_FAILED:'Annullamento non riuscito'};
+  function textNode(tag, text, className) { const node = document.createElement(tag); node.textContent = text; if (className) node.className = className; return node; }
+  function money(cents, currency) { if (cents === null || cents === undefined) return 'Non disponibile'; try { return new Intl.NumberFormat('it-IT',{style:'currency',currency:currency}).format(cents/100); } catch (error) { return (cents/100).toFixed(2) + ' ' + currency; } }
+  function timestamp(value) { const date = new Date(value); return isNaN(date.getTime()) ? 'Data non disponibile' : new Intl.DateTimeFormat('it-IT',{dateStyle:'short',timeStyle:'short',timeZone:'Europe/Rome'}).format(date); }
+  function day(value) { return new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Rome',year:'numeric',month:'2-digit',day:'2-digit'}).format(value); }
+  function setPeriod(period) {
+    const today = day(new Date()); let from = today;
+    if (period === 'month') from = today.slice(0,8) + '01';
+    if (period === '30') { const previous = new Date(today + 'T12:00:00Z'); previous.setUTCDate(previous.getUTCDate()-29); from = previous.toISOString().slice(0,10); }
+    $('from').value = from; $('to').value = today;
+  }
+  function notice(message, type) { $('notice').hidden = false; $('notice').className = 'notice' + (type ? ' ' + type : ''); $('notice').replaceChildren(textNode('div',message)); }
+  function busy(value) { loading = value; $('refresh').disabled = value; $('refresh').textContent = value ? 'Caricamento…' : 'Aggiorna incassi'; $('results').setAttribute('aria-busy',String(value)); }
+  function clearResults() { data = null; $('totals').hidden = true; $('results').hidden = true; $('rows').replaceChildren(); }
+  function load() {
+    if (!$('filters').reportValidity()) return;
+    if ($('from').value > $('to').value) { notice('La data iniziale deve precedere quella finale.','error'); return; }
+    const active = ++request; clearResults(); busy(true); notice('Caricamento degli incassi da SumUp…');
+    if (typeof google === 'undefined' || !google.script || !google.script.run) {
+      busy(false); notice('Questa pagina va aperta nell’area riservata Alma Tellus.','warn'); return;
+    }
+    google.script.run.withSuccessHandler(result => {
+      if (active !== request) return;
+      busy(false);
+      if (!result.configured) {
+        notice('Collegamento SumUp da configurare.','warn');
+        $('notice').append(textNode('p','La pagina è pronta, ma la chiave API e il codice esercente devono essere configurati nel servizio dell’area riservata.'));
+        return;
+      }
+      data = result; render();
+    }).withFailureHandler(error => {
+      if (active !== request) return;
+      busy(false); clearResults(); notice(error && error.message ? error.message : 'Non riesco a caricare gli incassi. Riprova.','error');
+    }).sumupWebIncassi({from:$('from').value,to:$('to').value});
+  }
+  function visibleItems() { return data.items.filter(item => ($('status').value === 'all' || item.paid) && ($('amount').value === 'all' || (item.currency === 'EUR' && item.amountCents === Number($('amount').value)))); }
+  function totalGroups(items) {
+    const groups = new Map();
+    items.filter(item => item.paid).forEach(item => {
+      if (!groups.has(item.currency)) groups.set(item.currency,{currency:item.currency,count:0,gross:0,refund:0,retained:0});
+      const group = groups.get(item.currency); group.count++; group.gross += item.amountCents;
+      if (item.refundedCents === null) { group.refund = null; group.retained = null; }
+      else { if (group.refund !== null) group.refund += item.refundedCents; if (group.retained !== null) group.retained += item.retainedCents; }
+    });
+    return Array.from(groups.values());
+  }
+  function metric(label, value, note) { const box = textNode('div','','metric'); box.append(textNode('span',label),textNode('strong',value),textNode('small',note)); return box; }
+  function render() {
+    if (!data) return;
+    const items = visibleItems(), groups = totalGroups(items); $('totals').replaceChildren();
+    groups.forEach(group => $('totals').append(metric('Ricevuto lordo',money(group.gross,group.currency),group.count + ' pagamenti'),metric('Rimborsi',money(group.refund,group.currency),'Sui pagamenti del periodo'),metric('Incassi dopo i rimborsi',money(group.retained,group.currency),'Prima delle commissioni')));
+    $('totals').hidden = !groups.length; $('results').hidden = false;
+    if (data.complete) $('notice').hidden = true;
+    else notice('Elenco parziale: i totali riguardano solo le transazioni caricate. Scegli un periodo più breve.','warn');
+    $('updated').textContent = items.length + ' transazioni visibili · Aggiornato ' + timestamp(data.updatedAt);
+    $('rows').replaceChildren();
+    if (!items.length) { const row = document.createElement('tr'), cell = textNode('td','Nessuna transazione per i filtri selezionati.','empty'); cell.colSpan = 5; row.append(cell); $('rows').append(row); }
+    items.forEach(item => {
+      const row = document.createElement('tr');
+      const date = textNode('td',timestamp(item.timestamp)); date.dataset.label = 'Data';
+      const description = textNode('td',item.description || 'Pagamento SumUp'); description.append(textNode('span',item.code || item.id,'code'));
+      const amount = textNode('td',money(item.amountCents,item.currency),'money');
+      if (item.refundedCents > 0) amount.append(textNode('span','Rimborsato: ' + money(item.refundedCents,item.currency),'code'));
+      const status = document.createElement('td'); status.dataset.label = 'Stato'; status.append(textNode('span',labels[item.status] || item.status,'badge ' + (item.status === 'SUCCESSFUL' || item.status === 'PAID_OUT' ? 'good' : item.paid || item.status === 'PENDING' ? '' : 'bad')));
+      const action = document.createElement('td'), button = textNode('button','Dettagli'); button.type = 'button'; button.disabled = !item.id; button.addEventListener('click',() => details(item)); action.append(button);
+      row.append(date,description,amount,status,action); $('rows').append(row);
+    });
+  }
+  function details(item) {
+    const activeDetail = ++detailRequest;
+    const dialog = $('detail'); $('detail-body').replaceChildren(textNode('p','Caricamento del dettaglio…')); dialog.showModal();
+    google.script.run.withSuccessHandler(value => {
+      if (!dialog.open || activeDetail !== detailRequest) return;
+      const list = document.createElement('dl');
+      [['Codice',value.code || item.code || item.id],['Importo',money(item.amountCents,item.currency)],['Commissione',money(value.feeCents,value.currency || item.currency)],['Carta',[value.cardType,value.lastFour ? '•••• ' + value.lastFour : ''].filter(Boolean).join(' ') || 'Non disponibile'],['Stato',labels[value.status] || value.status || 'Non disponibile'],['Trasferimento SumUp',value.payoutsTotal > 0 && value.payoutsReceived >= value.payoutsTotal ? 'Eseguito da SumUp' : value.status === 'PAID_OUT' ? 'Eseguito da SumUp' : 'Non confermato'],['Nominativo','Non fornito dall’API transazioni']].forEach(pair => list.append(textNode('dt',pair[0]),textNode('dd',pair[1])));
+      $('detail-body').replaceChildren(list);
+    }).withFailureHandler(error => { if (dialog.open && activeDetail === detailRequest) $('detail-body').replaceChildren(textNode('p',error && error.message ? error.message : 'Dettaglio non disponibile.')); }).sumupWebDettaglio(item.id);
+  }
+  $('filters').addEventListener('submit',event => { event.preventDefault(); load(); });
+  $('status').addEventListener('change',render); $('amount').addEventListener('change',render);
+  document.querySelectorAll('[data-period]').forEach(button => button.addEventListener('click',() => { if (loading) return; setPeriod(button.dataset.period); load(); }));
+  setPeriod('month'); load();
+</script>
+</body>
+</html>
