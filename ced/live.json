@@ -1,5 +1,5 @@
 {
-  "id": "anno-20261008-01",
-  "request": "In che anno siamo?",
-  "code": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. ANNOATTUALE.\n       PROCEDURE DIVISION.\n           DISPLAY \"SIAMO NEL 2026\".\n           STOP RUN."
+  "id": "ora-test-20261008-03",
+  "request": "Dimmi l'ora",
+  "code": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. ORAESATTA.\n       DATA DIVISION.\n       WORKING-STORAGE SECTION.\n       01 WS-ORA PIC X(8).\n       PROCEDURE DIVISION.\n           ACCEPT WS-ORA FROM TIME.\n           DISPLAY \"ORA ATTUALE: \" WS-ORA(1:2) \":\" WS-ORA(3:2) \":\" WS-ORA(5:2).\n           STOP RUN."
 }
