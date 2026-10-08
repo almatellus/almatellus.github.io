@@ -42,7 +42,7 @@ permalink: /ced/
 (function(){
 "use strict";
 const $=id=>document.getElementById(id);
-const runtimeVersion="CED-1.4";
+const runtimeVersion="CED-1.5";
 let last=null, active=null, timer=null, stepping=false;
 const endpoint="/ced/live.json";
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
@@ -80,18 +80,18 @@ function getOps(code){
 async function execute(){
   if(!active||stepping||!isSupported(active.code))return;
   const area=$("console");area.replaceChildren();
-  if(/PROGRAM-ID\\.\\s*HEXASCII\\b/i.test(active.code)){
+  if(/PROGRAM-ID\.\s*HEXASCII\b/i.test(active.code)){
     area.textContent="INSERISCI CODICI ASCII ESADECIMALI:";
     const field=document.createElement("input");field.placeholder="Es. 43 49 41 4F";field.setAttribute("aria-label","Byte ASCII esadecimali");
     const go=document.createElement("button");go.textContent="Decodifica";go.style.marginLeft="10px";
     area.appendChild(document.createElement("div"));area.appendChild(field);area.appendChild(go);field.focus();
     const raw=await new Promise(resolve=>{let locked=false;function submit(){if(locked)return;locked=true;resolve(field.value)}go.addEventListener("click",submit);field.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();submit()}})});
     field.remove();go.remove();
-    let hex=raw.trim().replace(/\\s+/g,"");
+    let hex=raw.trim().replace(/\s+/g,"");
     const out=document.createElement("div");area.appendChild(out);
     if(!hex||hex.length%2||!/^[0-9a-fA-F]+$/.test(hex)){out.textContent="ERRORE: inserisci byte esadecimali completi (es. 43 49 41 4F).";}
     else{const bytes=hex.match(/../g).map(v=>parseInt(v,16));
-      out.textContent="MESSAGGIO DECODIFICATO: "+bytes.map(v=>(v>=32&&v<=126)?String.fromCharCode(v):v===10?"\\n":v===13?"":v===9?"\\t":"[0x"+v.toString(16).toUpperCase().padStart(2,"0")+"]").join("");
+      out.textContent="MESSAGGIO DECODIFICATO: "+bytes.map(v=>(v>=32&&v<=126)?String.fromCharCode(v):v===10?"\n":v===13?"":v===9?"\t":"[0x"+v.toString(16).toUpperCase().padStart(2,"0")+"]").join("");
     }
     const end=document.createElement("div");end.className="ok";end.textContent="PROGRAM TERMINATED.";area.appendChild(end);
     $("execute").disabled=false;return;
@@ -105,10 +105,10 @@ async function execute(){
       let out=parts.map(x=>x[1]??x[2]??(vars[(x[3]||x[4]).toUpperCase()]??"")).join("");
       const div=document.createElement("div");div.textContent=out;area.appendChild(div);
     }else if(op.type==="COMPUTE"){
-      const m=op.arg.match(/^([\\w-]+)\\s*=\\s*FUNCTION\\s+INTEGER-OF-DATE\\(([\\w-]+)\\)\\s*-\\s*FUNCTION\\s+INTEGER-OF-DATE\\(([\\w-]+)\\)$/i);
+      const m=op.arg.match(/^([\w-]+)\s*=\s*FUNCTION\s+INTEGER-OF-DATE\(([\w-]+)\)\s*-\s*FUNCTION\s+INTEGER-OF-DATE\(([\w-]+)\)$/i);
       if(!m){area.textContent="Espressione COMPUTE non supportata.";break}
       function dateNumber(s){
-        if(!/^\\d{8}$/.test(s||""))return NaN;
+        if(!/^\d{8}$/.test(s||""))return NaN;
         const yy=Number(s.slice(0,4)),mo=Number(s.slice(4,6)),dd=Number(s.slice(6,8));
         const n=Date.UTC(yy,mo-1,dd);const v=new Date(n);
         return yy>=1601&&v.getUTCFullYear()===yy&&v.getUTCMonth()===mo-1&&v.getUTCDate()===dd?n/86400000:NaN;
@@ -122,9 +122,9 @@ async function execute(){
       const a=Number(vars[m[1].toUpperCase()]),b=Number(vars[m[2].toUpperCase()]);
       vars[m[3].toUpperCase()]=String(a*b);
     }else if(op.type==="ACCEPT"){
-      const fromTime=op.arg.match(/^([\\w-]+)\\s+FROM\\s+TIME$/i);
+      const fromTime=op.arg.match(/^([\w-]+)\s+FROM\s+TIME$/i);
       if(fromTime){const now=new Date();const hhmmss=[now.getHours(),now.getMinutes(),now.getSeconds()].map(v=>String(v).padStart(2,"0")).join("");vars[fromTime[1].toUpperCase()]=hhmmss+"00";continue}
-      const fromDate=op.arg.match(/^([\\w-]+)\\s+FROM\\s+DATE\\s+YYYYMMDD$/i);
+      const fromDate=op.arg.match(/^([\w-]+)\s+FROM\s+DATE\s+YYYYMMDD$/i);
       if(fromDate){const now=new Date();vars[fromDate[1].toUpperCase()]=[now.getFullYear(),String(now.getMonth()+1).padStart(2,"0"),String(now.getDate()).padStart(2,"0")].join("");continue}
       const input=document.createElement("input");input.placeholder="Scrivi qui e premi Invio";input.setAttribute("aria-label",op.arg);
       const confirm=document.createElement("button");confirm.textContent="Conferma / Invio";confirm.style.marginLeft="10px";area.appendChild(input);area.appendChild(confirm);input.focus();
