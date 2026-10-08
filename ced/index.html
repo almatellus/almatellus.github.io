@@ -42,7 +42,7 @@ permalink: /ced/
 (function(){
 "use strict";
 const $=id=>document.getElementById(id);
-const runtimeVersion="CED-1.3";
+const runtimeVersion="CED-1.4";
 let last=null, active=null, timer=null, stepping=false;
 const endpoint="/ced/live.json";
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
@@ -63,7 +63,7 @@ async function animate(data){
 }
 function isSupported(code){
   const t=String(code||"").toUpperCase();
-  return /PROCEDURE\s+DIVISION/.test(t)&&/\bDISPLAY\b/.test(t) &&
+  return /PROCEDURE\s+DIVISION/.test(t)&&(/\bDISPLAY\b/.test(t)||/PROGRAM-ID\.\s*HEXASCII\b/.test(t)) &&
          !/\b(CALL|EXEC|FILE|OPEN|CLOSE|READ|WRITE|DELETE|SYSTEM|SORT|MERGE)\b/.test(t);
 }
 function getOps(code){
@@ -80,6 +80,22 @@ function getOps(code){
 async function execute(){
   if(!active||stepping||!isSupported(active.code))return;
   const area=$("console");area.replaceChildren();
+  if(/PROGRAM-ID\\.\\s*HEXASCII\\b/i.test(active.code)){
+    area.textContent="INSERISCI CODICI ASCII ESADECIMALI:";
+    const field=document.createElement("input");field.placeholder="Es. 43 49 41 4F";field.setAttribute("aria-label","Byte ASCII esadecimali");
+    const go=document.createElement("button");go.textContent="Decodifica";go.style.marginLeft="10px";
+    area.appendChild(document.createElement("div"));area.appendChild(field);area.appendChild(go);field.focus();
+    const raw=await new Promise(resolve=>{let locked=false;function submit(){if(locked)return;locked=true;resolve(field.value)}go.addEventListener("click",submit);field.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();submit()}})});
+    field.remove();go.remove();
+    let hex=raw.trim().replace(/\\s+/g,"");
+    const out=document.createElement("div");area.appendChild(out);
+    if(!hex||hex.length%2||!/^[0-9a-fA-F]+$/.test(hex)){out.textContent="ERRORE: inserisci byte esadecimali completi (es. 43 49 41 4F).";}
+    else{const bytes=hex.match(/../g).map(v=>parseInt(v,16));
+      out.textContent="MESSAGGIO DECODIFICATO: "+bytes.map(v=>(v>=32&&v<=126)?String.fromCharCode(v):v===10?"\\n":v===13?"":v===9?"\\t":"[0x"+v.toString(16).toUpperCase().padStart(2,"0")+"]").join("");
+    }
+    const end=document.createElement("div");end.className="ok";end.textContent="PROGRAM TERMINATED.";area.appendChild(end);
+    $("execute").disabled=false;return;
+  }
   const ops=getOps(active.code), vars={};
   if(!ops.length){area.textContent="Programma non supportato da questa demo.";return}
   $("execute").disabled=true;
