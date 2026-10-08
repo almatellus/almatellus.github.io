@@ -42,7 +42,7 @@ permalink: /ced/
 (function(){
 "use strict";
 const $=id=>document.getElementById(id);
-const runtimeVersion="CED-2.0";
+const runtimeVersion="CED-2.1";
 let last=null, active=null, timer=null, stepping=false;
 const endpoint="/ced/live.json";
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
@@ -144,6 +144,8 @@ async function execute(){
 }
 const githubEndpoint="https://api.github.com/repos/almatellus/almatellus.github.io/contents/ced/live.json?ref=main";
 let apiCalls=0, nextCall=0, inFlight=false;
+const seenJobs=new Set();
+let directSourceSeen=false;
 const channel=s=>{const el=$("channel");if(el)el.textContent="Collegamento: "+s};
 async function fetchLatest(){
   const now=Date.now();
@@ -159,6 +161,7 @@ async function fetchLatest(){
         const encoded=String(file.content||"").replace(/\s/g,"");
         const binary=atob(encoded);
         const bytes=Uint8Array.from(binary,c=>c.charCodeAt(0));
+        directSourceSeen=true;
         channel("GitHub diretto");
         return JSON.parse(new TextDecoder("utf-8").decode(bytes));
       }
@@ -168,8 +171,9 @@ async function fetchLatest(){
   // Use the repository raw source when API quota is exhausted.
   try{
     const raw=await fetch("https://raw.githubusercontent.com/almatellus/almatellus.github.io/main/ced/live.json?t="+now,{cache:"no-store"});
-    if(raw.ok){channel("GitHub raw");return await raw.json();}
+    if(raw.ok){directSourceSeen=true;channel("GitHub raw");return await raw.json();}
   }catch(e){/* Fall back to Pages */}
+  if(directSourceSeen)return null; // Never roll back to an older Pages deployment.
   const response=await fetch(endpoint+"?t="+now,{cache:"no-store"});
   if(!response.ok)throw new Error("HTTP "+response.status);
   channel("GitHub Pages (attesa pubblicazione)");
@@ -181,7 +185,8 @@ async function check(){
   try{
     const data=await fetchLatest();
     if(!data||!data.id||!data.code)return;
-    if(data.id!==last){
+    if(!seenJobs.has(data.id)){
+      seenJobs.add(data.id);
       last=data.id;active=data;$("request").textContent=data.request||"Richiesta ricevuta";
       $("version").textContent="JOB "+data.id+" | "+runtimeVersion;
       await animate(data);
