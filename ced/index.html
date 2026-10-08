@@ -29,7 +29,7 @@ permalink: /ced/
 ****** **************************** BOTTOM OF DATA ***************************</pre>
 <div class="row"><button id="replay" disabled>Rivedi la scrittura</button><button id="execute" disabled>Esegui programma</button><span id="version" class="sub"></span></div>
 <div class="run" id="console" aria-live="polite">READY.</div>
-<p class="small">Dimostrazione Alma Tellus. La visualizzazione del sorgente è reale. Il pulsante Esegui interpreta nel browser un sottoinsieme di istruzioni COBOL (DISPLAY e ACCEPT), senza compilare con GnuCOBOL. Altri programmi richiedono un motore di esecuzione dedicato.</p>
+<p class="small">Dimostrazione Alma Tellus. La visualizzazione del sorgente è reale. Il pulsante Esegui interpreta nel browser un sottoinsieme di istruzioni COBOL (DISPLAY, ACCEPT e ACCEPT FROM TIME), senza compilare con GnuCOBOL. Altri programmi richiedono un motore di esecuzione dedicato.</p>
 </div>
 </main>
 <script>
@@ -82,6 +82,8 @@ async function execute(){
       let out=parts.map(x=>x[1]??x[2]??(vars[(x[3]||x[4]).toUpperCase()]??"")).join("");
       const div=document.createElement("div");div.textContent=out;area.appendChild(div);
     }else if(op.type==="ACCEPT"){
+      const fromTime=op.arg.match(/^([\\w-]+)\\s+FROM\\s+TIME$/i);
+      if(fromTime){const now=new Date();const hhmmss=[now.getHours(),now.getMinutes(),now.getSeconds()].map(v=>String(v).padStart(2,"0")).join("");vars[fromTime[1].toUpperCase()]=hhmmss+"00";continue}
       const input=document.createElement("input");input.placeholder="Scrivi qui e premi Invio";input.setAttribute("aria-label",op.arg);
       const confirm=document.createElement("button");confirm.textContent="Conferma / Invio";confirm.style.marginLeft="10px";area.appendChild(input);area.appendChild(confirm);input.focus();
       const value=await new Promise(resolve=>{let done=false;const submit=()=>{if(done)return;done=true;resolve(input.value)};confirm.addEventListener("click",submit);input.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();submit()}})});confirm.remove();
