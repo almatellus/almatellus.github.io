@@ -1,5 +1,5 @@
 {
-  "id": "ora-20261008-01",
-  "request": "Fai un programma che mi dice che ore sono",
-  "code": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. ORAESATTA.\n       DATA DIVISION.\n       WORKING-STORAGE SECTION.\n       01 WS-ORA PIC X(8).\n       PROCEDURE DIVISION.\n           ACCEPT WS-ORA FROM TIME.\n           DISPLAY \"ORA ATTUALE: \" WS-ORA(1:2) \":\" WS-ORA(3:2) \":\" WS-ORA(5:2).\n           STOP RUN."
+  "id": "moltiplica-20261008-01",
+  "request": "Fai un programma che chiede in input due numeri e li moltiplica.",
+  "code": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. MOLTIPLICA.\n       DATA DIVISION.\n       WORKING-STORAGE SECTION.\n       01 WS-NUM1 PIC 9(6).\n       01 WS-NUM2 PIC 9(6).\n       01 WS-RISULTATO PIC 9(12).\n       PROCEDURE DIVISION.\n           DISPLAY \"INSERISCI IL PRIMO NUMERO:\".\n           ACCEPT WS-NUM1.\n           DISPLAY \"INSERISCI IL SECONDO NUMERO:\".\n           ACCEPT WS-NUM2.\n           MULTIPLY WS-NUM1 BY WS-NUM2 GIVING WS-RISULTATO.\n           DISPLAY \"IL RISULTATO E': \" WS-RISULTATO.\n           STOP RUN."
 }
