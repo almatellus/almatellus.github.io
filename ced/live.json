@@ -1,5 +1,5 @@
 {
-  "id": "ora-20261008-02",
-  "request": "Fai un programma che scrive che ora è",
-  "code": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. ORAESATTA.\n       DATA DIVISION.\n       WORKING-STORAGE SECTION.\n       01 WS-ORA PIC X(8).\n       PROCEDURE DIVISION.\n           ACCEPT WS-ORA FROM TIME.\n           DISPLAY \"ORA ATTUALE: \" WS-ORA(1:2) \":\" WS-ORA(3:2) \":\" WS-ORA(5:2).\n           STOP RUN."
+  "id": "giornosett-20261008-01",
+  "request": "Dimmi il giorno della settimana di oggi",
+  "code": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. GIORNOSETT.\n       DATA DIVISION.\n       WORKING-STORAGE SECTION.\n       01 WS-DATA PIC 9(8).\n       01 WS-NUMERO BINARY-LONG.\n       01 WS-GIORNO BINARY-LONG.\n       01 WS-NOME PIC X(10).\n       PROCEDURE DIVISION.\n           ACCEPT WS-DATA FROM DATE YYYYMMDD.\n           COMPUTE WS-NUMERO =\n               FUNCTION INTEGER-OF-DATE(WS-DATA).\n           COMPUTE WS-GIORNO =\n               FUNCTION MOD(WS-NUMERO - 1, 7) + 1.\n           EVALUATE WS-GIORNO\n               WHEN 1 MOVE \"LUNEDI\" TO WS-NOME\n               WHEN 2 MOVE \"MARTEDI\" TO WS-NOME\n               WHEN 3 MOVE \"MERCOLEDI\" TO WS-NOME\n               WHEN 4 MOVE \"GIOVEDI\" TO WS-NOME\n               WHEN 5 MOVE \"VENERDI\" TO WS-NOME\n               WHEN 6 MOVE \"SABATO\" TO WS-NOME\n               WHEN 7 MOVE \"DOMENICA\" TO WS-NOME\n           END-EVALUATE.\n           DISPLAY \"OGGI E' \" WS-NOME.\n           STOP RUN."
 }
