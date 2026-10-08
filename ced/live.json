@@ -1,6 +1,5 @@
 {
-  "id": "secolo-20261008-01",
-  "revision": 2026100802,
-  "request": "Dimmi in che secolo siamo",
-  "code": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. SECOLOATTUALE.\n       PROCEDURE DIVISION.\n           DISPLAY \"SIAMO NEL XXI SECOLO\".\n           STOP RUN."
+  "id": "mese-20261008-01",
+  "request": "Che mese è?",
+  "code": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. MESEATTUALE.\n       PROCEDURE DIVISION.\n           DISPLAY \"SIAMO NEL MESE DI OTTOBRE\".\n           STOP RUN."
 }
