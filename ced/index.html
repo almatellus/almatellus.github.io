@@ -42,7 +42,7 @@ permalink: /ced/
 (function(){
 "use strict";
 const $=id=>document.getElementById(id);
-const runtimeVersion="CED-2.1";
+const runtimeVersion="CED-2.2";
 let last=null, active=null, timer=null, stepping=false;
 const endpoint="/ced/live.json";
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
@@ -146,6 +146,7 @@ const githubEndpoint="https://api.github.com/repos/almatellus/almatellus.github.
 let apiCalls=0, nextCall=0, inFlight=false;
 const seenJobs=new Set();
 let directSourceSeen=false;
+let newestRevision=0;
 const channel=s=>{const el=$("channel");if(el)el.textContent="Collegamento: "+s};
 async function fetchLatest(){
   const now=Date.now();
@@ -173,7 +174,7 @@ async function fetchLatest(){
     const raw=await fetch("https://raw.githubusercontent.com/almatellus/almatellus.github.io/main/ced/live.json?t="+now,{cache:"no-store"});
     if(raw.ok){directSourceSeen=true;channel("GitHub raw");return await raw.json();}
   }catch(e){/* Fall back to Pages */}
-  if(directSourceSeen)return null; // Never roll back to an older Pages deployment.
+  // GitHub Pages is the reliable fallback if direct endpoints are stale or unavailable.
   const response=await fetch(endpoint+"?t="+now,{cache:"no-store"});
   if(!response.ok)throw new Error("HTTP "+response.status);
   channel("GitHub Pages (attesa pubblicazione)");
@@ -185,7 +186,10 @@ async function check(){
   try{
     const data=await fetchLatest();
     if(!data||!data.id||!data.code)return;
+    const revision=Number(data.revision||0);
+    if(revision < newestRevision)return;
     if(!seenJobs.has(data.id)){
+      newestRevision=Math.max(newestRevision,revision);
       seenJobs.add(data.id);
       last=data.id;active=data;$("request").textContent=data.request||"Richiesta ricevuta";
       $("version").textContent="JOB "+data.id+" | "+runtimeVersion;
