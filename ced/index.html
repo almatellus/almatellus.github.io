@@ -17,6 +17,12 @@ permalink: /ced/
 .ced .row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px}
 .ced .small{color:#a9c8dd;font:12px/1.5 Arial,sans-serif;margin-top:18px}.ced .ok{color:#85ffac}.ced .warn{color:#ffdc87}
 @media(max-width:680px){.ced{padding-top:96px}.ced .screen{padding:8px}.ced pre{font-size:12px;min-height:280px}.ced h1{font-size:18px}}
+
+/* Keep COBOL columns legible on narrow phones without wrapping code. */
+.ced pre{white-space:pre;overflow-x:auto;overflow-wrap:normal;max-width:100%;font-size:clamp(11px,1.3vw,15px)}
+.ced .screen{min-width:0;max-width:1050px}
+.ced .run{overflow-wrap:anywhere}
+@media(max-width:680px){.ced pre{font-size:12px;line-height:1.6}.ced .row button{font-size:14px}.ced .bar{font-size:13px}}
 </style>
 <main class="ced">
 <div class="screen">
@@ -36,6 +42,7 @@ permalink: /ced/
 (function(){
 "use strict";
 const $=id=>document.getElementById(id);
+const runtimeVersion="CED-1.2";
 let last=null, active=null, timer=null, stepping=false;
 const endpoint="/ced/live.json";
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
@@ -107,7 +114,7 @@ async function check(){
     if(!data||!data.id||!data.code)return;
     if(data.id!==last){
       last=data.id;active=data;$("request").textContent=data.request||"Richiesta ricevuta";
-      $("version").textContent="JOB "+data.id;
+      $("version").textContent="JOB "+data.id+" | "+runtimeVersion;
       await animate(data);
     }
   }catch(e){$("status").textContent="CONNESSIONE IN ATTESA"}
