@@ -1,0 +1,7 @@
+{
+  "name": "alma-ced-relay",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-08",
+  "durable_objects": { "bindings": [{ "name": "CED_ROOM", "class_name": "CedRoom" }] },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["CedRoom"] }]
+}
