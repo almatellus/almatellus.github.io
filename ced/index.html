@@ -42,7 +42,7 @@ permalink: /ced/
 (function(){
 "use strict";
 const $=id=>document.getElementById(id);
-const runtimeVersion="CED-2.3";
+const runtimeVersion="CED-2.4";
 let last=null, active=null, timer=null, stepping=false;
 const endpoint="/ced/live.json";
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
@@ -143,37 +143,33 @@ async function execute(){
   $("execute").disabled=false;
 }
 const githubEndpoint="https://api.github.com/repos/almatellus/almatellus.github.io/contents/ced/live.json?ref=main";
-let apiCalls=0, nextCall=0, inFlight=false;
+let inFlight=false, nextApiCheck=0, apiRemaining=true;
 const seenJobs=new Set();
 const channel=s=>{const el=$("channel");if(el)el.textContent="Collegamento: "+s};
 async function fetchLatest(){
   const now=Date.now();
-  // Poll the current commit directly instead of waiting for GitHub Pages deployment.
-  // Keep unauthenticated GitHub API usage below its shared IP rate limit.
-  if(apiCalls<35 && now>=nextCall){
-    apiCalls++;
-    nextCall=now+6000;
+  if(apiRemaining && now>=nextApiCheck){
+    nextApiCheck=now+20000;
     try{
-      const response=await fetch(githubEndpoint+"&t="+now,{cache:"no-store",headers:{"Accept":"application/vnd.github+json"}});
+      const response=await fetch(githubEndpoint+"&t="+now,{
+        cache:"no-store",headers:{"Accept":"application/vnd.github+json"}
+      });
       if(response.ok){
         const file=await response.json();
-        const encoded=String(file.content||"").replace(/\s/g,"");
-        const binary=atob(encoded);
-        const bytes=Uint8Array.from(binary,c=>c.charCodeAt(0));
+        const bytes=Uint8Array.from(atob(String(file.content||"").replace(/\s/g,"")),ch=>ch.charCodeAt(0));
         channel("GitHub diretto");
         return JSON.parse(new TextDecoder("utf-8").decode(bytes));
       }
-      if(response.status===403||response.status===429)apiCalls=35;
-    }catch(e){/* Fall back to the published site */ }
+      if(response.status===403||response.status===429){
+        apiRemaining=false;
+        channel("Limite API: ripiego su Pages");
+      }
+    }catch(e){channel("API temporaneamente indisponibile")}
   }
-  // Use the repository raw source when API quota is exhausted.
-  try{
-    const raw=await fetch("https://raw.githubusercontent.com/almatellus/almatellus.github.io/main/ced/live.json?t="+now,{cache:"no-store"});
-    if(raw.ok){channel("GitHub raw");return await raw.json();}
-  }catch(e){/* Fall back to Pages */}
+  // Raw GitHub CDN removed: it could keep serving stale jobs.
   const response=await fetch(endpoint+"?t="+now,{cache:"no-store"});
   if(!response.ok)throw new Error("HTTP "+response.status);
-  channel("GitHub Pages (attesa pubblicazione)");
+  if(apiRemaining)channel("GitHub Pages, attesa controllo diretto");
   return response.json();
 }
 async function check(){
