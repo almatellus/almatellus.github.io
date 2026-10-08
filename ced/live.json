@@ -1,5 +1,5 @@
 {
-  "id": "anno-20261008-02",
-  "request": "Che anno siamo?",
-  "code": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. ANNOATTUALE.\n       PROCEDURE DIVISION.\n           DISPLAY \"SIAMO NEL 2026\".\n           STOP RUN."
+  "id": "giorno-20261008-213627",
+  "request": "In che giorno siamo?",
+  "code": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. GIORNOOGGI.\n       PROCEDURE DIVISION.\n           DISPLAY \"OGGI E' GIOVEDI' 8 OTTOBRE 2026\".\n           STOP RUN."
 }
