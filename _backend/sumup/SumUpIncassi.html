@@ -107,6 +107,7 @@
       const row = document.createElement('tr');
       const date = textNode('td',timestamp(item.timestamp)); date.dataset.label = 'Data';
       const description = textNode('td',item.description || 'Pagamento SumUp'); description.append(textNode('span',item.code || item.id,'code'));
+      if (item.memberNumber) description.append(textNode('span','Quota socio n. ' + item.memberNumber + ' · ' + item.memberName,'code'));
       const amount = textNode('td',money(item.amountCents,item.currency),'money');
       if (item.refundedCents > 0) amount.append(textNode('span','Rimborsato: ' + money(item.refundedCents,item.currency),'code'));
       const status = document.createElement('td'); status.dataset.label = 'Stato'; status.append(textNode('span',labels[item.status] || item.status,'badge ' + (item.status === 'SUCCESSFUL' || item.status === 'PAID_OUT' ? 'good' : item.paid || item.status === 'PENDING' ? '' : 'bad')));
@@ -120,6 +121,7 @@
     google.script.run.withSuccessHandler(value => {
       if (!dialog.open || activeDetail !== detailRequest) return;
       const list = document.createElement('dl');
+      if (item.memberNumber) list.append(textNode('dt','Quota associata'),textNode('dd','Socio n. ' + item.memberNumber + ' · ' + item.memberName));
       [['Codice',value.code || item.code || item.id],['Importo',money(item.amountCents,item.currency)],['Commissione',money(value.feeCents,value.currency || item.currency)],['Carta',[value.cardType,value.lastFour ? '•••• ' + value.lastFour : ''].filter(Boolean).join(' ') || 'Non disponibile'],['Stato',labels[value.status] || value.status || 'Non disponibile'],['Trasferimento SumUp',value.payoutsTotal > 0 && value.payoutsReceived >= value.payoutsTotal ? 'Eseguito da SumUp' : value.status === 'PAID_OUT' ? 'Eseguito da SumUp' : 'Non confermato'],['Nominativo','Non fornito dall’API transazioni']].forEach(pair => list.append(textNode('dt',pair[0]),textNode('dd',pair[1])));
       $('detail-body').replaceChildren(list);
     }).withFailureHandler(error => { if (dialog.open && activeDetail === detailRequest) $('detail-body').replaceChildren(textNode('p',error && error.message ? error.message : 'Dettaglio non disponibile.')); }).sumupWebDettaglio(item.id);

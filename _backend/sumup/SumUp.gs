@@ -1,6 +1,6 @@
 /**
  * Incassi SumUp per l'area riservata Alma Tellus.
- * Aggiunta al progetto esistente: nessuna modifica ai fogli o ai pagamenti.
+ * La riconciliazione delle quote, se installata, verifica e aggiorna il Libro soci.
  * Credenziali solo nelle proprietà dello script, mai nell'HTML o nel repository.
  */
 const SUMUP_AREA_URL_ = 'https://script.google.com/macros/s/AKfycbyJSYfVLex-XdpHHB7pXauZNDvM4Xn6FQJnK8jh-nXBl6TBtjaKAycy4JidEduguU7H4w/exec';
@@ -182,6 +182,7 @@ function sumupTotali_(items) {
 function sumupWebIncassi(params) {
   sumupRichiediAccesso_();
   const range = sumupIntervallo_(params);
+  if (typeof sumupQuotaSincronizza_ === 'function') sumupQuotaSincronizza_();
   const config = sumupConfigurazione_();
   if (!config) return { configured: false };
   const path = '/v2.1/merchants/' + encodeURIComponent(config.merchant) + '/transactions/history';
@@ -210,6 +211,7 @@ function sumupWebIncassi(params) {
     if (!cursor) { complete = true; break; }
   }
   items.sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp));
+  if (typeof sumupQuotaAssociaIncassi_ === 'function') sumupQuotaAssociaIncassi_(items);
   return { configured: true, complete: complete, items: items, totals: sumupTotali_(items),
     from: range.from, to: range.to, updatedAt: new Date().toISOString() };
 }
