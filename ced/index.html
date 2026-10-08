@@ -83,8 +83,8 @@ async function execute(){
       const div=document.createElement("div");div.textContent=out;area.appendChild(div);
     }else if(op.type==="ACCEPT"){
       const input=document.createElement("input");input.placeholder="Scrivi qui e premi Invio";input.setAttribute("aria-label",op.arg);
-      area.appendChild(input);input.focus();
-      const value=await new Promise(resolve=>{input.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();resolve(input.value)}},{once:true})});
+      const confirm=document.createElement("button");confirm.textContent="Conferma / Invio";confirm.style.marginLeft="10px";area.appendChild(input);area.appendChild(confirm);input.focus();
+      const value=await new Promise(resolve=>{let done=false;const submit=()=>{if(done)return;done=true;resolve(input.value)};confirm.addEventListener("click",submit);input.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();submit()}})});confirm.remove();
       vars[op.arg.toUpperCase()]=value;input.replaceWith(document.createTextNode(value));
     }
   }
