@@ -1,5 +1,5 @@
 {
-  "id": "ora-test-20261008-03",
-  "request": "Dimmi l'ora",
-  "code": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. ORAESATTA.\n       DATA DIVISION.\n       WORKING-STORAGE SECTION.\n       01 WS-ORA PIC X(8).\n       PROCEDURE DIVISION.\n           ACCEPT WS-ORA FROM TIME.\n           DISPLAY \"ORA ATTUALE: \" WS-ORA(1:2) \":\" WS-ORA(3:2) \":\" WS-ORA(5:2).\n           STOP RUN."
+  "id": "minuto-20261008-01",
+  "request": "Dimmi il minuto attuale",
+  "code": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. MINUTOATTUALE.\n       DATA DIVISION.\n       WORKING-STORAGE SECTION.\n       01 WS-ORA PIC X(8).\n       PROCEDURE DIVISION.\n           ACCEPT WS-ORA FROM TIME.\n           DISPLAY \"MINUTO ATTUALE: \" WS-ORA(3:2).\n           STOP RUN."
 }
