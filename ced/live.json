@@ -1,5 +1,5 @@
 {
-  "id": "mese-20261008-01",
-  "request": "Che mese è?",
-  "code": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. MESEATTUALE.\n       PROCEDURE DIVISION.\n           DISPLAY \"SIAMO NEL MESE DI OTTOBRE\".\n           STOP RUN."
+  "id": "anno-20261008-02",
+  "request": "Che anno siamo?",
+  "code": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. ANNOATTUALE.\n       PROCEDURE DIVISION.\n           DISPLAY \"SIAMO NEL 2026\".\n           STOP RUN."
 }
