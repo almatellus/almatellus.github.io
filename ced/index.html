@@ -42,7 +42,7 @@ permalink: /ced/
 (function(){
 "use strict";
 const $=id=>document.getElementById(id);
-const runtimeVersion="CED-1.8";
+const runtimeVersion="CED-1.9";
 let last=null, active=null, timer=null, stepping=false;
 const endpoint="/ced/live.json";
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
@@ -95,6 +95,12 @@ async function execute(){
     }
     const end=document.createElement("div");end.className="ok";end.textContent="PROGRAM TERMINATED.";area.appendChild(end);
     $("execute").disabled=false;return;
+  }
+  if(/PROGRAM-ID\.\s*GIORNOSETT\b/i.test(active.code)){
+    const giorno=new Intl.DateTimeFormat("it-IT",{weekday:"long"}).format(new Date()).toUpperCase();
+    const div=document.createElement("div");div.textContent="OGGI E' "+giorno;area.appendChild(div);
+    const end=document.createElement("div");end.className="ok";end.textContent="PROGRAM TERMINATED.";area.appendChild(end);
+    return;
   }
   const ops=getOps(active.code), vars={};
   if(!ops.length){area.textContent="Programma non supportato da questa demo.";return}
