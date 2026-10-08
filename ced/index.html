@@ -42,7 +42,7 @@ permalink: /ced/
 (function(){
 "use strict";
 const $=id=>document.getElementById(id);
-const runtimeVersion="CED-2.4";
+const runtimeVersion="CED-3.0";
 let last=null, active=null, timer=null, stepping=false;
 const endpoint="/ced/live.json";
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
@@ -53,10 +53,11 @@ async function animate(data){
   $("console").textContent="READY.";
   $("execute").disabled=true;
   const all=lines(data.code);for(const line of all){
-    if(!active||active.id!==id){stepping=false;return}
+    if(!active||active.id!==id)return
     $("editor").textContent+=line+"\n";
     await pause(95);
   }
+  if(!active||active.id!==id)return;
   $("editor").textContent+="****** **************************** BOTTOM OF DATA ***************************";
   stepping=false;$("status").textContent="SORGENTE PRONTO";
   $("execute").disabled=!isSupported(data.code);
@@ -143,16 +144,35 @@ async function execute(){
   $("execute").disabled=false;
 }
 const githubEndpoint="https://api.github.com/repos/almatellus/almatellus.github.io/contents/ced/live.json?ref=main";
-let inFlight=false, nextApiCheck=0, apiRemaining=true;
+let inFlight=false, nextApiCheck=0, highestSequence=0, receivedRealtime=false;
+let relayUrl="", socket=null, reconnectTimer=null, attempts=0, pollingTimer=null;
 const seenJobs=new Set();
 const channel=s=>{const el=$("channel");if(el)el.textContent="Collegamento: "+s};
-async function fetchLatest(){
+function receive(data, realtime=false){
+  if(!data||typeof data.id!=="string"||!data.id||typeof data.code!=="string"||!data.code||data.code.length>30000)return;
+  if(realtime){
+    if(!Number.isSafeInteger(data.sequence)||data.sequence<=highestSequence)return;
+    highestSequence=data.sequence;receivedRealtime=true;
+  }else if(receivedRealtime)return;
+  if(seenJobs.has(data.id))return;
+  seenJobs.add(data.id);last=data.id;active=data;
+  $("request").textContent=data.request||"Richiesta ricevuta";
+  $("version").textContent="JOB "+data.id+" | "+runtimeVersion;
+  animate(data).catch(()=>{$("status").textContent="VISUALIZZAZIONE IN ATTESA"});
+}
+async function getJson(url, options={}){
+  const response=await fetch(url,{cache:"no-store",signal:AbortSignal.timeout(5000),...options});
+  if(!response.ok)throw new Error("HTTP "+response.status);
+  return response.json();
+}
+async function fetchLegacy(){
   const now=Date.now();
-  if(apiRemaining && now>=nextApiCheck){
-    nextApiCheck=now+20000;
+  // A public GitHub API allows 60 requests/hour/IP. Leave room for other tabs.
+  if(now>=nextApiCheck){
+    nextApiCheck=now+75000;
     try{
       const response=await fetch(githubEndpoint+"&t="+now,{
-        cache:"no-store",headers:{"Accept":"application/vnd.github+json"}
+        cache:"no-store",signal:AbortSignal.timeout(5000),headers:{"Accept":"application/vnd.github+json"}
       });
       if(response.ok){
         const file=await response.json();
@@ -161,33 +181,65 @@ async function fetchLatest(){
         return JSON.parse(new TextDecoder("utf-8").decode(bytes));
       }
       if(response.status===403||response.status===429){
-        apiRemaining=false;
-        channel("Limite API: ripiego su Pages");
+        const reset=Number(response.headers.get("x-ratelimit-reset"))*1000;
+        const retry=Number(response.headers.get("retry-after"))*1000;
+        nextApiCheck=Math.max(now+75000,reset||0,now+(retry||0));
+        channel("GitHub Pages");
       }
-    }catch(e){channel("API temporaneamente indisponibile")}
+    }catch{}
   }
-  // Raw GitHub CDN removed: it could keep serving stale jobs.
-  const response=await fetch(endpoint+"?t="+now,{cache:"no-store"});
-  if(!response.ok)throw new Error("HTTP "+response.status);
-  if(apiRemaining)channel("GitHub Pages, attesa controllo diretto");
-  return response.json();
+  return getJson(endpoint+"?t="+now);
 }
 async function check(){
-  if(inFlight)return;
+  if(inFlight || (relayUrl && socket?.readyState===WebSocket.OPEN))return;
   inFlight=true;
   try{
-    const data=await fetchLatest();
-    if(!data||!data.id||!data.code)return;
-    if(!seenJobs.has(data.id)){
-      seenJobs.add(data.id);
-      last=data.id;active=data;$("request").textContent=data.request||"Richiesta ricevuta";
-      $("version").textContent="JOB "+data.id+" | "+runtimeVersion;
-      await animate(data);
-    }
-  }catch(e){$("status").textContent="CONNESSIONE IN ATTESA"}
+    if(relayUrl){
+      receive(await getJson(relayUrl+"/latest?t="+Date.now()),true);
+      channel("Diretto, riconnessione in corso");
+    }else receive(await fetchLegacy());
+  }catch{$("status").textContent="CONNESSIONE IN ATTESA"}
   finally{inFlight=false}
 }
+function connect(){
+  if(!relayUrl)return;
+  clearTimeout(reconnectTimer);
+  const url=new URL("/ws",relayUrl);url.protocol="wss:";
+  const connection=new WebSocket(url.href);socket=connection;
+  const openTimeout=setTimeout(()=>{if(connection.readyState!==WebSocket.OPEN)connection.close()},8000);
+  connection.addEventListener("open",()=>{clearTimeout(openTimeout);attempts=0;channel("In tempo reale")});
+  connection.addEventListener("message",event=>{
+    if(event.data==="pong")return;
+    try{receive(JSON.parse(event.data),true)}catch{}
+  });
+  connection.addEventListener("error",()=>connection.close());
+  connection.addEventListener("close",()=>{
+    clearTimeout(openTimeout);if(socket!==connection)return;
+    channel("Riconnessione...");
+    reconnectTimer=setTimeout(connect,Math.min(15000,1000*2**Math.min(attempts++,4)));
+    check();
+  });
+}
+async function start(){
+  try{
+    const config=await getJson("/ced/realtime.json?version="+runtimeVersion);
+    if(config?.relayUrl){
+      const candidate=new URL(config.relayUrl);
+      if(candidate.protocol!=="https:" || !candidate.hostname.endsWith(".workers.dev"))
+        throw new Error("Invalid relay URL");
+      relayUrl=candidate.origin;connect();
+    }
+  }catch{channel("GitHub Pages")}
+  check();pollingTimer=setInterval(check,relayUrl?2000:6000);
+  setInterval(()=>{if(socket?.readyState===WebSocket.OPEN)socket.send("ping")},30000);
+  document.addEventListener("visibilitychange",()=>{
+    if(!document.hidden){
+      if(relayUrl && (!socket || socket.readyState===WebSocket.CLOSED))connect();
+      check();
+    }
+  });
+}
 $("execute").addEventListener("click",execute);
-check();setInterval(check,6000);
+start();
 })();
 </script>
