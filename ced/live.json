@@ -1,5 +1,5 @@
 {
-  "id": "giorno-20261008-213627",
-  "request": "In che giorno siamo?",
-  "code": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. GIORNOOGGI.\n       PROCEDURE DIVISION.\n           DISPLAY \"OGGI E' GIOVEDI' 8 OTTOBRE 2026\".\n           STOP RUN."
+  "id": "dataora-20261008-2340-v1",
+  "request": "Visualizza data e ora correnti",
+  "code": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. DATAORA.\n       DATA DIVISION.\n       WORKING-STORAGE SECTION.\n       01 WS-DATA PIC 9(8).\n       01 WS-ORA PIC 9(8).\n       PROCEDURE DIVISION.\n           ACCEPT WS-DATA FROM DATE YYYYMMDD\n           ACCEPT WS-ORA FROM TIME\n           DISPLAY \"DATA (AAAAMMGG): \" WS-DATA\n           DISPLAY \"ORA (HHMMSSCC): \" WS-ORA\n           STOP RUN."
 }
