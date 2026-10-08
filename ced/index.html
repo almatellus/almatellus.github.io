@@ -1,0 +1,111 @@
+---
+layout: default
+title: CED Live | Alma Tellus
+description: Una richiesta scritta su carta diventa un programma COBOL sul terminale.
+permalink: /ced/
+---
+<style>
+.ced {box-sizing:border-box;background:#07111e;color:#cce9ff;min-height:90vh;padding:120px 16px 40px;font-family:Consolas,"Courier New",monospace}
+.ced *{box-sizing:border-box}.ced .screen{max-width:1050px;margin:auto;border:2px solid #46749f;background:#081927;box-shadow:0 0 40px #071b36;padding:18px}
+.ced .bar{background:#164e89;color:white;padding:10px 12px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.ced h1{font:700 22px Consolas,monospace;margin:20px 0 6px}.ced .sub{font-size:13px;color:#a9c8dd}
+.ced .request{border:1px solid #36566c;padding:12px;margin:16px 0;color:#fff;min-height:48px}
+.ced pre{white-space:pre-wrap;overflow-wrap:anywhere;min-height:310px;color:#85ffac;line-height:1.5;font:15px/1.5 Consolas,"Courier New",monospace;margin:0;padding:14px;border:1px solid #36566c}
+.ced .run{background:#10283d;margin-top:12px;padding:15px;border:1px solid #36566c;min-height:110px}
+.ced button{padding:10px 18px;background:#6de8a0;color:#06211c;border:0;border-radius:4px;font-weight:700;cursor:pointer}
+.ced button:disabled{opacity:.45;cursor:not-allowed}.ced input{background:#06131c;color:#fff;border:1px solid #9ab3c2;padding:12px;font:16px Consolas,monospace;width:min(100%,400px)}
+.ced .row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px}
+.ced .small{color:#a9c8dd;font:12px/1.5 Arial,sans-serif;margin-top:18px}.ced .ok{color:#85ffac}.ced .warn{color:#ffdc87}
+@media(max-width:680px){.ced{padding-top:96px}.ced .screen{padding:8px}.ced pre{font-size:12px;min-height:280px}.ced h1{font-size:18px}}
+</style>
+<main class="ced">
+<div class="screen">
+<div class="bar"><strong>ALMA TELLUS | CED LIVE</strong><span id="status">IN ATTESA DELLA RICHIESTA...</span></div>
+<h1>ISPF EDIT - COBOL PROGRAM GENERATOR</h1>
+<p class="sub">Il programma apparirà qui automaticamente quando arriva una nuova richiesta.</p>
+<div class="request"><strong>RICHIESTA:</strong> <span id="request">In attesa del foglio fotografato...</span></div>
+<pre id="editor" aria-label="Codice COBOL">****** ***************************** TOP OF DATA ******************************
+            WAITING FOR INPUT...
+****** **************************** BOTTOM OF DATA ***************************</pre>
+<div class="row"><button id="replay" disabled>Rivedi la scrittura</button><button id="execute" disabled>Esegui programma</button><span id="version" class="sub"></span></div>
+<div class="run" id="console" aria-live="polite">READY.</div>
+<p class="small">Dimostrazione Alma Tellus. La visualizzazione del sorgente è reale. Il pulsante Esegui interpreta nel browser un sottoinsieme di istruzioni COBOL (DISPLAY e ACCEPT), senza compilare con GnuCOBOL. Altri programmi richiedono un motore di esecuzione dedicato.</p>
+</div>
+</main>
+<script>
+(function(){
+"use strict";
+const $=id=>document.getElementById(id);
+let last=null, active=null, timer=null, stepping=false;
+const endpoint="/ced/live.json";
+const pause=ms=>new Promise(r=>setTimeout(r,ms));
+function lines(s){return String(s||"").replace(/\r/g,"").split("\n")}
+async function animate(data){
+  const id=data.id;stepping=true;$("status").textContent="GENERAZIONE SORGENTE...";
+  $("editor").textContent="****** ***************************** TOP OF DATA ******************************\n";
+  $("console").textContent="READY.";
+  $("execute").disabled=true;$("replay").disabled=true;
+  const all=lines(data.code);for(const line of all){
+    if(!active||active.id!==id){stepping=false;return}
+    $("editor").textContent+=line+"\n";
+    await pause(95);
+  }
+  $("editor").textContent+="****** **************************** BOTTOM OF DATA ***************************";
+  stepping=false;$("status").textContent="SORGENTE PRONTO";$("replay").disabled=false;
+  $("execute").disabled=!isSupported(data.code);
+}
+function isSupported(code){
+  const t=String(code||"").toUpperCase();
+  return /PROCEDURE\s+DIVISION/.test(t)&&/\bDISPLAY\b/.test(t) &&
+         !/\b(CALL|EXEC|FILE|OPEN|CLOSE|READ|WRITE|DELETE|SYSTEM|SORT|MERGE)\b/.test(t);
+}
+function getOps(code){
+  let body=String(code).split(/PROCEDURE\s+DIVISION[^\n]*\./i).slice(1).join(".");
+  const ops=[];let names=new Set();
+  for(const ln of lines(body)){
+    const s=ln.replace(/^\s*\d{6}\s?/,"").trim();
+    if(!s||s.startsWith("*")||/^(STOP RUN|GOBACK|EXIT|END PROGRAM)/i.test(s))continue;
+    const m=s.match(/^(DISPLAY|ACCEPT)\s+(.+?)(?:\.\s*)?$/i);
+    if(m){let arg=m[2].trim().replace(/\.$/,"");ops.push({type:m[1].toUpperCase(),arg});if(m[1].toUpperCase()==="ACCEPT")names.add(arg.toUpperCase())}
+  }
+  return ops;
+}
+async function execute(){
+  if(!active||stepping||!isSupported(active.code))return;
+  const area=$("console");area.replaceChildren();
+  const ops=getOps(active.code), vars={};
+  if(!ops.length){area.textContent="Programma non supportato da questa demo.";return}
+  $("execute").disabled=true;
+  for(const op of ops){
+    if(op.type==="DISPLAY"){
+      let parts=[...op.arg.matchAll(/"([^"]*)"|'([^']*)'|FUNCTION\s+TRIM\(\s*([\w-]+)\s*\)|([\w-]+)/gi)];
+      let out=parts.map(x=>x[1]??x[2]??(vars[(x[3]||x[4]).toUpperCase()]??"")).join("");
+      const div=document.createElement("div");div.textContent=out;area.appendChild(div);
+    }else if(op.type==="ACCEPT"){
+      const input=document.createElement("input");input.placeholder="Scrivi qui e premi Invio";input.setAttribute("aria-label",op.arg);
+      area.appendChild(input);input.focus();
+      const value=await new Promise(resolve=>{input.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();resolve(input.value)}},{once:true})});
+      vars[op.arg.toUpperCase()]=value;input.replaceWith(document.createTextNode(value));
+    }
+  }
+  const finished=document.createElement("div");finished.className="ok";finished.textContent="PROGRAM TERMINATED.";area.appendChild(finished);
+  $("execute").disabled=false;
+}
+async function check(){
+  try{
+    const response=await fetch(endpoint+"?t="+Date.now(),{cache:"no-store"});
+    if(!response.ok)throw new Error("HTTP "+response.status);
+    const data=await response.json();
+    if(!data||!data.id||!data.code)return;
+    if(data.id!==last){
+      last=data.id;active=data;$("request").textContent=data.request||"Richiesta ricevuta";
+      $("version").textContent="JOB "+data.id;
+      await animate(data);
+    }
+  }catch(e){$("status").textContent="CONNESSIONE IN ATTESA"}
+}
+$("replay").addEventListener("click",()=>{if(active&&!stepping)animate(active)});
+$("execute").addEventListener("click",execute);
+check();setInterval(check,8000);
+})();
+</script>
