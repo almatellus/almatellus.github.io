@@ -1,5 +1,5 @@
 {
-  "id": "demo-001",
-  "request": "Fai un programma che mi chiede come mi chiamo e lo visualizza a video.",
-  "code": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. SALUTO.\n       DATA DIVISION.\n       WORKING-STORAGE SECTION.\n       01 WS-NOME PIC X(40).\n       PROCEDURE DIVISION.\n           DISPLAY \"COME TI CHIAMI?\".\n           ACCEPT WS-NOME.\n           DISPLAY \"CIAO \" FUNCTION TRIM(WS-NOME).\n           STOP RUN."
+  "id": "ora-20261008-01",
+  "request": "Fai un programma che mi dice che ore sono",
+  "code": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. ORAESATTA.\n       DATA DIVISION.\n       WORKING-STORAGE SECTION.\n       01 WS-ORA PIC X(8).\n       PROCEDURE DIVISION.\n           ACCEPT WS-ORA FROM TIME.\n           DISPLAY \"ORA ATTUALE: \" WS-ORA(1:2)\n                   \":\" WS-ORA(3:2)\n                   \":\" WS-ORA(5:2).\n           STOP RUN."
 }
