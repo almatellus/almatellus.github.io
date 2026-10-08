@@ -1,0 +1,5 @@
+{
+  "id": "demo-001",
+  "request": "Fai un programma che mi chiede come mi chiamo e lo visualizza a video.",
+  "code": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. SALUTO.\n       DATA DIVISION.\n       WORKING-STORAGE SECTION.\n       01 WS-NOME PIC X(40).\n       PROCEDURE DIVISION.\n           DISPLAY \"COME TI CHIAMI?\".\n           ACCEPT WS-NOME.\n           DISPLAY \"CIAO \" FUNCTION TRIM(WS-NOME).\n           STOP RUN."
+}
