@@ -1,5 +1,5 @@
 {
-  "id": "dataora-20261008-2340-v1",
-  "request": "Visualizza data e ora correnti",
-  "code": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. DATAORA.\n       DATA DIVISION.\n       WORKING-STORAGE SECTION.\n       01 WS-DATA PIC 9(8).\n       01 WS-ORA PIC 9(8).\n       PROCEDURE DIVISION.\n           ACCEPT WS-DATA FROM DATE YYYYMMDD\n           ACCEPT WS-ORA FROM TIME\n           DISPLAY \"DATA (AAAAMMGG): \" WS-DATA\n           DISPLAY \"ORA (HHMMSSCC): \" WS-ORA\n           STOP RUN."
+  "id": "moltiplica-20261009-1791567499930",
+  "request": "Fai un programma che chiede in input due numeri e li moltiplica.",
+  "code": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. MOLTIPLICA.\n       DATA DIVISION.\n       WORKING-STORAGE SECTION.\n       01 WS-NUM1     PIC S9(7)V99.\n       01 WS-NUM2     PIC S9(7)V99.\n       01 WS-PRODOTTO PIC S9(14)V9(4).\n       PROCEDURE DIVISION.\n           DISPLAY \"INSERISCI IL PRIMO NUMERO:\"\n           ACCEPT WS-NUM1\n           DISPLAY \"INSERISCI IL SECONDO NUMERO:\"\n           ACCEPT WS-NUM2\n           MULTIPLY WS-NUM1 BY WS-NUM2 GIVING WS-PRODOTTO\n           DISPLAY \"PRODOTTO: \" WS-PRODOTTO\n           STOP RUN."
 }
