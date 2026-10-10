@@ -17,13 +17,12 @@
 
   const overlay = document.getElementById("ozx-audio");
   const opener = document.querySelector('[data-open="ozx-audio"]');
-  const audio = document.getElementById("ozx-audio-player");
-  const fallback = document.getElementById("ozx-audio-fallback");
+  const audios = Array.from(overlay.querySelectorAll("audio"));
   const dialog = overlay.querySelector('[role="dialog"]');
   const closer = overlay.querySelector(".ozx-close");
 
   function closeAudio() {
-    audio.pause();
+    audios.forEach(function (audio) { audio.pause(); });
     overlay.hidden = true;
     document.body.style.overflow = "";
     opener.focus();
@@ -31,12 +30,19 @@
   opener.addEventListener("click", function () {
     overlay.hidden = false;
     document.body.style.overflow = "hidden";
-    if (audio.readyState === 0) audio.load();
+    audios.forEach(function (audio) { if (audio.readyState === 0) audio.load(); });
     closer.focus();
   });
   closer.addEventListener("click", closeAudio);
   overlay.addEventListener("click", function (event) { if (event.target === overlay) closeAudio(); });
-  audio.addEventListener("error", function () { fallback.hidden = false; });
+  audios.forEach(function (audio) {
+    audio.addEventListener("error", function () {
+      audio.closest(".ozx-audio-language").querySelector(".ozx-media-fallback").hidden = false;
+    });
+    audio.addEventListener("play", function () {
+      audios.forEach(function (other) { if (other !== audio) other.pause(); });
+    });
+  });
   dialog.addEventListener("keydown", function (event) {
     if (event.key === "Escape") { event.preventDefault(); closeAudio(); }
     if (event.key !== "Tab") return;

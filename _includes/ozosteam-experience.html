@@ -8,7 +8,7 @@
   <div class="ozx-actions">
     <button class="ozx-card" type="button" data-open="ozx-audio" aria-haspopup="dialog">
       <span class="ozx-card-icon" aria-hidden="true">▶</span>
-      <span class="ozx-card-copy"><small>Audio · 2 min 21 s</small><strong>La storia di OzoSteam</strong></span>
+      <span class="ozx-card-copy"><small>Audio · Italiano / English</small><strong>La storia di OzoSteam</strong></span>
     </button>
     <a class="ozx-card" href="https://youtu.be/JY0CnPF4K-M?is=bEPStkY3nW1nptJ0" target="_blank" rel="noopener noreferrer">
       <span class="ozx-card-icon" aria-hidden="true">▷</span>
@@ -48,11 +48,22 @@
       <h2 id="ozx-audio-title">La storia di OzoSteam</h2>
       <button class="ozx-close" type="button" aria-label="Chiudi l'audio">×</button>
     </div>
-    <audio controls preload="none" id="ozx-audio-player">
-      <source src="{{ '/assets/media/ozosteam-racconto-maker-faire.mp3' | relative_url }}" type="audio/mpeg">
-      <a href="{{ '/assets/media/ozosteam-racconto-maker-faire.mp3' | relative_url }}">Apri l'audio</a>
-    </audio>
-    <p class="ozx-media-fallback" id="ozx-audio-fallback" hidden>Non riesci ad ascoltarlo? <a href="{{ '/assets/media/ozosteam-racconto-maker-faire.mp3' | relative_url }}">Apri direttamente l'audio.</a></p>
+    <div class="ozx-audio-language">
+      <h3 id="ozx-audio-it-label" style="margin:0 0 8px;font-size:.875rem">Italiano</h3>
+      <audio controls preload="none" id="ozx-audio-player" aria-labelledby="ozx-audio-it-label" lang="it">
+        <source src="{{ '/assets/media/ozosteam-racconto-maker-faire.mp3' | relative_url }}" type="audio/mpeg">
+        <a href="{{ '/assets/media/ozosteam-racconto-maker-faire.mp3' | relative_url }}">Apri l'audio in italiano</a>
+      </audio>
+      <p class="ozx-media-fallback" id="ozx-audio-fallback" hidden>Non riesci ad ascoltarlo? <a href="{{ '/assets/media/ozosteam-racconto-maker-faire.mp3' | relative_url }}">Apri direttamente l'audio in italiano.</a></p>
+    </div>
+    <div class="ozx-audio-language" style="margin-top:20px;padding-top:20px;border-top:1px solid #d8ddd5">
+      <h3 id="ozx-audio-en-label" lang="en" style="margin:0 0 8px;font-size:.875rem">English <span lang="it">· Versione inglese</span></h3>
+      <audio controls preload="none" id="ozx-audio-player-en" aria-labelledby="ozx-audio-en-label" lang="en">
+        <source src="{{ '/assets/media/ozosteam-racconto-maker-faire-en.mp3' | relative_url }}" type="audio/mpeg">
+        <a href="{{ '/assets/media/ozosteam-racconto-maker-faire-en.mp3' | relative_url }}">Listen to the story in English</a>
+      </audio>
+      <p class="ozx-media-fallback" id="ozx-audio-fallback-en" lang="en" hidden>Can't play it? <a href="{{ '/assets/media/ozosteam-racconto-maker-faire-en.mp3' | relative_url }}">Open the English audio directly.</a></p>
+    </div>
   </div>
 </div>
-<script defer src="{{ '/assets/js/ozosteam-experience.js' | relative_url }}?v=20261004-5"></script>
+<script defer src="{{ '/assets/js/ozosteam-experience.js' | relative_url }}?v=20261010-en"></script>
