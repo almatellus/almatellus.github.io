@@ -1,0 +1,33 @@
+---
+layout: default
+title: CED 2026 | Rimpatriata
+description: Richiesta di accesso all'archivio privato della rimpatriata.
+permalink: /rimpatriata/
+---
+<style>
+.ced26{background:#06110a;color:#9df5a6;padding:clamp(20px,5vw,58px);border-radius:12px;font:17px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace;min-height:68vh}
+.ced26 .screen{max-width:790px;margin:auto;border:1px solid #2c8646;box-shadow:0 0 28px #0b4d2333;padding:clamp(18px,4vw,42px)}
+.ced26 h1{font:inherit;font-size:clamp(25px,4vw,40px);font-weight:700;color:#c2ffc7}
+.ced26 p{margin:1em 0}.ced26 .dim{color:#80a88a}.ced26 label{display:block;margin:14px 0 5px}
+.ced26 input{width:100%;max-width:530px;background:#081c0d;color:#e0ffe2;border:1px solid #4ca663;border-radius:3px;padding:12px;font:inherit}
+.ced26 button{margin-top:20px;background:#a2f4a7;color:#09210f;border:0;padding:13px 20px;font:inherit;font-weight:700;cursor:pointer}
+.ced26 button:hover{background:#d3ffd7}.ced26 .note{font-size:14px;color:#bad9c0}.ced26 a{color:#c9ffcc}
+</style>
+<section class="ced26"><div class="screen">
+<p class="dim">ALMA TELLUS // SISTEMA CED // SESSIONE 2026</p>
+<h1>SESSIONE MAI TERMINATA<span aria-hidden="true">_</span></h1>
+<p>Archivio dei ricordi. Accesso riservato agli operatori riconosciuti.</p>
+<p class="dim">IDENTIFICAZIONE OPERATORE: richiesta di abilitazione</p>
+<form id="ced26-request">
+<label for="ced26-name">NOME E COGNOME</label><input id="ced26-name" name="name" required minlength="3" maxlength="120" autocomplete="name">
+<label for="ced26-email">INDIRIZZO EMAIL</label><input id="ced26-email" name="email" type="email" required maxlength="254" autocomplete="email">
+<button type="submit">RICHIEDI ABILITAZIONE &gt;</button>
+</form>
+<p class="note">La richiesta aprirà il tuo programma di posta con un messaggio precompilato da inviare ad Alma Tellus. Non viene concesso alcun accesso automatico. Il responsabile verifica personalmente le richieste. Nessuna fotografia è disponibile su questa pagina.</p>
+<p class="dim">STATO ARCHIVIO: ACCESSO NON ANCORA ATTIVO</p>
+<p class="note">I dati che invii via email saranno utilizzati esclusivamente per valutare la tua richiesta di accesso all'archivio. Per informazioni sulla gestione dei dati: <a href="mailto:bruno.laudadio@atellus.onmicrosoft.com">contatta Alma Tellus</a>.</p>
+<p class="dim">UN PROGETTO DELL'ASSOCIAZIONE ALMA TELLUS</p>
+</div></section>
+<script>
+(function(){const f=document.getElementById('ced26-request');if(!f)return;f.addEventListener('submit',function(e){e.preventDefault();const n=document.getElementById('ced26-name').value.trim(),m=document.getElementById('ced26-email').value.trim();if(!n||!m||!f.reportValidity())return;const subject='Richiesta accesso Rimpatriata 2026';const body='Richiedo di essere valutato per l’accesso all’archivio privato della rimpatriata.\n\nNome e cognome: '+n+'\nEmail: '+m+'\n\nSono consapevole che l’accesso richiede approvazione personale.';window.location.href='mailto:bruno.laudadio@atellus.onmicrosoft.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);});})();
+</script>
