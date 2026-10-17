@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Vetrina Progetti</title>
 <style>
@@ -171,6 +171,9 @@ button:focus-visible{outline:4px solid var(--cyan);outline-offset:4px}
 .qrs{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
 .qrs.one{grid-template-columns:1fr}
 .qr{display:flex;flex-direction:column;align-items:flex-start;gap:22px;padding:34px;border:6px solid var(--cyan);min-width:0}
+a.qr{color:inherit;text-decoration:none}
+a.qr:focus-visible{outline:3px solid var(--red);outline-offset:4px}
+.contact-touch{display:none}
 .qr>div{min-width:0;max-width:100%}
 .qrs.one .qr{flex-direction:row;align-items:center;gap:40px}
 .qr .code{width:280px;height:280px;background:#fff;padding:14px;flex:none}
@@ -264,6 +267,157 @@ button:focus-visible{outline:4px solid var(--cyan);outline-offset:4px}
 .lb-bot .arrow{height:150px;display:grid;place-items:center;background:#2A3034;color:#fff}
 .lb-bot .arrow svg{width:56px;height:56px}
 
+/* Su telefono la scheda usa pixel reali, senza ridurre il pannello da chiosco. */
+@media (max-width:900px){
+  :root{--gut:20px;--mobile-header:calc(76px + env(safe-area-inset-top,0px));--mobile-nav:72px}
+  html,body{background:var(--paper)}
+  body{-webkit-text-size-adjust:100%;text-size-adjust:100%;-webkit-touch-callout:default}
+  #stage{position:fixed;inset:0;width:100%;height:100%;height:100dvh}
+  .top{height:var(--mobile-header);padding:env(safe-area-inset-top,0px) var(--gut) 0;border-bottom:1px solid var(--tint)}
+  .evlogo,.evlogo img{height:64px;max-width:65vw;object-fit:contain}
+  .slot{height:56px;width:180px;font-size:11px;border-width:1px}
+  .top-r{gap:4px}
+  .counter{font-size:15px;letter-spacing:.08em}
+  .flabel{font-size:10px;letter-spacing:.06em;max-width:30vw;text-align:right}
+  .nav{top:var(--mobile-header);height:var(--mobile-nav);grid-template-columns:1fr 68px 1fr;gap:8px;padding:6px 12px;border-bottom-width:2px}
+  .step-btn{height:56px;gap:6px;padding:0 8px;border-width:2px}
+  .step-btn svg{width:20px;height:20px}
+  .step-btn div{gap:4px}
+  .step-btn span{font-size:9px;letter-spacing:.02em}
+  .step-btn strong{font-size:12px}
+  .all-btn{height:56px;gap:4px}
+  .all-btn svg{width:20px;height:20px}
+  .all-btn span{font-size:9px;letter-spacing:.02em}
+  .main{top:calc(var(--mobile-header) + var(--mobile-nav))}
+  .single-project .nav,.single-project .top-r{display:none}
+  .single-project .main{top:var(--mobile-header)}
+  .scroll{padding-bottom:calc(32px + env(safe-area-inset-bottom,0px));user-select:text;-webkit-user-select:text;-webkit-overflow-scrolling:touch}
+  .p-head{position:relative;display:block;padding:24px var(--gut) 28px}
+  .eyebrow{min-height:64px;padding-right:80px;margin-bottom:12px;font-size:12px;line-height:1.5;letter-spacing:.06em}
+  .eyebrow b{font-size:13px;margin-bottom:6px}
+  .p-mark{position:absolute;top:24px;right:var(--gut);width:64px;height:64px;border-width:2px}
+  .p-mark.contain img{padding:5px}
+  .p-name,.p-name.l2,.p-name.l3,.p-name.l4{font-size:clamp(32px,9vw,48px);line-height:1.05;overflow-wrap:normal}
+  .p-name small{margin-left:6px;vertical-align:baseline}
+  .p-tag{font-size:20px;line-height:1.4;margin-top:18px;text-wrap:pretty}
+  .p-sub{font-size:16px;margin-top:12px}
+  .badge{gap:8px;margin-top:18px;padding:10px 12px;font-size:11px;line-height:1.5;letter-spacing:.04em}
+  .badge svg{width:20px;height:20px;flex:none}
+  .by{gap:12px;margin-top:18px;flex-wrap:wrap}
+  .by span{font-size:11px;letter-spacing:.08em}
+  .by img{height:52px;max-width:60%;object-fit:contain}
+  .p-meta{gap:16px;margin-top:20px}
+  .meta span{font-size:11px;letter-spacing:.08em}
+  .meta strong{font-size:16px}
+  .where{gap:6px;padding:8px 10px;border-width:2px;font-size:16px;white-space:normal}
+  .where svg{width:20px;height:20px}
+  .hero-img{height:clamp(240px,75vw,520px);aspect-ratio:auto}
+  .hero-img.contain img{width:100%;height:100%;object-fit:contain}
+  .hero-img.full,.hero-img.auto{height:auto!important;aspect-ratio:auto}
+  .hero-img.auto img{height:auto}
+  .hero-img.auto.light img{padding:20px}
+  .hero-zoom{right:12px;bottom:12px;width:44px;height:44px}
+  .hero-zoom svg{width:24px;height:24px}
+  .vbox,.yt iframe{width:100%;height:auto;aspect-ratio:16/9}
+  .yt.vertical{padding:12px 0}
+  .yt.vertical iframe{width:min(100%,360px);height:auto;aspect-ratio:9/16}
+  .yt-off{height:auto;aspect-ratio:16/9}
+  .yt-off.vertical{height:auto;aspect-ratio:9/16}
+  .yt-off p{font-size:16px;padding:16px}
+  .vbig span{width:64px;height:64px}
+  .vbig svg{width:28px;height:28px}
+  .vaudio{left:12px;bottom:18px;gap:6px;height:44px;padding:0 12px;font-size:12px}
+  .vaudio svg{width:22px;height:22px}
+  .vprog{height:4px}
+  .vtab{height:auto;min-height:48px;gap:6px;padding:8px;font-size:12px;border-top-width:3px;flex-wrap:wrap}
+  .vtab svg{width:18px;height:18px}
+  .sec{padding:32px var(--gut) 0}
+  .sec-h{gap:8px;flex-wrap:wrap;padding-bottom:10px;margin-bottom:20px;border-bottom-width:2px}
+  .sec-h h2{font-size:14px;letter-spacing:.1em}
+  .sec-h span{font-size:10px;letter-spacing:.02em;white-space:normal;gap:6px}
+  .sec-h span svg{width:18px;height:18px;flex:none}
+  .gallery{gap:14px;touch-action:pan-x pan-y}
+  .gallery figure{max-width:calc(100vw - var(--gut) * 2)}
+  .gallery img{height:230px!important;width:auto!important;max-width:calc(100vw - var(--gut) * 2);object-fit:contain}
+  .gallery .zoom{right:10px;bottom:10px;width:44px;height:44px}
+  .gallery .zoom svg{width:22px;height:22px}
+  .gallery figcaption{font-size:14px;line-height:1.5;margin-top:10px}
+  .ab-title{font-size:28px;margin-bottom:18px}
+  .prose p{font-size:17px;line-height:1.6}
+  .prose p+p{margin-top:16px}
+  .prose.lead p:first-child{font-size:19px;line-height:1.5}
+  .step{grid-template-columns:40px 1fr;gap:14px;padding:20px 0}
+  .step .n{font-size:44px}
+  .step h3,.pt h3{font-size:21px}
+  .step p,.pt p{font-size:17px;line-height:1.6}
+  .pts{gap:20px}
+  .pt{grid-template-columns:20px 1fr;gap:8px}
+  .pt::before{font-size:28px}
+  .chips{gap:10px}
+  .chip{font-size:17px;padding:12px 16px;border-width:2px}
+  .intro{font-size:17px;line-height:1.6;margin-bottom:18px}
+  .after{margin-top:18px;margin-bottom:0}
+  .note{padding:22px 20px}
+  .note h3{font-size:14px;letter-spacing:.08em;margin-bottom:14px}
+  .note p{font-size:16px;line-height:1.6}
+  .note p+p{margin-top:12px}
+  .cardgrid,.qrs{grid-template-columns:1fr;gap:16px}
+  .cardgrid div{padding:22px;border-top-width:4px}
+  .cardgrid h3{font-size:22px;margin-bottom:10px}
+  .cardgrid p{font-size:17px;line-height:1.6}
+  .qr,.qrs.one .qr{flex-direction:column;align-items:center;gap:16px;padding:20px;border-width:2px;text-align:center}
+  .qr .code{width:180px;height:180px;padding:8px}
+  .qr strong{font-size:21px}
+  .qr em{font-size:16px}
+  .qr small{justify-content:center;font-size:10px;letter-spacing:.04em;margin-top:12px}
+  .qr small svg{width:18px;height:18px}
+  .qr .contact-scan{display:none}
+  .qr .contact-touch{display:inline}
+  .lines{gap:16px;margin-top:20px}
+  .lines div{font-size:17px;overflow-wrap:anywhere;min-width:0}
+  .lines b{font-size:12px;letter-spacing:.08em;margin-right:8px}
+  .next{margin:32px var(--gut) 0;padding:20px;gap:12px}
+  .next span{font-size:11px;letter-spacing:.06em}
+  .next strong{font-size:26px}
+  .next svg{width:32px;height:32px}
+  .hint{bottom:12px;gap:8px;padding:10px 14px;font-size:10px;letter-spacing:.08em}
+  .hint svg{width:16px;height:16px}
+  .c-top{height:96px}
+  .c-top .evlogo,.c-top .evlogo img{height:72px}
+  .c-top .slot{height:64px;width:180px;font-size:11px}
+  .c-count b{font-size:40px}
+  .c-count span{font-size:10px;letter-spacing:.06em}
+  .c-head{padding:24px var(--gut) 20px}
+  .c-head p{font-size:11px;letter-spacing:.06em;margin-bottom:12px}
+  .c-head h1{font-size:36px;line-height:1.1}
+  .filters{gap:8px;padding-bottom:20px}
+  .fbtn{height:44px;padding:0 12px;border-width:2px;font-size:14px;gap:8px}
+  .fbtn i{font-size:12px}
+  .grid-wrap{padding-bottom:80px}
+  .grid{grid-template-columns:1fr;gap:16px;padding-top:20px}
+  .pcard{border-width:2px}
+  .pcard .im{height:200px}
+  .pcard .im.light img{padding:16px}
+  .pcard .tx{padding:16px;gap:8px}
+  .pcard .grp{font-size:10px;letter-spacing:.08em}
+  .pcard h3{font-size:24px}
+  .pcard .sub,.pcard .std{font-size:15px}
+  .pcard .std svg{width:18px;height:18px}
+  .c-hint{height:64px;gap:12px;font-size:11px;letter-spacing:.04em}
+  .pulse{width:12px;height:12px}
+  .pulse::after{border-width:2px}
+  .lb{position:fixed;grid-template-rows:64px minmax(0,1fr) auto;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+  .lb-top{padding:0 16px}
+  .lb-close{width:44px;height:44px}
+  .lb-close svg{width:24px;height:24px}
+  .lb-fig{min-height:0;padding:0 12px;touch-action:pinch-zoom}
+  .lb-fig img{min-height:0;max-height:100%}
+  .lb-bot{grid-template-columns:44px minmax(0,1fr) 44px;gap:10px;padding:16px}
+  .lb-bot p{font-size:14px;line-height:1.5}
+  .lb-bot .arrow{height:44px}
+  .lb-bot .arrow svg{width:24px;height:24px}
+}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
@@ -348,8 +502,15 @@ const I = {
 
 /* ---------- palcoscenico scalato ---------- */
 const stage = $("#stage");
+const mobileLayout = matchMedia("(max-width:900px)");
+stage.classList.toggle("single-project", ALL.length === 1);
 let S = 1;
 function fit(){
+  if (mobileLayout.matches){
+    S = 1;
+    stage.style.transform = "none";
+    return;
+  }
   S = Math.min(innerWidth / 1080, innerHeight / 1920);
   stage.style.transform = `translate(${(innerWidth - 1080 * S) / 2}px,${(innerHeight - 1920 * S) / 2}px) scale(${S})`;
 }
@@ -412,6 +573,13 @@ function heroHTML(p){
   return "";
 }
 
+function contactHTML(q){
+  const href = q.value === "almatellus.it" ? "https://almatellus.it/" :
+    q.label === "Iscriviti al canale WhatsApp" ? "https://whatsapp.com/channel/0029Vb8PxsxDDmFSSQJfit0f" : "";
+  const tag = href ? "a" : "div";
+  return `<${tag} class="qr"${href ? ` href="${esc(href)}" target="_blank" rel="noopener noreferrer"` : ""}><div class="code"><img src="${esc(q.qr)}" alt="QR code ${esc(q.value)}"></div><div><strong>${esc(q.label)}</strong><em>${esc(q.value)}</em><small>${I.scan}<span class="contact-scan">Inquadra con lo smartphone</span>${href ? '<span class="contact-touch">Tocca per aprire</span>' : ""}</small></div></${tag}>`;
+}
+
 function blockHTML(b){
   const head = `<div class="sec-h"><h2>${esc(b.title)}</h2></div>`;
   const intro = b.text ? `<p class="intro">${esc(b.text)}</p>` : "";
@@ -423,7 +591,7 @@ function blockHTML(b){
     case "text": return `<section class="sec">${head}<div class="prose">${paras}</div></section>`;
     case "cards": return `<section class="sec">${head}${intro}<div class="cardgrid">${b.items.map(c => `<div><h3>${esc(c.title)}</h3>${c.text ? `<p>${esc(c.text)}</p>` : ""}</div>`).join("")}</div></section>`;
     case "note": return `<section class="sec"><div class="note"><h3>${esc(b.title)}</h3>${paras}</div></section>`;
-    case "contacts": return `<section class="sec">${head}${intro}<div class="qrs${b.items.length === 1 ? " one" : ""}">${b.items.map(q => `<div class="qr"><div class="code"><img src="${esc(q.qr)}" alt="QR code ${esc(q.value)}"></div><div><strong>${esc(q.label)}</strong><em>${esc(q.value)}</em><small>${I.scan}Inquadra con lo smartphone</small></div></div>`).join("")}</div>${b.lines ? `<div class="lines">${b.lines.map(l => `<div><b>${esc(l.label)}</b>${esc(l.value)}</div>`).join("")}</div>` : ""}</section>`;
+    case "contacts": return `<section class="sec">${head}${intro}<div class="qrs${b.items.length === 1 ? " one" : ""}">${b.items.map(contactHTML).join("")}</div>${b.lines ? `<div class="lines">${b.lines.map(l => `<div><b>${esc(l.label)}</b>${esc(l.value)}</div>`).join("")}</div>` : ""}</section>`;
   }
   return "";
 }
@@ -663,7 +831,7 @@ poke();
 /* ---------- comportamento da chiosco ---------- */
 addEventListener("contextmenu", e => e.preventDefault());
 addEventListener("dragstart", e => e.preventDefault());
-document.addEventListener("gesturestart", e => e.preventDefault());
+document.addEventListener("gesturestart", e => { if (!mobileLayout.matches) e.preventDefault(); });
 addEventListener("keydown", e => {
   if (!cat.classList.contains("off")) { if (e.key === "f" || e.key === "F") toggleFS(); return; }
   if (e.key === "ArrowRight") step(1);
