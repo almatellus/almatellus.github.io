@@ -1,0 +1,19 @@
+<section class="campaign-section" id="proponi-verbo" aria-labelledby="verbo-title">
+  <p class="eyebrow">Un’idea da costruire insieme</p><h2 id="verbo-title">Come chiameresti questa azione?</h2>
+  <p>Per ora diciamo <strong>OzoStimmare.</strong> E tu? Proponi il tuo verbo e partecipa al progetto.</p>
+  <div id="ozx-verb-step">
+    <form class="campaign-verb-form" id="ozx-verb-form" method="post" target="ozx-save-frame">
+      <label for="ozx-verb">Il tuo verbo</label>
+      <div class="campaign-verb-fields"><input id="ozx-verb" name="verbo" minlength="2" maxlength="40" autocomplete="off" placeholder="Il tuo verbo…" required><button class="btn btn-primary" type="submit">Invia la proposta</button></div>
+      <input type="hidden" name="form_type" value="ozosteam_verbo">
+      <input type="hidden" name="request_id" id="ozx-request-id">
+      <input type="hidden" name="pagina" id="ozx-source-page">
+      <input type="text" name="website" tabindex="-1" autocomplete="off" hidden>
+    </form>
+    <noscript><p>Per inviare il verbo abilita JavaScript, oppure <a href="/contatti.html">scrivici la tua proposta</a>.</p></noscript>
+  </div>
+  <p id="ozx-status" role="status" aria-live="polite"></p>
+  <div id="ozx-join-step" hidden><p>Hai appena partecipato a un progetto Alma Tellus. Vuoi entrare nell’associazione? I primi sei mesi sono gratuiti.</p><a class="btn btn-primary ozx-join" href="/diventa-socio.html">Diventa socio · 6 mesi gratis →</a></div>
+  <iframe name="ozx-save-frame" id="ozx-save-frame" title="Invio della proposta" hidden></iframe>
+</section>
+<script defer src="/assets/js/ozosteam-verbo.js?v=20261017"></script>

@@ -44,3 +44,11 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
 .site-nav { max-height:calc(100dvh - 100px); overflow-y:auto; }
+
+.campaign-verb-form {max-width:680px;margin-top:24px;}
+.campaign-verb-form label {display:block;font-weight:700;margin-bottom:10px;}
+.campaign-verb-fields {display:flex;gap:12px;align-items:stretch;}
+.campaign-verb-fields input {flex:1;min-width:0;padding:14px 16px;border:1px solid #b8c5b8;border-radius:5px;background:#fffdf8;color:#253f31;font:inherit;}
+.campaign-verb-fields input:focus-visible {outline:2px solid #334b3b;outline-offset:3px;}
+#ozx-status.is-error {color:#922f2f;}
+@media(max-width:600px){.campaign-verb-fields{flex-direction:column;}.campaign-verb-fields .btn{width:100%;}}
