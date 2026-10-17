@@ -268,7 +268,7 @@ a.qr:focus-visible{outline:3px solid var(--red);outline-offset:4px}
 .lb-bot .arrow svg{width:56px;height:56px}
 
 /* Su telefono la scheda usa pixel reali, senza ridurre il pannello da chiosco. */
-@media (max-width:900px){
+@media (max-width:1024px){
   :root{--gut:20px;--mobile-header:calc(76px + env(safe-area-inset-top,0px));--mobile-nav:72px}
   html,body{background:var(--paper)}
   body{-webkit-text-size-adjust:100%;text-size-adjust:100%;-webkit-touch-callout:default}
@@ -291,7 +291,7 @@ a.qr:focus-visible{outline:3px solid var(--red);outline-offset:4px}
   .main{top:calc(var(--mobile-header) + var(--mobile-nav))}
   .single-project .nav,.single-project .top-r{display:none}
   .single-project .main{top:var(--mobile-header)}
-  .scroll{padding-bottom:calc(32px + env(safe-area-inset-bottom,0px));user-select:text;-webkit-user-select:text;-webkit-overflow-scrolling:touch}
+  .scroll{touch-action:pan-y pinch-zoom;padding-bottom:calc(32px + env(safe-area-inset-bottom,0px));user-select:text;-webkit-user-select:text;-webkit-overflow-scrolling:touch}
   .p-head{position:relative;display:block;padding:24px var(--gut) 28px}
   .eyebrow{min-height:64px;padding-right:80px;margin-bottom:12px;font-size:12px;line-height:1.5;letter-spacing:.06em}
   .eyebrow b{font-size:13px;margin-bottom:6px}
@@ -336,7 +336,7 @@ a.qr:focus-visible{outline:3px solid var(--red);outline-offset:4px}
   .sec-h h2{font-size:14px;letter-spacing:.1em}
   .sec-h span{font-size:10px;letter-spacing:.02em;white-space:normal;gap:6px}
   .sec-h span svg{width:18px;height:18px;flex:none}
-  .gallery{gap:14px;touch-action:pan-x pan-y}
+  .gallery{gap:14px;touch-action:pan-x pan-y pinch-zoom}
   .gallery figure{max-width:calc(100vw - var(--gut) * 2)}
   .gallery img{height:230px!important;width:auto!important;max-width:calc(100vw - var(--gut) * 2);object-fit:contain}
   .gallery .zoom{right:10px;bottom:10px;width:44px;height:44px}
@@ -393,7 +393,7 @@ a.qr:focus-visible{outline:3px solid var(--red);outline-offset:4px}
   .filters{gap:8px;padding-bottom:20px}
   .fbtn{height:44px;padding:0 12px;border-width:2px;font-size:14px;gap:8px}
   .fbtn i{font-size:12px}
-  .grid-wrap{padding-bottom:80px}
+  .grid-wrap{padding-bottom:80px;touch-action:pan-y pinch-zoom}
   .grid{grid-template-columns:1fr;gap:16px;padding-top:20px}
   .pcard{border-width:2px}
   .pcard .im{height:200px}
@@ -502,7 +502,7 @@ const I = {
 
 /* ---------- palcoscenico scalato ---------- */
 const stage = $("#stage");
-const mobileLayout = matchMedia("(max-width:900px)");
+const mobileLayout = matchMedia("(max-width:1024px)");
 stage.classList.toggle("single-project", ALL.length === 1);
 let S = 1;
 function fit(){
