@@ -1,38 +1,12 @@
-- label: Home
-  url: /
-
-- label: Chi siamo
-  url: /chi-siamo.html
-
-- label: Attività
-  url: /attivita.html
-
-- label: Progetti
-  url: /progetti.html
-
 - label: OzoSteam
-  url: /ozosteam-experience.html
-
-- label: Vetrina OzoSteam
-  url: /ozosteam-vetrina.html
-
-- label: Future Living
-  url: /future-living/
-
-- label: Share
-  url: /share.html
-
-- label: Imprese
+  url: /ozosteam-station.html
+- label: Progetti e SHARE
+  url: /progetti.html
+- label: L’associazione
+  url: /chi-siamo.html
+- label: Collabora
   url: /imprese.html
-
-- label: Diventa socio
-  url: /diventa-socio.html
-
-- label: Idee
-  url: /idee/
-
-- label: Rimpatriata
-  url: /ced/
-
 - label: Contatti
   url: /contatti.html
+- label: Diventa socio · 6 mesi gratis
+  url: /diventa-socio.html

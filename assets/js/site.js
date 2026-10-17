@@ -83,7 +83,7 @@
         hiddenFee.value = fee + " euro";
         preview.textContent =
           "Quota selezionata: " + option.value + " - " + fee +
-          " € annui. Validità: 12 mesi dal pagamento.";
+          " € per proseguire dopo i primi 6 mesi gratuiti. Ora non devi pagare nulla.";
       } else {
         hiddenFee.value = "";
         preview.textContent = "Seleziona una tipologia per visualizzare la quota.";
@@ -124,7 +124,12 @@
         await fetch(webAppUrl, {
           method: "POST",
           mode: "no-cors",
-          body: new FormData(form)
+          body: (() => {
+            const data = new FormData(form);
+            const campaign = 'Campagna nuovi soci: 6 mesi gratuiti dalla data di ammissione. Nessun pagamento richiesto ora. Promemoria email prima della scadenza. In caso di pagamento anticipato, annualità dal termine dei sei mesi gratuiti.';
+            data.set('motivazione', campaign + (data.get('motivazione') ? '\n\n' + data.get('motivazione') : ''));
+            return data;
+          })()
         });
         window.location.href = "grazie.html";
       } catch (error) {

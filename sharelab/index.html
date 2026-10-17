@@ -1,3 +1,5 @@
+---
+---
 <!doctype html>
 <html lang="it">
 <head>
@@ -41,16 +43,7 @@ footer{margin-top:34px;padding-top:18px;border-top:1px solid #d8d2c3;color:var(-
 <div class="catalog-site-header">
   <a class="catalog-brand" href="/" aria-label="Alma Tellus, torna alla home"><img src="/logo.png" alt="Alma Tellus"></a>
   <button class="catalog-menu-toggle" type="button" aria-label="Apri menu" aria-expanded="false" aria-controls="catalog-site-nav"><span></span><span></span><span></span></button>
-  <nav class="catalog-site-nav" id="catalog-site-nav" aria-label="Menu principale">
-    <a href="/">Home</a>
-    <a href="/chi-siamo.html">Chi siamo</a>
-    <a href="/attivita.html">Attività</a>
-    <a href="/progetti.html">Progetti</a>
-    <a href="/future-living/">Future Living</a>
-    <a href="/share.html">Share</a>
-    <a href="/partecipa.html">Partecipa</a>
-    <a href="/contatti.html">Contatti</a>
-  </nav>
+  <nav class="catalog-site-nav" id="catalog-site-nav" aria-label="Menu principale">{% for item in site.data.navigation %}<a href="{{ item.url | relative_url }}">{{ item.label }}</a>{% endfor %}</nav>
 </div>
 <main>
 <nav><a href="/">Alma Tellus</a><a href="/sharegames/">ShareGames</a></nav>
