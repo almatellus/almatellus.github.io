@@ -52,3 +52,22 @@
 .campaign-verb-fields input:focus-visible {outline:2px solid #334b3b;outline-offset:3px;}
 #ozx-status.is-error {color:#922f2f;}
 @media(max-width:600px){.campaign-verb-fields{flex-direction:column;}.campaign-verb-fields .btn{width:100%;}}
+
+/* Clear required/optional membership fields. */
+.member-signup .field-required,.member-signup .field-optional {display:inline-block;margin:3px 0 3px 8px;padding:4px 9px;border-radius:5px;font:700 13px/1.3 Arial,sans-serif;letter-spacing:0;vertical-align:middle;justify-self:start;}
+.member-signup .field-required {background:#f5e0ce;color:#69320d;border:1px solid #d9ac87;}
+.member-signup .field-optional {background:#edf0ed;color:#526058;border:1px solid #d3dbd5;}
+.member-signup .member-form-intro h2,.member-signup .checks h2 {font-size:1.7rem;margin:0 0 10px;}
+.member-signup .member-form-intro p {line-height:1.65;margin:0 0 10px;}
+.member-signup input[required]:not([type=checkbox]),.member-signup select[required] {border-left:4px solid #ad6a39;}
+.member-signup [aria-invalid=true] {outline:2px solid #922f2f;outline-offset:2px;}
+.member-errors {padding:18px 20px;border:2px solid #922f2f;border-radius:8px;background:#fff4ee;color:#692424;}
+.member-errors ul {margin:12px 0 0;padding-left:20px;}
+.member-errors a {color:#692424;text-underline-offset:3px;}
+.member-errors[hidden] {display:none;}
+.member-signup .member-free-note {padding:16px;background:#e3eddf;border-radius:8px;line-height:1.65;margin:0 0 18px;}
+.member-optional {padding:20px;border:1px solid #d3dbd5;border-radius:10px;background:#f7f8f5;}
+.member-optional summary {cursor:pointer;font-weight:700;line-height:1.5;}
+.member-optional label {display:grid;gap:8px;margin-top:18px;}
+.member-signup .checks {border-top:1px solid #d3dbd5;padding-top:24px;}
+@media(max-width:600px){.member-signup .form-card{padding:20px 16px;}.member-signup .field-required,.member-signup .field-optional{font-size:12px;}.member-signup h1{font-size:clamp(2.2rem,10vw,3.3rem);}}

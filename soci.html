@@ -5,115 +5,108 @@ description: Modulo per prenotare l'iscrizione a socio dell'Associazione Alma Te
 permalink: /soci.html
 ---
 
-<section class="page-shell">
+<section class="page-shell member-signup">
   <header class="page-heading">
     <p class="eyebrow">Modulo online</p>
     <h1>Richiedi l’adesione · 6 mesi gratis</h1>
     <p class="lead">
-      Compila il modulo per prenotare l’iscrizione ad Alma Tellus.
+      Presenta la tua domanda di adesione ad Alma Tellus.
       I primi sei mesi dall’accettazione sono gratuiti: ora non devi pagare nulla. Prima della scadenza ti invieremo un promemoria via email.
     </p>
   </header>
 
-  <form class="form-card form-grid" id="socio-form">
+  <form class="form-card form-grid" id="socio-form" method="post" action="https://script.google.com/macros/s/AKfycbzFTVceOvTU8pccpRC-6jXYARFFQvp-HGcPo5jX2VsBCod8490_oR99JZvn-rIKCeWvpQ/exec">
+    <div class="member-form-intro"><h2>Compila i dati obbligatori</h2><p>I campi contrassegnati con <strong>Obbligatorio</strong> servono per gestire la tua domanda. Telefono, professione e motivazione sono facoltativi e li trovi in fondo.</p></div>
+    <div id="member-errors" class="member-errors" role="alert" hidden></div>
     <input type="hidden" name="form_type" value="socio">
     <input class="hp-field" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
     <input type="hidden" name="quota_socio" id="quota-socio-hidden" value="">
     <input type="hidden" name="validita_tessera" value="Campagna nuovi soci: 6 mesi gratuiti dalla data di ammissione; quota annuale differita. In caso di pagamento anticipato, 12 mesi dal termine del periodo gratuito.">
 
     <div class="membership-box">
-      <label for="tipo-socio">Categoria socio *</label>
-      <select name="tipo_socio" id="tipo-socio" required>
+      <p class="member-free-note"><strong>I primi 6 mesi sono gratuiti.</strong> Le quote indicate si applicano solo se scegli di proseguire. Ora non devi pagare nulla.</p>
+      <label for="tipo-socio">Categoria socio <span class="field-required">Obbligatorio</span></label>
+      <select name="tipo_socio" id="tipo-socio" data-label="Categoria socio" required aria-describedby="quota-preview">
         <option value="">Seleziona la tua categoria</option>
-        <option value="Socio ordinario" data-quota="20">Socio ordinario · 6 mesi gratis, poi 20 €/anno</option>
-        <option value="Socio sostenitore" data-quota="50">Socio sostenitore · 6 mesi gratis, poi 50 €/anno</option>
-        <option value="Socio benemerito" data-quota="100">Socio benemerito · 6 mesi gratis, poi 100 €/anno</option>
-        <option value="Familiare convivente" data-quota="10">Familiare convivente* · 6 mesi gratis, poi 10 €/anno</option>
-        <option value="Dal secondo familiare convivente in poi" data-quota="5">Dal secondo familiare convivente* in poi · 6 mesi gratis, poi 5 €/anno</option>
-        <option value="Under 25" data-quota="10">Under 25 · 6 mesi gratis, poi 10 €/anno</option>
-        <option value="Over 70" data-quota="10">Over 70 · 6 mesi gratis, poi 10 €/anno</option>
-        <option value="Socio ordinario - Inaugurazione" data-quota="15">Socio ordinario - Inaugurazione · 6 mesi gratis, poi 15 €/anno</option>
-        <option value="Familiare convivente - Inaugurazione" data-quota="5">Familiare convivente* - Inaugurazione · 6 mesi gratis, poi 5 €/anno</option>
-        <option value="Under 25 - Inaugurazione" data-quota="5">Under 25 - Inaugurazione · 6 mesi gratis, poi 5 €/anno</option>
-        <option value="Over 70 - Inaugurazione" data-quota="5">Over 70 - Inaugurazione · 6 mesi gratis, poi 5 €/anno</option>
-      </select><p><small>* Quota riservata ai familiari conviventi di un socio Alma Tellus attivo e in regola con la quota associativa.</small></p>
-
-      <div class="quota-preview" id="quota-preview">
-        Seleziona la categoria: oggi non è richiesto alcun pagamento.
-      </div>
-
-      <p class="payment-note" id="promo-eligibility-note" hidden>Le quote ridotte dell’inaugurazione sono valide per le richieste di adesione fino al 31 ottobre 2026, anche in occasione della Maker Faire Rome. L’ammissione è soggetta alla valutazione della domanda.</p>
-      <p class="payment-note">
-        <strong>Ora non devi pagare nulla.</strong> Il link di pagamento resterà disponibile. Ti invieremo un’email prima della scadenza dei sei mesi. Se paghi in anticipo, i dodici mesi della quota iniziano al termine del periodo gratuito.
-      </p>
+        <option value="Socio ordinario" data-quota="20">Socio ordinario — 20 €/anno</option>
+        <option value="Socio sostenitore" data-quota="50">Socio sostenitore — 50 €/anno</option>
+        <option value="Socio benemerito" data-quota="100">Socio benemerito — 100 €/anno</option>
+        <option value="Under 25" data-quota="10">Under 25 — 10 €/anno</option>
+        <option value="Over 70" data-quota="10">Over 70 — 10 €/anno</option>
+      </select>
+      <div class="quota-preview" id="quota-preview">Scegli la categoria. Oggi non è richiesto alcun pagamento.</div>
+      <p class="payment-note">Prima della scadenza ti invieremo un promemoria. <strong>Se non confermi di voler proseguire, l’adesione termina automaticamente, senza costi né obblighi di pagamento.</strong></p>
     </div>
 
     <div class="field-grid">
       <label>
-        Nome *
-        <input type="text" name="nome" required autocomplete="given-name">
+        Nome <span class="field-required">Obbligatorio</span>
+        <input type="text" name="nome" id="member-nome" data-label="Nome" required autocomplete="given-name">
       </label>
       <label>
-        Cognome *
-        <input type="text" name="cognome" required autocomplete="family-name">
+        Cognome <span class="field-required">Obbligatorio</span>
+        <input type="text" name="cognome" id="member-cognome" data-label="Cognome" required autocomplete="family-name">
       </label>
     </div>
 
     <div class="field-grid">
       <label>
-        Codice fiscale *
-        <input type="text" name="codice_fiscale" required maxlength="16" autocomplete="off">
+        Codice fiscale <span class="field-required">Obbligatorio</span>
+        <input type="text" name="codice_fiscale" id="member-codice_fiscale" data-label="Codice fiscale" required maxlength="16" autocomplete="off">
       </label>
       <label>
-        Data di nascita *
-        <input type="date" name="data_nascita" required>
+        Data di nascita <span class="field-required">Obbligatorio</span>
+        <input type="date" name="data_nascita" id="member-data_nascita" data-label="Data di nascita" required>
       </label>
     </div>
 
     <label>
-      Luogo di nascita *
-      <input type="text" name="luogo_nascita" required>
+      Luogo di nascita <span class="field-required">Obbligatorio</span>
+      <input type="text" name="luogo_nascita" id="member-luogo_nascita" data-label="Luogo di nascita" required>
     </label>
 
     <label>
-      Indirizzo di residenza *
-      <input type="text" name="indirizzo" required autocomplete="street-address">
+      Indirizzo di residenza <span class="field-required">Obbligatorio</span>
+      <input type="text" name="indirizzo" id="member-indirizzo" data-label="Indirizzo di residenza" required autocomplete="street-address">
     </label>
 
     <div class="field-grid">
       <label>
-        Email *
-        <input type="email" name="email" required autocomplete="email">
+        Email <span class="field-required">Obbligatorio</span>
+        <input type="email" name="email" id="member-email" data-label="Email" required autocomplete="email">
       </label>
+
+    </div>
+
+    <details class="member-optional"><summary>Vuoi aggiungere altre informazioni? <span class="field-optional">Facoltativo</span></summary><p>Puoi lasciare tutti questi campi vuoti.</p>
       <label>
-        Telefono
+        Telefono <span class="field-optional">Facoltativo</span>
         <input type="tel" name="telefono" autocomplete="tel">
-      </label>
-    </div>
-
-    <label>
-      Professione
+      </label>    <label>
+      Professione <span class="field-optional">Facoltativo</span>
       <input type="text" name="professione">
     </label>
 
     <label>
-      Motivazione della richiesta
+      Motivazione della richiesta <span class="field-optional">Facoltativo</span>
       <textarea name="motivazione" rows="5"></textarea>
     </label>
 
-    <div class="checks">
+    </details>
+
+    <div class="checks"><h2>Conferme obbligatorie</h2><p>Per inviare la domanda, seleziona tutte e tre le caselle.</p>
       <label class="check-line">
-        <input type="checkbox" name="presa_visione_statuto" value="Sì" required>
+        <input type="checkbox" name="presa_visione_statuto" id="member-presa_visione_statuto" data-label="Presa visione dello statuto" value="Sì" required>
         <span>Dichiaro di aver preso visione dello <a class="legal-inline-link" href="{{ '/statuto.html' | relative_url }}" rel="nofollow">Statuto</a> dell’Associazione Alma Tellus.</span>
       </label>
 
       <label class="check-line">
-        <input type="checkbox" name="privacy" value="Sì" required>
+        <input type="checkbox" name="privacy" id="member-privacy" data-label="Informativa privacy" value="Sì" required>
         <span>Dichiaro di aver letto l’<a class="legal-inline-link" href="{{ '/privacy.html' | relative_url }}">informativa privacy</a> e acconsento al trattamento dei dati personali per la gestione della richiesta di adesione.</span>
       </label>
 
       <label class="check-line">
-        <input type="checkbox" name="richiesta_adesione" value="Sì" required>
+        <input type="checkbox" name="richiesta_adesione" id="member-richiesta_adesione" data-label="Conferma della domanda" value="Sì" required>
         <span>
           Confermo di voler prenotare l’iscrizione a socio e di essere consapevole
           che l’ammissione non è automatica.
@@ -123,10 +116,11 @@ permalink: /soci.html
 
     <p class="form-note">
       I dati verranno trasmessi all’associazione per la valutazione della richiesta.
-      L’ammissione è soggetta ad accettazione. Il periodo gratuito parte dalla data di ammissione, senza addebiti automatici.
+      L’ammissione è soggetta ad accettazione. Il periodo gratuito parte dalla data di ammissione, senza addebiti automatici. Se non confermi di voler proseguire alla scadenza, l’adesione termina senza costi.
     </p>
 
     <button class="btn btn-primary btn-submit" type="submit">Invia richiesta</button>
     <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
   </form>
+  <noscript><p>Per controllare la quota e compilare il modulo abilita JavaScript, oppure scrivi a <a href="mailto:info@almatellus.it">info@almatellus.it</a>.</p></noscript>
 </section>

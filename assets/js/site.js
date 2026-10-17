@@ -50,93 +50,81 @@
   function initMemberForm() {
     const form = document.getElementById("socio-form");
     if (!form) return;
-
     const status = document.getElementById("form-status");
-    const submitButton = form.querySelector('button[type="submit"]');
-    const memberType = document.getElementById("tipo-socio");
+    const errors = document.getElementById("member-errors");
+    const button = form.querySelector('button[type="submit"]');
+    const type = document.getElementById("tipo-socio");
     const preview = document.getElementById("quota-preview");
-    const hiddenFee = document.getElementById("quota-socio-hidden");
-    const promoNote = document.getElementById("promo-eligibility-note");
-
-    const queryValue = new URLSearchParams(window.location.search).get("tipo");
-    const typeMap = {
-      ordinario: "Socio ordinario",
-      sostenitore: "Socio sostenitore",
-      benemerito: "Socio benemerito",
-      familiare: "Familiare convivente",
-      familiare_successivo: "Dal secondo familiare convivente in poi",
-      under25: "Under 25",
-      over70: "Over 70",
-      ordinario_inaugurazione: "Socio ordinario - Inaugurazione",
-      familiare_inaugurazione: "Familiare convivente - Inaugurazione",
-      under25_inaugurazione: "Under 25 - Inaugurazione",
-      over70_inaugurazione: "Over 70 - Inaugurazione"
-    };
-
+    const fee = document.getElementById("quota-socio-hidden");
+    const types = { ordinario: "Socio ordinario", sostenitore: "Socio sostenitore", benemerito: "Socio benemerito", under25: "Under 25", over70: "Over 70", ordinario_inaugurazione: "Socio ordinario", under25_inaugurazione: "Under 25", over70_inaugurazione: "Over 70" };
+    const query = new URLSearchParams(window.location.search).get("tipo");
+    if (types[query]) type.value = types[query];
+    let pending = false;
+    const campaign = "Campagna nuovi soci: 6 mesi gratuiti dalla data di ammissione. Nessun pagamento richiesto ora. Promemoria email prima della scadenza. Senza conferma, adesione terminata automaticamente senza costi né obblighi. In caso di pagamento anticipato, annualità dal termine dei sei mesi gratuiti.";
     function updateFee() {
-      if (!memberType || !preview || !hiddenFee) return;
-      const option = memberType.options[memberType.selectedIndex];
-      const fee = option ? option.dataset.quota : "";
-      if (promoNote) promoNote.hidden = !option || !option.value.endsWith(" - Inaugurazione");
-
-      if (fee) {
-        hiddenFee.value = fee + " euro";
-        preview.textContent =
-          "Quota selezionata: " + option.value + " - " + fee +
-          " € per proseguire dopo i primi 6 mesi gratuiti. Ora non devi pagare nulla.";
-      } else {
-        hiddenFee.value = "";
-        preview.textContent = "Seleziona una tipologia per visualizzare la quota.";
-      }
+      const option = type.options[type.selectedIndex];
+      const amount = option && option.dataset.quota;
+      fee.value = amount ? amount + " euro" : "";
+      preview.textContent = amount ? "Oggi: 0 €. Se scegli di proseguire dopo i sei mesi gratuiti: " + amount + " €/anno." : "Scegli la categoria. Oggi non è richiesto alcun pagamento.";
     }
-
-    if (memberType) {
-      if (queryValue && typeMap[queryValue]) {
-        memberType.value = typeMap[queryValue];
+    type.addEventListener("change", updateFee);
+    updateFee();
+    function showErrors() {
+      if (!errors) return;
+      const invalid = Array.from(form.querySelectorAll("[required]")).filter(function (field) { return !field.validity.valid; });
+      errors.replaceChildren();
+      errors.hidden = invalid.length === 0;
+      if (!invalid.length) return;
+      const title = document.createElement("strong");
+      title.textContent = "Completa o correggi questi campi obbligatori:";
+      const list = document.createElement("ul");
+      invalid.forEach(function (field) {
+        const item = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = "#" + field.id;
+        link.textContent = field.dataset.label || field.name;
+        link.addEventListener("click", function (event) { event.preventDefault(); field.focus(); });
+        item.appendChild(link); list.appendChild(item);
+      });
+      errors.append(title, list);
+    }
+    form.addEventListener("invalid", function (event) {
+      event.target.setAttribute("aria-invalid", "true");
+      showErrors();
+    }, true);
+    form.addEventListener("input", function (event) {
+      if (event.target.validity && event.target.validity.valid) event.target.removeAttribute("aria-invalid");
+      if (errors && !errors.hidden) showErrors();
+    });
+    form.addEventListener("submit", function (event) {
+      if (pending) { event.preventDefault(); return; }
+      if (!form.reportValidity()) { event.preventDefault(); showErrors(); return; }
+      if (form.elements.website && form.elements.website.value.trim()) { event.preventDefault(); return; }
+      const endpoint = getWebAppUrl();
+      if (!endpoint) {
+        event.preventDefault();
+        status.textContent = "Modulo momentaneamente non disponibile. Scrivi a info@almatellus.it.";
+        status.classList.add("is-error"); return;
       }
-      memberType.addEventListener("change", updateFee);
       updateFee();
-    }
-
-    form.addEventListener("submit", async function (event) {
-      event.preventDefault();
-      status.classList.remove("is-error");
-
-      if (!form.reportValidity()) return;
-
-      const honeypot = form.elements.website ? form.elements.website.value.trim() : "";
-      if (honeypot) {
-        window.location.href = "grazie.html";
-        return;
-      }
-
-      const webAppUrl = getWebAppUrl();
-      if (!webAppUrl) {
-        status.textContent = "Modulo momentaneamente non disponibile. Riprova più tardi.";
-        status.classList.add("is-error");
-        return;
-      }
-
-      submitButton.disabled = true;
-      status.textContent = "Invio in corso...";
-
-      try {
-        await fetch(webAppUrl, {
-          method: "POST",
-          mode: "no-cors",
-          body: (() => {
-            const data = new FormData(form);
-            const campaign = 'Campagna nuovi soci: 6 mesi gratuiti dalla data di ammissione. Nessun pagamento richiesto ora. Promemoria email prima della scadenza. In caso di pagamento anticipato, annualità dal termine dei sei mesi gratuiti.';
-            data.set('motivazione', campaign + (data.get('motivazione') ? '\n\n' + data.get('motivazione') : ''));
-            return data;
-          })()
-        });
-        window.location.href = "grazie.html";
-      } catch (error) {
-        status.textContent = "Invio non riuscito. Riprova più tardi.";
-        status.classList.add("is-error");
-        submitButton.disabled = false;
-      }
+      // Standard cross-origin POST: Google renders the actual result after saving.
+      // An opaque fetch response cannot confirm that the application was saved.
+      form.action = endpoint;
+      form.method = "post";
+      const motivation = form.elements.motivazione;
+      if (motivation && !motivation.value.startsWith(campaign)) motivation.value = campaign + (motivation.value.trim() ? "\n\n" + motivation.value.trim() : "");
+      pending = true;
+      button.disabled = true;
+      button.textContent = "Invio in corso…";
+      status.textContent = "Attendi l’esito della registrazione: sarai portato alla risposta dell’associazione.";
+      form.setAttribute("aria-busy", "true");
+      // Do not preventDefault: the browser submits the form and shows the real server response.
+    });
+    window.addEventListener("pageshow", function () {
+      pending = false; button.disabled = false; button.textContent = "Invia richiesta";
+      form.removeAttribute("aria-busy"); status.textContent = "";
+      const motivation = form.elements.motivazione;
+      if (motivation && motivation.value.startsWith(campaign)) motivation.value = motivation.value.slice(campaign.length).replace(/^\s+/, "");
     });
   }
 
