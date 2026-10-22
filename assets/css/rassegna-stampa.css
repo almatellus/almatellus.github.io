@@ -1,0 +1,99 @@
+.press-hero {
+  padding: 12px 0 42px;
+  border-bottom: 1px solid #cbd4ca;
+}
+
+.press-page .press-hero h1 {
+  margin: 0;
+  font-size: clamp(3rem, 6.5vw, 6rem);
+  line-height: 1.02;
+}
+
+.press-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 28px;
+  margin-top: 30px;
+  color: #48534b;
+  font-size: .88rem;
+  line-height: 1.6;
+}
+
+.press-meta strong { color: #294330; }
+.press-coverage { padding: 42px 0 20px; }
+.press-section-heading { max-width: 800px; margin-bottom: 30px; }
+.press-section-heading > p:last-child { color: #48534b; }
+
+.press-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.press-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: clamp(24px, 3vw, 36px);
+  border: 1px solid #d8ddd5;
+  border-top: 4px solid #49634e;
+  border-radius: 4px 4px 14px 14px;
+  background: #fffdf8;
+}
+
+.press-card-meta { margin-bottom: 22px; }
+.press-card-meta .press-outlet {
+  margin: 0 0 7px;
+  color: #35583f;
+  font-size: .82rem;
+  font-weight: 800;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.press-card-meta time, .press-card-meta > span {
+  color: #59645c;
+  font-size: .82rem;
+  line-height: 1.5;
+}
+
+.press-page .press-card h3 {
+  margin: 0;
+  font-size: clamp(1.5rem, 2.3vw, 1.9rem);
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.press-summary { margin: 20px 0 26px; color: #48534b; }
+.press-link {
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 10px 0;
+  color: #294330;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.press-link:focus-visible { outline: 2px solid #334b3b; outline-offset: 5px; }
+.press-contact { margin-top: 36px; }
+.press-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 700px) {
+  .press-hero { padding-top: 0; padding-bottom: 30px; }
+  .press-page .press-hero h1 { font-size: clamp(2.8rem, 12vw, 4.5rem); }
+  .press-meta { flex-direction: column; gap: 7px; margin-top: 24px; }
+  .press-coverage { padding-top: 30px; }
+  .press-grid { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .press-card-meta { margin-bottom: 18px; }
+  .press-page .press-card h3 { font-size: 1.6rem; }
+  .press-contact { margin-top: 24px; }
+}

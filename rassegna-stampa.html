@@ -1,0 +1,51 @@
+---
+layout: default
+title: Rassegna stampa
+description: "Alma Tellus e OzoSteam Station sulla stampa: articoli, testate e link originali sulla partecipazione a Maker Faire Rome 2026."
+permalink: /rassegna-stampa.html
+body_class: page-press
+extra_css: /assets/css/rassegna-stampa.css
+---
+<div class="page-shell campaign-page press-page">
+  <header class="press-hero">
+    <p class="eyebrow">Alma Tellus · Rassegna stampa</p>
+    <h1>OzoSteam<br>sulla stampa.</h1>
+    <p class="lead">Gli articoli che raccontano Alma Tellus e il progetto OzoSteam Station. Le idee nate a Castellalto incontrano i lettori, verso Maker Faire Rome 2026.</p>
+    <div class="press-meta">
+      <span><strong>{{ site.data.rassegna_stampa | size }}</strong> pubblicazioni</span>
+      <span>Maker Faire Rome 2026</span>
+      <span>Aggiornata al <time datetime="2026-10-22">22 ottobre 2026</time></span>
+    </div>
+  </header>
+
+  <section class="press-coverage" aria-labelledby="press-coverage-title">
+    <div class="press-section-heading">
+      <p class="eyebrow">Ottobre 2026</p>
+      <h2 id="press-coverage-title">Il progetto, nelle notizie.</h2>
+      <p>Queste cinque testate citano OzoSteam e Alma Tellus negli articoli dedicati ai progetti abruzzesi presenti alla manifestazione. Qui trovi una breve sintesi e il collegamento a ogni articolo originale.</p>
+    </div>
+    <div class="press-grid">
+      {% for article in site.data.rassegna_stampa %}
+      <article class="press-card" aria-labelledby="press-article-{{ forloop.index }}">
+        <div class="press-card-meta">
+          <p class="press-outlet">{{ article.outlet | escape }}</p>
+          {% if article.date %}<time datetime="{{ article.date }}">{{ article.date_label | escape }}</time>{% else %}<span>{{ article.date_label | escape }}</span>{% endif %}
+        </div>
+        <h3 id="press-article-{{ forloop.index }}">{{ article.title | escape }}</h3>
+        <p class="press-summary">{{ article.summary | escape }}</p>
+        <a class="press-link" href="{{ article.url | escape }}" target="_blank" rel="noopener noreferrer">Leggi su {{ article.outlet | escape }} <span aria-hidden="true">↗</span><span class="press-sr-only"> (si apre in una nuova scheda)</span></a>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="campaign-follow press-contact" aria-labelledby="press-contact-title">
+    <p class="eyebrow">Dalla notizia al progetto</p>
+    <h2 id="press-contact-title">Conosci OzoSteam da vicino.</h2>
+    <p>Scopri il prototipo, ascolta la sua storia o contattaci per informazioni e approfondimenti stampa.</p>
+    <div class="page-actions">
+      <a class="btn btn-primary" href="/ozosteam-station.html">Scopri OzoSteam →</a>
+      <a class="btn btn-secondary" href="mailto:info@almatellus.it">Contatti stampa</a>
+    </div>
+  </section>
+</div>
