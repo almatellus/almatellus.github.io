@@ -11,6 +11,15 @@
 .campaign-prototype img {display:block;width:100%;height:auto;max-height:550px;object-fit:contain;}
 .campaign-prototype figcaption,.campaign-inside figcaption { padding:12px 16px;font-size:.8rem;line-height:1.5;background:#fffdf8;color:#48534b; }
 .campaign-caption {font-size:.86rem;margin-top:20px;}
+.campaign-debut-hero {grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,48px);}
+.campaign-stand-photo img {max-height:none;width:100%;height:auto;object-fit:contain;}
+.campaign-diary {border-block:1px solid #d8ddd5;margin-top:24px;}
+.campaign-diary-photo {margin-top:30px;}
+.campaign-diary .campaign-grid {gap:clamp(24px,4vw,48px);}
+.campaign-diary-quote {margin:30px 0;padding:20px 24px;border-left:4px solid #ad8b45;background:#f0ebdd;border-radius:0 10px 10px 0;}
+.campaign-diary-quote p {margin:0;font:italic clamp(1.4rem,2.5vw,1.9rem)/1.4 Georgia,serif;color:#253f31;}
+.campaign-diary-quote footer {margin-top:12px;font-size:.85rem;color:#48534b;}
+@media(max-width:900px){.campaign-debut-hero{grid-template-columns:minmax(0,1fr)}.campaign-debut-hero .campaign-stand-photo,.campaign-diary-photo{max-width:none;width:100%;}.campaign-stand-photo img{max-height:none;}}
 .campaign-index { display:flex;gap:12px 24px;flex-wrap:wrap;margin:38px 0 0;padding:20px 0;border-block:1px solid #d8ddd5; }
 .campaign-index a {font-size:.9rem;font-weight:700;}
 .campaign-section { padding:56px 0; }
