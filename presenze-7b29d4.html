@@ -1,293 +1,94 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
-  <meta name="referrer" content="no-referrer">
-  <meta name="theme-color" content="#0b3440">
-  <title>Conta visitatori · Alma Tellus</title>
-  <style>
-    :root { color-scheme: light; --ink:#0b3440; --muted:#537078; --gold:#c5a15a; --paper:#f7f4ec; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100svh; background:var(--paper); color:var(--ink); font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
-    main { max-width:520px; margin:auto; padding:26px 20px max(28px,env(safe-area-inset-bottom)); }
-    header { display:flex; align-items:center; justify-content:space-between; gap:12px; padding-bottom:22px; }
-    .brand { font-weight:800; letter-spacing:.14em; font-size:12px; }
-    .event { color:var(--muted); font-size:12px; }
-    .eyebrow { margin:0 0 8px; color:var(--muted); font-size:12px; font-weight:750; letter-spacing:.1em; text-transform:uppercase; }
-    h1 { margin:0 0 5px; font-size:28px; letter-spacing:-.035em; }
-    .date { margin:0; color:var(--muted); font-size:15px; }
-    .counter { position:relative; margin:20px 0 15px; padding:24px 18px 20px; border:1px solid #d9e1dc; border-radius:28px; background:#fff; text-align:center; box-shadow:0 8px 30px #0b344008; }
-    .count { display:block; margin:0; font-size:clamp(82px,25vw,126px); font-weight:800; line-height:1.08; letter-spacing:-.075em; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
-    .count-label { margin:7px 0 0; color:var(--muted); font-size:15px; }
-    button { font:inherit; cursor:pointer; touch-action:manipulation; -webkit-tap-highlight-color:transparent; }
-    button:focus-visible,summary:focus-visible,input:focus-visible { outline:3px solid var(--gold); outline-offset:4px; }
-    button:disabled { opacity:.48; cursor:default; }
-    .add { display:flex; width:100%; min-height:142px; align-items:center; justify-content:center; gap:17px; padding:22px 16px; border:0; border-radius:24px; background:var(--ink); color:white; box-shadow:0 6px 0 #06232b; user-select:none; -webkit-user-select:none; }
-    .add:active:not(:disabled) { transform:translateY(3px); box-shadow:0 3px 0 #06232b; background:#164a57; }
-    .plus { font-size:58px; font-weight:800; letter-spacing:-.07em; line-height:1; }
-    .add-label { text-align:left; font-size:23px; font-weight:750; line-height:1.15; }
-    .add-label small { display:block; margin-top:8px; font-size:13px; font-weight:450; color:#cfe2df; }
-    .controls { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:20px 0; }
-    .secondary { min-height:48px; padding:12px 8px; border:1px solid #cbd6d1; border-radius:13px; background:transparent; color:var(--ink); font-size:14px; font-weight:650; }
-    .summary { display:flex; justify-content:space-between; align-items:center; gap:16px; padding:16px 18px; border-radius:18px; background:#e8efeb; }
-    .summary p { margin:0; font-size:14px; }
-    .summary small { display:block; margin-top:3px; color:var(--muted); font-size:12px; }
-    .summary strong { font-size:28px; font-variant-numeric:tabular-nums; }
-    .status { min-height:20px; margin:15px 0 0; font-size:12px; text-align:center; color:var(--muted); }
-    .status.error { color:#a33021; font-weight:700; }
-    details { margin-top:22px; border-top:1px solid #d9dfd9; padding-top:16px; }
-    summary { cursor:pointer; font-size:14px; font-weight:700; }
-    table { width:100%; margin:12px 0; border-collapse:collapse; font-size:14px; }
-    th,td { padding:11px 0; text-align:left; border-bottom:1px solid #dce3dd; }
-    th:last-child,td:last-child { text-align:right; font-variant-numeric:tabular-nums; }
-    .download { width:100%; margin-top:8px; }
-    .note { margin:18px 0 0; font-size:12px; line-height:1.6; color:var(--muted); }
-    dialog { width:min(92vw,420px); border:0; border-radius:24px; padding:25px; color:var(--ink); background:#fff; box-shadow:0 20px 80px #0003; }
-    dialog::backdrop { background:#06232b99; }
-    dialog h2 { margin:0 0 12px; font-size:23px; }
-    dialog p { margin:0 0 17px; color:var(--muted); font-size:14px; line-height:1.5; }
-    label { display:block; font-size:14px; font-weight:650; }
-    input { width:100%; margin:9px 0 10px; padding:14px; border:1px solid #b9ccc4; border-radius:12px; font:700 28px system-ui,sans-serif; color:var(--ink); }
-    .dialog-actions { display:flex; gap:10px; margin-top:14px; }
-    .dialog-actions button { flex:1; }
-    .save { color:#fff; background:var(--ink); border-color:var(--ink); }
-    .form-error { min-height:18px; font-size:13px; color:#a33021; }
-    noscript { display:block; margin:20px; color:#a33021; }
-    @media (max-width:360px) { main { padding:18px 15px; } header { padding-bottom:16px; } .event { font-size:11px; } .add { min-height:124px; } .add-label { font-size:21px; } }
-    @media (prefers-reduced-motion:no-preference) { .add { transition:transform .08s; } }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#0b3440">
+<title>Conta visitatori - Alma Tellus</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f7f4ec;color:#0b3440;font-family:Arial,Helvetica,sans-serif}main{max-width:480px;margin:0 auto;padding:24px 18px}.brand{margin:0 0 24px;font-size:13px;font-weight:bold;letter-spacing:2px}h1{font-size:28px;margin:0 0 10px}.date{margin:0 0 18px;color:#4a666b;font-size:16px}.card{background:#fff;border:1px solid #d8e0da;border-radius:16px;text-align:center;padding:18px 8px;margin-bottom:16px}#count{display:block;color:#0b3440;font-size:100px;font-weight:bold;line-height:1.2;overflow-wrap:break-word}.label{margin:4px 0 8px;color:#4a666b;font-size:16px}button,input{font-family:inherit;touch-action:manipulation}button{cursor:pointer;border-radius:12px}button:focus-visible,input:focus-visible{outline:3px solid #c5a15a;outline-offset:3px}button:disabled{opacity:.5;cursor:default}#add{display:block;width:100%;min-height:132px;padding:28px 8px;border:0;background:#0b3440;color:#fff;font-weight:bold;font-size:31px}#add:active{background:#205463}.controls{margin:14px 0}.small{width:48%;min-height:50px;padding:10px 4px;border:1px solid #bacac3;background:#fff;color:#0b3440;font-size:14px;font-weight:bold}.right{float:right}.total{margin:20px 0 12px;padding:16px;background:#e5ede8;border-radius:12px;font-size:17px}#total{float:right;font-weight:bold}#status{font-size:13px;line-height:1.5;color:#4a666b;min-height:40px}.note{font-size:12px;line-height:1.5;color:#4a666b}#editBox{display:none;padding:18px 14px;background:#fff;border:1px solid #c6d2cb;border-radius:12px;margin:14px 0}label{display:block;font-size:16px;font-weight:bold}input{display:block;width:100%;margin:12px 0;padding:12px;border:1px solid #94aba0;font-size:26px;border-radius:8px}#error{color:#a12820;font-size:14px}.save{background:#0b3440;color:#fff;border-color:#0b3440}#export{display:block;width:100%;min-height:44px;padding:10px;border:1px solid #bacac3;color:#0b3440;background:transparent;font-size:14px}
+</style>
 </head>
-<body>
+<body style="margin:0;background-color:#f7f4ec;color:#0b3440">
 <main>
-  <header><span class="brand">ALMA TELLUS</span><span class="event">OzoSteam · Maker Faire Rome</span></header>
-  <p class="eyebrow">Il pubblico del nostro stand</p>
-  <h1>Conta visitatori</h1>
-  <p class="date" id="today"></p>
-
-  <section class="counter" aria-label="Conteggio di oggi">
-    <output class="count" id="count" aria-live="polite" aria-atomic="true">0</output>
-    <p class="count-label">visitatori contati oggi</p>
-  </section>
-
-  <button class="add" id="add" type="button" aria-label="Aggiungi un visitatore" disabled>
-    <span class="plus" aria-hidden="true">+1</span>
-    <span class="add-label">Visitatore<small>Un tocco per ogni persona</small></span>
-  </button>
-  <div class="controls">
-    <button class="secondary" id="subtract" type="button" disabled>−1 · Correggi</button>
-    <button class="secondary" id="edit" type="button" disabled>Imposta conteggio</button>
-  </div>
-
-  <section class="summary" aria-label="Totale dei giorni registrati">
-    <p>Totale registrato<small>Tutti i giorni su questo dispositivo</small></p>
-    <strong id="total">0</strong>
-  </section>
-  <p class="status" id="status" role="status" aria-live="polite">Caricamento del conteggio…</p>
-
-  <details>
-    <summary>Riepilogo e copia dei dati</summary>
-    <table><thead><tr><th scope="col">Giorno</th><th scope="col">Visitatori</th></tr></thead><tbody id="history"></tbody></table>
-    <button class="secondary download" id="download" type="button" disabled>Scarica riepilogo CSV</button>
-    <p class="note">I numeri restano in questo browser, anche chiudendo la pagina. Un altro telefono avrà un conteggio separato. Scarica il riepilogo per conservarne una copia: cancellando i dati del browser perdi il conteggio.</p>
-  </details>
-  <noscript>Attiva JavaScript nel browser per usare il contatore.</noscript>
+<p class="brand">ALMA TELLUS · MAKER FAIRE</p>
+<h1>Conta visitatori</h1>
+<p class="date" id="date">Visitatori di oggi</p>
+<section class="card" aria-label="Conteggio di oggi"><output id="count" aria-live="polite" aria-atomic="true">0</output><p class="label">visitatori contati oggi</p></section>
+<button id="add" type="button" disabled>+1 visitatore</button>
+<div class="controls"><button id="minus" class="small" type="button" disabled>−1 · Correggi</button><button id="edit" class="small right" type="button" disabled>Imposta conteggio</button></div>
+<form id="editBox">
+<label for="number">Visitatori già contati oggi</label>
+<input id="number" type="number" inputmode="numeric" min="0" max="999999" step="1" required>
+<p id="error" role="alert"></p>
+<button class="small" id="cancel" type="button">Annulla</button><button class="small right save" type="submit">Salva</button>
+</form>
+<p class="total">Totale registrato <span id="total">0</span></p>
+<p id="status" role="status">Caricamento del contatore…</p>
+<button id="export" type="button" disabled>Scarica riepilogo</button>
+<p class="note">Il conteggio resta in questo browser. Ogni telefono conta separatamente. Scarica il riepilogo per conservarne una copia.</p>
+<noscript><p>Per contare i visitatori, abilita JavaScript nel browser.</p></noscript>
 </main>
-
-<dialog id="editDialog" aria-labelledby="dialogTitle">
-  <form id="editForm">
-    <h2 id="dialogTitle">Conteggio di oggi</h2>
-    <p>Puoi inserire anche i visitatori già contati prima di aprire questa pagina.</p>
-    <label for="newCount">Numero di visitatori</label>
-    <input id="newCount" name="count" type="number" min="0" max="999999" step="1" inputmode="numeric" required>
-    <div class="form-error" id="formError" role="alert"></div>
-    <div class="dialog-actions">
-      <button class="secondary" id="cancelEdit" type="button">Annulla</button>
-      <button class="secondary save" type="submit">Salva</button>
-    </div>
-  </form>
-</dialog>
-
 <script>
-(() => {
-  'use strict';
-  const KEY = 'almatellus.stand.visitors.v1';
-  const LIMIT = 999999;
-  const $ = id => document.getElementById(id);
-  const countEl = $('count');
-  const totalEl = $('total');
-  const statusEl = $('status');
-  const add = $('add');
-  const subtract = $('subtract');
-  const edit = $('edit');
-  const download = $('download');
-  const dialog = $('editDialog');
-  const number = new Intl.NumberFormat('it-IT');
-  const dayParts = new Intl.DateTimeFormat('en-US', {timeZone:'Europe/Rome',year:'numeric',month:'2-digit',day:'2-digit'});
-  const dateLabel = new Intl.DateTimeFormat('it-IT', {timeZone:'Europe/Rome',weekday:'long',day:'numeric',month:'long',year:'numeric'});
-  const shortDate = new Intl.DateTimeFormat('it-IT', {timeZone:'Europe/Rome',day:'2-digit',month:'2-digit',year:'numeric'});
-  let state = {version:1,days:{},updatedAt:null};
-  let ready = false;
-  let busy = false;
-  let editingDay = null;
-  let queue = Promise.resolve();
-
-  function dayKey() {
-    const parts = Object.fromEntries(dayParts.formatToParts(new Date()).map(part => [part.type,part.value]));
-    return `${parts.year}-${parts.month}-${parts.day}`;
-  }
-
-  function read() {
-    const raw = localStorage.getItem(KEY);
-    if (raw === null) return {version:1,days:{},updatedAt:null};
-    const data = JSON.parse(raw);
-    if (!data || data.version !== 1 || !data.days || typeof data.days !== 'object' || Array.isArray(data.days)) throw new Error('invalid data');
-    for (const [day,value] of Object.entries(data.days)) {
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(day) || !Number.isSafeInteger(value) || value < 0 || value > LIMIT) throw new Error('invalid data');
-    }
-    return {version:1,days:data.days,updatedAt:data.updatedAt || null};
-  }
-
-  function message(text,error = false) {
-    statusEl.textContent = text;
-    statusEl.classList.toggle('error',error);
-  }
-
-  function render() {
-    const today = dayKey();
-    const count = state.days[today] || 0;
-    $('today').textContent = dateLabel.format(new Date());
-    countEl.textContent = number.format(count);
-    totalEl.textContent = number.format(Object.values(state.days).reduce((sum,value) => sum + value,0));
-    add.disabled = !ready || busy || count >= LIMIT;
-    subtract.disabled = !ready || busy || count === 0;
-    edit.disabled = !ready || busy;
-    download.disabled = !ready;
-    const days = Object.keys(state.days).sort().reverse();
-    if (!days.includes(today)) days.unshift(today);
-    const rows = days.map(day => {
-      const row = document.createElement('tr');
-      const label = document.createElement('td');
-      const value = document.createElement('td');
-      label.textContent = shortDate.format(new Date(day + 'T12:00:00Z')) + (day === today ? ' · oggi' : '');
-      value.textContent = number.format(state.days[day] || 0);
-      row.append(label,value);
-      return row;
-    });
-    $('history').replaceChildren(...rows);
-  }
-
-  function fail() {
-    ready = false;
-    render();
-    message('Salvataggio non disponibile. Consenti i dati del sito in questo browser e ricarica la pagina.',true);
-  }
-
-  function mutate(change) {
-    const work = async () => {
-      if (!ready) return false;
-      busy = true;
-      try {
-        state = read();
-        const today = dayKey();
-        const previous = state.days[today] || 0;
-        const next = change(previous,today);
-        if (next === null) return false;
-        if (!Number.isSafeInteger(next) || next < 0 || next > LIMIT) throw new Error('invalid count');
-        const updated = {version:1,days:{...state.days,[today]:next},updatedAt:new Date().toISOString()};
-        localStorage.setItem(KEY,JSON.stringify(updated));
-        state = updated;
-        message('Salvato su questo dispositivo');
-        return true;
-      } catch {
-        fail();
-        return false;
-      } finally {
-        busy = false;
-        render();
-      }
-    };
-    // Serialize rapid taps and, where supported, updates from multiple tabs.
-    const next = queue.then(() => navigator.locks && navigator.locks.request
-      ? navigator.locks.request(KEY,work) : work());
-    queue = next.catch(() => { fail(); return false; });
-    return queue;
-  }
-
-  add.addEventListener('click', () => {
-    mutate(value => Math.min(LIMIT,value + 1)).then(saved => {
-      if (saved && navigator.vibrate) navigator.vibrate(20);
-    });
-  });
-  subtract.addEventListener('click', () => mutate(value => Math.max(0,value - 1)));
-
-  edit.addEventListener('click', () => {
-    editingDay = dayKey();
-    $('newCount').value = state.days[editingDay] || 0;
-    $('formError').textContent = '';
-    dialog.showModal();
-    $('newCount').select();
-  });
-  $('cancelEdit').addEventListener('click', () => dialog.close());
-  $('editForm').addEventListener('submit', async event => {
-    event.preventDefault();
-    const value = Number($('newCount').value);
-    if ($('newCount').value.trim() === '' || !Number.isSafeInteger(value) || value < 0 || value > LIMIT) {
-      $('formError').textContent = 'Inserisci un numero intero tra 0 e 999.999.';
-      return;
-    }
-    const saved = await mutate((previous,today) => {
-      if (today !== editingDay) {
-        $('formError').textContent = 'È cambiato il giorno. Chiudi e riapri la correzione.';
-        return null;
-      }
-      return value;
-    });
-    if (saved) dialog.close();
-    else if (!ready) $('formError').textContent = 'Salvataggio non riuscito. Il conteggio precedente è conservato.';
-  });
-
-  download.addEventListener('click', () => {
-    try {
-      state = read();
-      render();
-      const days = Object.keys(state.days).sort();
-      if (!days.includes(dayKey())) days.push(dayKey());
-      days.sort();
-      const lines = ['Data;Visitatori',...days.map(day => `${day};${state.days[day] || 0}`)];
-      lines.push(`Totale;${Object.values(state.days).reduce((sum,value) => sum + value,0)}`);
-      const url = URL.createObjectURL(new Blob(['\uFEFF' + lines.join('\r\n')],{type:'text/csv;charset=utf-8'}));
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `visitatori-alma-tellus-${dayKey()}.csv`;
-      document.body.append(link);
-      link.click();
-      link.remove();
-      setTimeout(() => URL.revokeObjectURL(url),1000);
-      message('Riepilogo CSV scaricato');
-    } catch { fail(); }
-  });
-
-  function refresh() {
-    if (!ready) return;
-    try { state = read(); render(); } catch { fail(); }
-  }
-  window.addEventListener('storage',event => { if (event.key === KEY || event.key === null) refresh(); });
-  window.addEventListener('focus',refresh);
-  document.addEventListener('visibilitychange',() => { if (!document.hidden) refresh(); });
-  setInterval(refresh,30000);
-
-  try {
-    state = read();
-    const probe = KEY + '.probe';
-    localStorage.setItem(probe,'1');
-    localStorage.removeItem(probe);
-    ready = true;
-    render();
-    message('Salvato su questo dispositivo');
-  } catch { fail(); }
-})();
+(function () {
+'use strict';
+var KEY = 'almatellus.stand.visitors.v1';
+var state = {version:1, days:{}, updatedAt:null};
+var canSave = true, editingDay = '', LIMIT = 999999;
+function el(id) { return document.getElementById(id); }
+function dayKey() { var d = new Date(); return d.getFullYear() + '-' + ('0' + (d.getMonth()+1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+function total() { var sum=0, keys=Object.keys(state.days), i; for(i=0;i<keys.length;i++) sum+=state.days[keys[i]]; return sum; }
+function read() {
+var raw=localStorage.getItem(KEY); if(raw===null) return {version:1,days:{},updatedAt:null};
+var data=JSON.parse(raw), keys, i, value;
+if(!data || data.version!==1 || !data.days || typeof data.days!=='object' || Array.isArray(data.days)) throw new Error('Invalid data');
+keys=Object.keys(data.days);
+for(i=0;i<keys.length;i++) { value=data.days[keys[i]]; if(!/^\d{4}-\d{2}-\d{2}$/.test(keys[i]) || typeof value!=='number' || !isFinite(value) || Math.floor(value)!==value || value<0 || value>LIMIT) throw new Error('Invalid count'); }
+return data;
+}
+function render() {
+var key=dayKey(), value=state.days[key]||0;
+el('date').textContent='Oggi · '+key.slice(8)+'/'+key.slice(5,7)+'/'+key.slice(0,4);
+el('count').textContent=String(value); el('total').textContent=String(total());
+el('add').disabled=value>=LIMIT; el('minus').disabled=value===0;
+el('status').textContent=canSave?'Conteggio salvato su questo telefono.':'Salvataggio non disponibile: il conteggio resta solo finché questa pagina rimane aperta. Scarica il riepilogo prima di chiuderla.';
+}
+function refresh() { if(canSave) { try { state=read(); } catch(err) { canSave=false; } } render(); }
+function change(delta,absolute) {
+if(canSave) { try { state=read(); } catch(err) { canSave=false; } }
+var key=dayKey(), value=typeof absolute==='number'?absolute:(state.days[key]||0)+delta;
+state.days[key]=Math.max(0,Math.min(LIMIT,value)); state.updatedAt=new Date().toISOString();
+if(canSave) { try { localStorage.setItem(KEY,JSON.stringify(state)); } catch(err) { canSave=false; } }
+render();
+}
+el('add').onclick=function(){change(1);};
+el('minus').onclick=function(){change(-1);};
+el('edit').onclick=function(){ refresh(); editingDay=dayKey(); el('number').value=String(state.days[editingDay]||0); el('error').textContent=''; el('editBox').style.display='block'; el('number').focus(); el('number').select(); };
+el('cancel').onclick=function(){el('editBox').style.display='none';};
+el('editBox').onsubmit=function(event){
+event.preventDefault(); var raw=el('number').value, value=Number(raw);
+if(!raw || !isFinite(value) || value<0 || value>LIMIT || Math.floor(value)!==value){ el('error').textContent='Inserisci un numero intero tra 0 e 999999.'; return; }
+if(editingDay!==dayKey()){el('error').textContent='È cambiato il giorno: riapri Imposta conteggio.';return;}
+change(0,value); el('editBox').style.display='none';
+};
+el('export').onclick=function(){
+refresh(); var keys=Object.keys(state.days).sort(), lines=['Data;Visitatori'], i;
+if(keys.indexOf(dayKey())===-1){keys.push(dayKey());keys.sort();}
+for(i=0;i<keys.length;i++)lines.push(keys[i]+';'+(state.days[keys[i]]||0));
+lines.push('Totale;'+total());
+var blob=new Blob(['\uFEFF'+lines.join('\r\n')],{type:'text/csv;charset=utf-8'});
+var url=URL.createObjectURL(blob), link=document.createElement('a'); link.href=url;link.download='visitatori-alma-tellus-'+dayKey()+'.csv';
+document.body.appendChild(link);link.click();document.body.removeChild(link);setTimeout(function(){URL.revokeObjectURL(url);},1000);
+};
+try{state=read();localStorage.setItem(KEY+'.probe','1');localStorage.removeItem(KEY+'.probe');}catch(err){canSave=false;}
+el('edit').disabled=false;el('export').disabled=false;render();
+window.addEventListener('storage',function(event){if(event.key===KEY || event.key===null)refresh();});
+window.addEventListener('focus',refresh);
+document.addEventListener('visibilitychange',function(){if(!document.hidden)refresh();});
+setInterval(refresh,30000);
+}());
 </script>
 </body>
 </html>
